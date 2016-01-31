@@ -2,7 +2,9 @@
 Library/
 Temp/
 obj/
+vs/
 *.DS_Store
 *.csproj
 *.sln
 *.userprefs
+Assets/Resources/Screenshots*
