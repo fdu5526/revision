@@ -12,6 +12,7 @@ GameObject:
   - 102: {fileID: 10244334}
   - 65: {fileID: 6530044}
   - 114: {fileID: 11477032}
+  - 114: {fileID: 11483348}
   m_Layer: 0
   m_Name: word
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.66, y: 1.23, z: -9}
+  m_LocalPosition: {x: 18.72912, y: -2.4641337, z: 11.019564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,6 +105,18 @@ MonoBehaviour:
   translated: 0
   speed: 0.1
   paused: 0
+--- !u!114 &11483348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080e4db0771164a429d766882e54c87d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wordStringCount: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
