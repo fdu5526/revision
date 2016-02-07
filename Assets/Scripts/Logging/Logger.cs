@@ -23,10 +23,11 @@ namespace Giverspace {
 
         private struct LogMsg {
             public LogType LogType;
-            public DateTime ReportedAt;
+            public float ReportedAt;
             public Severity Seriousness;
 
             // For String
+            public string Scene;
             public string Message;
 
             // For PlayerPosRot
@@ -64,7 +65,7 @@ namespace Giverspace {
 
             void WriteTimeStampWith (StreamWriter w) {
                 w.Write("\"ts\":");
-                w.Write(ReportedAt.Ticks);
+                w.Write(ReportedAt);
             }
 
             void WriteVectorWith (ref Vector3 v, string name, StreamWriter w) {
@@ -88,6 +89,8 @@ namespace Giverspace {
                         WriteTimeStampWith(w);
                         w.Write(',');
                         WriteTypeWith("info",w);
+                        w.Write(',');
+                        WriteFieldWith("scene",Scene,w);
                         w.Write(',');
                         WriteFieldWith("m",Message,w);
                         w.WriteLine('}');
@@ -175,7 +178,7 @@ namespace Giverspace {
         // TODO: add support for logging additional message types here:
         // you can then access them via Log.Metrics.FunctionName
         public void PlayerPosRotMessage (Vector3 position, Vector3 orientation) {
-            Enqueue(new LogMsg { ReportedAt = DateTime.UtcNow,
+            Enqueue(new LogMsg { ReportedAt = Time.timeSinceLevelLoad,
                                  Position = position,
                                  Orientation = orientation,
                                  Seriousness = Severity.Info,
@@ -183,7 +186,8 @@ namespace Giverspace {
         }
 
         public void Message (string msg) {
-            Enqueue(new LogMsg { ReportedAt = DateTime.UtcNow,
+            Enqueue(new LogMsg { ReportedAt = Time.timeSinceLevelLoad,
+                                 Scene = UnityEditor.EditorApplication.currentScene,
                                  Message = msg,
                                  Seriousness = Severity.Info,
                                  LogType = LogType.String });

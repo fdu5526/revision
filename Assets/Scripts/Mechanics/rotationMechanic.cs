@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace; // Needed to get access to logging
 
 public class rotationMechanic : Ability {
 	public enum rotationType {horizontal, vertical};
@@ -29,6 +30,7 @@ public class rotationMechanic : Ability {
 		if(GameButtonMaster.ready){
 			turned = !turned;
 			powerTracker.power[1] = turned;
+			Log.Metrics.Message("Power-Rotation-" + turned);
 			StartCoroutine(turnTheObject(turned));
 		}
 	}
