@@ -20,7 +20,7 @@ public class ScreenshotCapturer : MonoBehaviour {
 	}
 
 	public void TakeScreenshot () {
-		Log.Metrics.Message(UnityEditor.EditorApplication.currentScene + ": Taking screenshot");
+		Log.Metrics.Message("Taking screenshot");
 		System.IO.Directory.CreateDirectory(folderPath);
 		string pathName = folderPath + "level" + levelNumber + ".png";
     	Application.CaptureScreenshot(pathName);

@@ -23,7 +23,8 @@ namespace Giverspace {
 
         private struct LogMsg {
             public LogType LogType;
-            public float ReportedAt;
+            public float TimeGameLoad;
+            public float TimeLevelLoad;
             public Severity Seriousness;
 
             // For String
@@ -64,8 +65,11 @@ namespace Giverspace {
             }
 
             void WriteTimeStampWith (StreamWriter w) {
-                w.Write("\"ts\":");
-                w.Write(ReportedAt);
+                w.Write("\"timeGameLoad\":");
+                w.Write(TimeGameLoad);
+                w.Write(',');
+                w.Write("\"timeLevelLoad\":");
+                w.Write(TimeLevelLoad);
             }
 
             void WriteVectorWith (ref Vector3 v, string name, StreamWriter w) {
@@ -178,7 +182,8 @@ namespace Giverspace {
         // TODO: add support for logging additional message types here:
         // you can then access them via Log.Metrics.FunctionName
         public void PlayerPosRotMessage (Vector3 position, Vector3 orientation) {
-            Enqueue(new LogMsg { ReportedAt = Time.timeSinceLevelLoad,
+            Enqueue(new LogMsg { TimeGameLoad = Time.time,
+                                 TimeLevelLoad = Time.timeSinceLevelLoad,
                                  Position = position,
                                  Orientation = orientation,
                                  Seriousness = Severity.Info,
@@ -186,7 +191,8 @@ namespace Giverspace {
         }
 
         public void Message (string msg) {
-            Enqueue(new LogMsg { ReportedAt = Time.timeSinceLevelLoad,
+            Enqueue(new LogMsg { TimeGameLoad = Time.time,
+                                 TimeLevelLoad = Time.timeSinceLevelLoad,
                                  Scene = UnityEditor.EditorApplication.currentScene,
                                  Message = msg,
                                  Seriousness = Severity.Info,

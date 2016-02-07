@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace; // Needed to get access to logging
 
 [RequireComponent (typeof(MatrixBlender))]
 public class PerspectiveSwitcher : Ability
@@ -32,6 +33,7 @@ public class PerspectiveSwitcher : Ability
 		{
 			orthoOn = !orthoOn;
 			powerTracker.power[0] = !orthoOn;
+			Log.Metrics.Message("Power-Depth-" + (orthoOn ? "off" : "on"));
 			if (orthoOn){
 
 				blender.BlendToMatrix(ortho, 3f, true);

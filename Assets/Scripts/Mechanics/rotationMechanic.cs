@@ -30,7 +30,7 @@ public class rotationMechanic : Ability {
 		if(GameButtonMaster.ready){
 			turned = !turned;
 			powerTracker.power[1] = turned;
-			Log.Metrics.Message("Power-Rotation-" + turned);
+			Log.Metrics.Message("Power-Rotation-" + (turned ? "on" : "off"));
 			StartCoroutine(turnTheObject(turned));
 		}
 	}
