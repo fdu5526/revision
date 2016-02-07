@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class rotationMechanic : MonoBehaviour {
+public class rotationMechanic : Ability {
 	public enum rotationType {horizontal, vertical};
 	public float turnDirection = 1;
 	public rotationType rotationOrientation;
@@ -18,7 +18,13 @@ public class rotationMechanic : MonoBehaviour {
 	
 	}
 
-	public void toggleRotation(){
+    public override void Activate()
+    {
+        toggleRotation();
+    }
+
+
+    public void toggleRotation(){
 
 		if(GameButtonMaster.ready){
 			turned = !turned;

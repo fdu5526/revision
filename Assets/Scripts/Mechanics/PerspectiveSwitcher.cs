@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof(MatrixBlender))]
-public class PerspectiveSwitcher : MonoBehaviour
+public class PerspectiveSwitcher : Ability
 {
 	Camera camera;
 	private Matrix4x4   ortho,
@@ -46,9 +46,12 @@ public class PerspectiveSwitcher : MonoBehaviour
 		}
 	}
 
+    public override void Activate()
+    {
+        switchPerspective();
+    }
 
-
-	void Update () {
+    void Update () {
 		/*
 		if (Input.GetKeyDown("space")) {
 			switchPerspective();
