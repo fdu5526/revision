@@ -1,0 +1,169 @@
+fileFormatVersion: 2
+guid: 182030cd64f8040b88ff497db322a617
+timeCreated: 1454880005
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arms
+    100002: Body
+    100004: Body_Controller
+    100006: CollarL
+    100008: CollarR
+    100010: Eye_Controller
+    100012: EyebrowL
+    100014: EyebrowR
+    100016: Eyebrows
+    100018: EyeL
+    100020: EyeR
+    100022: Eyes
+    100024: Glasses
+    100026: Glasses_Controller
+    100028: Head
+    100030: Head_Move_Controller
+    100032: Head_Rotate_Controller
+    100034: L_Arm
+    100036: L_Arm_Controller
+    100038: L_Eyebrow_Controller
+    100040: L_foot
+    100042: L_Foot_Controller
+    100044: R_Arm
+    100046: R_Arm_Controller
+    100048: R_Eyebrow_Controller
+    100050: R_foot
+    100052: R_Foot_Controller
+    100054: //RootNode
+    100056: Teacher
+    400000: Arms
+    400002: Body
+    400004: Body_Controller
+    400006: CollarL
+    400008: CollarR
+    400010: Eye_Controller
+    400012: EyebrowL
+    400014: EyebrowR
+    400016: Eyebrows
+    400018: EyeL
+    400020: EyeR
+    400022: Eyes
+    400024: Glasses
+    400026: Glasses_Controller
+    400028: Head
+    400030: Head_Move_Controller
+    400032: Head_Rotate_Controller
+    400034: L_Arm
+    400036: L_Arm_Controller
+    400038: L_Eyebrow_Controller
+    400040: L_foot
+    400042: L_Foot_Controller
+    400044: R_Arm
+    400046: R_Arm_Controller
+    400048: R_Eyebrow_Controller
+    400050: R_foot
+    400052: R_Foot_Controller
+    400054: Teacher
+    400056: //RootNode
+    2300000: Body
+    2300002: CollarL
+    2300004: CollarR
+    2300006: EyebrowL
+    2300008: EyebrowR
+    2300010: EyeL
+    2300012: EyeR
+    2300014: Glasses
+    2300016: Head
+    2300018: L_Arm
+    2300020: L_foot
+    2300022: R_Arm
+    2300024: R_foot
+    3300000: Body
+    3300002: CollarL
+    3300004: CollarR
+    3300006: EyebrowL
+    3300008: EyebrowR
+    3300010: EyeL
+    3300012: EyeR
+    3300014: Glasses
+    3300016: Head
+    3300018: L_Arm
+    3300020: L_foot
+    3300022: R_Arm
+    3300024: R_foot
+    4300000: EyeR
+    4300002: EyeL
+    4300004: Glasses
+    4300006: EyebrowL
+    4300008: EyebrowR
+    4300010: Head
+    4300012: R_foot
+    4300014: L_foot
+    4300016: Body
+    4300018: R_Arm
+    4300020: L_Arm
+    4300022: CollarR
+    4300024: CollarL
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
