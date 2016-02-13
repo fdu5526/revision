@@ -3,17 +3,20 @@ using System.Collections;
 
 public class friendMovement : MonoBehaviour {
     public bool pickedUp = false;
+	public string defaultResponse;
     public float snapDistance = 2f;
     public TextMesh speechBubble;
 
     public relationship[] relationships;
 
     GameObject nearestObject;
+	FriendsMaster masterObject;
     Vector3 originalPosition;
 	// Use this for initialization
 	void Start () {
         originalPosition = transform.position;
         speechBubble.text = "";
+		masterObject = GameObject.FindObjectOfType<FriendsMaster>();
 	}
 	
 	// Update is called once per frame
@@ -26,12 +29,14 @@ public class friendMovement : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("picked up");
+		if(DebugSwitch.debugMode == false){
+        //Debug.Log("picked up");
         pickedUp = true;
         if (nearestObject != null)
         {
             nearestObject.GetComponent<friendSpot>().occupant = null;
         }
+		}
 
     }
 
@@ -67,6 +72,7 @@ public class friendMovement : MonoBehaviour {
 
     public void reactTo(string newcomer)
     {
+		if(FriendsMaster.debugged){
         for(int i = 0; i < relationships.Length; i++)
         {
             if (newcomer == relationships[i].name)
@@ -79,6 +85,12 @@ public class friendMovement : MonoBehaviour {
                 }
             }
         }
+		}
+
+		else{
+			StartCoroutine(flashText(defaultResponse));
+			masterObject.checkWin();
+		}
     }
 
     IEnumerator flashText(string tempText)
@@ -106,9 +118,11 @@ public class friendMovement : MonoBehaviour {
         yield return null;
     }
 
-    void leave()
+    public void leave()
     {
-        nearestObject.GetComponent<friendSpot>().occupant = null;
+		if(nearestObject != null){
+		nearestObject.GetComponent<friendSpot>().occupant = null;
+		}
         //transform.position = originalPosition;
         StartCoroutine(move(originalPosition));
     }

@@ -50,12 +50,4 @@ public class PerspectiveSwitcher : Ability
     {
         switchPerspective();
     }
-
-    void Update () {
-		/*
-		if (Input.GetKeyDown("space")) {
-			switchPerspective();
-		}
-		*/
-	}
 }
