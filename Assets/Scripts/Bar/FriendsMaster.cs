@@ -21,7 +21,7 @@ public class FriendsMaster : MonoBehaviour {
 	}
 
 	public void resetStage(){
-		
+		Log.Metrics.Message("DebuggingStation");
 		for(int i = 0; i<allFriends.Length; i++){
 			allFriends[i].GetComponent<friendMovement>().leave();
 		}

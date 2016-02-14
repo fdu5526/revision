@@ -25,6 +25,7 @@ public class Trigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
+		Log.Metrics.Message("Trigger-" + this.gameObject.name);
 		Debug.Log("Entered trigger box");
 	if(other.tag == triggerTag){
 			Debug.Log("Has tag of: "+triggerTag);

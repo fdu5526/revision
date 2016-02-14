@@ -37,6 +37,7 @@ public class DebugSwitch : MonoBehaviour {
 	}
 
 	public void Switching(){
+		Log.Metrics.Message("DebuggingMode-" + (!debugMode ? "on" : "off"));
 		StartCoroutine(SwitchMode());
 	}
 }
