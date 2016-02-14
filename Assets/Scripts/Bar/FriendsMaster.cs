@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Giverspace; // Needed to get access to logging
 
 public class FriendsMaster : MonoBehaviour {
 

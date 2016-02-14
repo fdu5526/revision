@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace; // Needed to get access to logging
 
 public enum AfterAction {instantiate, activate, deactivate, destroy};
 
