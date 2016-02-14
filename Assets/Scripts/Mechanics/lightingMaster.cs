@@ -2,6 +2,7 @@
 using UnityEngine.Rendering;
 using System.Collections;
 using System.Collections.Generic;
+using Giverspace; // Needed to get access to logging
 
 public class lightingMaster : MonoBehaviour {
 
@@ -45,6 +46,7 @@ public class lightingMaster : MonoBehaviour {
 	public void turnOnAllShadows(){
 		if(GameButtonMaster.ready){
 
+		Log.Metrics.Message("Power-Lights");
 
 		foreach(GameObject GO in AllGameObjectsWithShadows)
 		{

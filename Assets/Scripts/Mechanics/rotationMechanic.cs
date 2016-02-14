@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace; // Needed to get access to logging
 
-public class rotationMechanic : MonoBehaviour {
+public class rotationMechanic : Ability {
 	public enum rotationType {horizontal, vertical};
 	public float turnDirection = 1;
 	public rotationType rotationOrientation;
@@ -18,11 +19,18 @@ public class rotationMechanic : MonoBehaviour {
 	
 	}
 
-	public void toggleRotation(){
+    public override void Activate()
+    {
+        toggleRotation();
+    }
+
+
+    public void toggleRotation(){
 
 		if(GameButtonMaster.ready){
 			turned = !turned;
 			powerTracker.power[1] = turned;
+			Log.Metrics.Message("Power-Rotation-" + (turned ? "on" : "off"));
 			StartCoroutine(turnTheObject(turned));
 		}
 	}

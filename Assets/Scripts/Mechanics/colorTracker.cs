@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class colorTracker : MonoBehaviour {
+public class colorTracker : Ability {
 
 	public Color[] originalColor;
 	public Color[] grayscaleColor;
@@ -100,8 +100,8 @@ public class colorTracker : MonoBehaviour {
 
 	}
 
-	public void orderedToChange(bool grayscaleOn){
-		StartCoroutine(switchColors(grayscaleOn));
+    public void orderedToChange(bool grayscaleOn)
+    {
+        StartCoroutine(switchColors(grayscaleOn));
 		}
-
 }

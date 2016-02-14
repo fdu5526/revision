@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace; // Needed to get access to logging
 
 public class MainButton : MonoBehaviour {
 
@@ -40,6 +41,7 @@ public class MainButton : MonoBehaviour {
     public void ToggleAnimation()
     {
         toggle = !toggle;
+        Log.Metrics.Message("MainButton-" + (toggle ? "on" : "off"));
         if (toggle)
         {
             AnimateButtonSpread();

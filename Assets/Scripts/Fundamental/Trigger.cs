@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum Action {instantiate, activate, deactivate, destroy};
+public enum AfterAction {instantiate, activate, deactivate, destroy};
 
 [System.Serializable]
 public class interactionType{
 
 	public GameObject targetObject;
-	public Action actionType;
+	public AfterAction actionType;
 }
 
 public class Trigger : MonoBehaviour {
@@ -29,20 +29,20 @@ public class Trigger : MonoBehaviour {
 	if(other.tag == triggerTag){
 			Debug.Log("Has tag of: "+triggerTag);
 			for(int i=0; i<interactions.Length; i++){
-				Action myAction = interactions[i].actionType;
+                AfterAction myAction = interactions[i].actionType;
 
 				switch(myAction)
 				{
-				case Action.instantiate:
+				case AfterAction.instantiate:
 					GameObject tempGO = Instantiate(interactions[i].targetObject) as GameObject;
 					break;
-				case  Action.activate:
+				case AfterAction.activate:
 					interactions[i].targetObject.SetActive(true);
 					break;
-				case  Action.deactivate:
+				case AfterAction.deactivate:
 					interactions[i].targetObject.SetActive(false);
 					break;
-				case  Action.destroy:
+				case AfterAction.destroy:
 					GameObject.Destroy(interactions[i].targetObject);
 					break;
 				default:

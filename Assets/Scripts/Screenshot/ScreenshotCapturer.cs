@@ -8,7 +8,7 @@
  */
 using UnityEngine;
 using System.Collections;
-
+using Giverspace; // Needed to get access to logging
 
 public class ScreenshotCapturer : MonoBehaviour {
 
@@ -20,6 +20,7 @@ public class ScreenshotCapturer : MonoBehaviour {
 	}
 
 	public void TakeScreenshot () {
+		Log.Metrics.Message("Taking screenshot");
 		System.IO.Directory.CreateDirectory(folderPath);
 		string pathName = folderPath + "level" + levelNumber + ".png";
     	Application.CaptureScreenshot(pathName);

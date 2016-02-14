@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace; // Needed to get access to logging
 
 [RequireComponent (typeof(MatrixBlender))]
-public class PerspectiveSwitcher : MonoBehaviour
+public class PerspectiveSwitcher : Ability
 {
 	Camera camera;
 	private Matrix4x4   ortho,
@@ -32,6 +33,7 @@ public class PerspectiveSwitcher : MonoBehaviour
 		{
 			orthoOn = !orthoOn;
 			powerTracker.power[0] = !orthoOn;
+			Log.Metrics.Message("Power-Depth-" + (orthoOn ? "off" : "on"));
 			if (orthoOn){
 
 				blender.BlendToMatrix(ortho, 3f, true);
@@ -46,13 +48,8 @@ public class PerspectiveSwitcher : MonoBehaviour
 		}
 	}
 
-
-
-	void Update () {
-		/*
-		if (Input.GetKeyDown("space")) {
-			switchPerspective();
-		}
-		*/
-	}
+    public override void Activate()
+    {
+        switchPerspective();
+    }
 }
