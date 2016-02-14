@@ -22,7 +22,9 @@ public class Spawner : MonoBehaviour {
     void Spawn()
     {
         //Debug.Log("Spawning a "+spawn.name);
-        GameObject newGO = Instantiate(spawn, transform.position, transform.rotation) as GameObject;
+		if(DebugSwitch.debugMode == false){
+        	GameObject newGO = Instantiate(spawn, transform.position, transform.rotation) as GameObject;
+		}
     }
 
     IEnumerator spawning()

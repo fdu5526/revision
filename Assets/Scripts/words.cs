@@ -1,0 +1,61 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class words : MonoBehaviour {
+	
+	TextMesh myMesh;
+	GameObject myDictionary;
+	Vector3 target;
+
+	public float speed;
+	Vector3 myPosition;
+
+	translatedWord myWord;
+	PlayerMovement movement;
+
+	// Use this for initialization
+	void Start () {
+		myMesh = GetComponent<TextMesh>();
+		myDictionary = FindObjectOfType<Dictionary>().gameObject;
+		myPosition = transform.position;
+		target = GameObject.Find("Target").transform.position;
+		movement = GameObject.FindObjectOfType<PlayerMovement>();
+
+		float tempFloat = myDictionary.GetComponent<Dictionary>().word.Length;
+		int tempInt = (int)Random.RandomRange(0,tempFloat-1);
+		myWord = myDictionary.GetComponent<Dictionary>().word[tempInt];
+		myMesh.text = myWord.english;
+	}
+
+	void Update()
+	{
+		if(DebugSwitch.debugMode == false){
+			move();
+		}
+	}
+
+	void move()
+	{
+		//Debug.Log("Moving towards: ");
+		myPosition = Vector3.MoveTowards(myPosition, target, speed);
+		transform.position = myPosition;
+	}
+
+	void OnMouseDown() {
+		if(DebugSwitch.debugMode== false && TranslateMaster.pause ==false){
+			TranslateMaster.pause = true;
+			TranslateMaster tempGO = GameObject.FindObjectOfType<TranslateMaster>();
+			tempGO.activatePanel(myWord.english);
+
+			Destroy(gameObject);
+		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.name == "Target")
+		{
+			Destroy(gameObject);
+		}
+	}
+}

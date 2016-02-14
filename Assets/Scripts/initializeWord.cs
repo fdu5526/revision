@@ -6,7 +6,8 @@ public class initializeWord : MonoBehaviour {
     TextMesh myMesh;
     GameObject myDictionary;
     Vector3 target;
-    public bool translated;
+    
+	public bool translated;
     public float speed;
     Vector3 myPosition;
     public bool paused=false;
@@ -42,6 +43,7 @@ public class initializeWord : MonoBehaviour {
         transform.position = myPosition;
     }
 
+	/*
     IEnumerator translate()
     {
         translated = true;
@@ -54,7 +56,8 @@ public class initializeWord : MonoBehaviour {
         myMesh.text = myWord.korean;
         movement.paused = false;
     }
-
+*/
+	/*
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Triggered! Other object's name is: "+other.name);
@@ -68,4 +71,5 @@ public class initializeWord : MonoBehaviour {
             StartCoroutine(translate());
         }
     }
+	*/
 }
