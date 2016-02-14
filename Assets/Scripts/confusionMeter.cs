@@ -15,11 +15,15 @@ public class confusionMeter : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider other) {
-        initializeWord tempWord = other.gameObject.GetComponent<initializeWord>();
+        words tempWord = other.gameObject.GetComponent<words>();
         if (tempWord != null)
         {
-            confusionCounter++;
-            questionMeter.text += "?";
+			confusionUp();
         }
     }
+
+	public void confusionUp(){
+		confusionCounter++;
+		questionMeter.text += "?";
+	}
 }

@@ -2,7 +2,7 @@
 Library/
 Temp/
 obj/
-vs/
+.vs/
 *.DS_Store
 *.csproj
 *.sln

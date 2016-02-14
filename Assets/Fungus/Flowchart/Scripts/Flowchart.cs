@@ -297,7 +297,7 @@ namespace Fungus
 				
 				if (!found)
 				{
-					DestroyImmediate(eventHandler);
+//					DestroyImmediate(eventHandler);
 				}
 			}
 		}
