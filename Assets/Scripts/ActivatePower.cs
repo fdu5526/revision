@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ActivatePower : MonoBehaviour {
-
+	
     public Ability currentAbility;
 
 	// Use this for initialization
