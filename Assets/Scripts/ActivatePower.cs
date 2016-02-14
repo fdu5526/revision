@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ActivatePower : MonoBehaviour {
 
+	// allison was here
     public Ability currentAbility;
 
 	// Use this for initialization
