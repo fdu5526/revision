@@ -12,8 +12,10 @@ public class friendMovement : MonoBehaviour {
     GameObject nearestObject;
 	FriendsMaster masterObject;
     Vector3 originalPosition;
+	bubbleResize speechResizeScript;
 	// Use this for initialization
 	void Start () {
+		speechResizeScript = gameObject.GetComponentInChildren<bubbleResize> ();
         originalPosition = transform.position;
         speechBubble.text = "";
 		masterObject = GameObject.FindObjectOfType<FriendsMaster>();
@@ -96,8 +98,10 @@ public class friendMovement : MonoBehaviour {
     IEnumerator flashText(string tempText)
     {
         speechBubble.text = tempText;
+		speechResizeScript.resizeBubs ();
         yield return new WaitForSeconds(2f);
         speechBubble.text = "";
+		speechResizeScript.resizeBubs ();
     }
 
     IEnumerator move(Vector3 target)
