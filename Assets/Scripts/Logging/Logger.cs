@@ -1,5 +1,6 @@
 namespace Giverspace {
     using UnityEngine;
+    using UnityEngine.SceneManagement;
     using System;
     using System.IO;
     using System.Threading;
@@ -193,7 +194,7 @@ namespace Giverspace {
         public void Message (string msg) {
             Enqueue(new LogMsg { TimeGameLoad = Time.time,
                                  TimeLevelLoad = Time.timeSinceLevelLoad,
-                                 Scene = UnityEditor.EditorApplication.currentScene,
+                                 Scene = SceneManager.GetActiveScene().name,
                                  Message = msg,
                                  Seriousness = Severity.Info,
                                  LogType = LogType.String });
