@@ -2,7 +2,7 @@
 using System.Collections;
 using Giverspace; // Needed to get access to logging
 
-public enum AfterAction {instantiate, activate, deactivate, destroy};
+public enum AfterAction {instantiate, activate, deactivate, destroy, noted};
 
 [System.Serializable]
 public class interactionType{
@@ -46,6 +46,12 @@ public class Trigger : MonoBehaviour {
 					break;
 				case AfterAction.destroy:
 					GameObject.Destroy(interactions[i].targetObject);
+					break;
+				case AfterAction.noted:
+					noteProgress noteTracker = GameObject.FindObjectOfType<noteProgress>();
+					if(noteTracker !=null){
+						noteTracker.addNote();
+					}
 					break;
 				default:
 					Debug.Log("Trigger ineffective");
