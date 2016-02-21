@@ -13,7 +13,7 @@ namespace Giverspace {
 
     public class Log {
         // Note: You may need to change this number to suit your needs:
-        const int BUFFER_SIZE = 100;
+        const int BUFFER_SIZE = 100000;
         const int FLUSH_SIZE = BUFFER_SIZE/2;
 
         enum LogType {
@@ -67,10 +67,7 @@ namespace Giverspace {
 
             void WriteTimeStampWith (StreamWriter w) {
                 w.Write("\"timeGameLoad\":");
-                w.Write(TimeGameLoad);
-                w.Write(',');
-                w.Write("\"timeLevelLoad\":");
-                w.Write(TimeLevelLoad);
+                w.Write(string.Format("{0:0000.00}", TimeGameLoad));
             }
 
             void WriteVectorWith (ref Vector3 v, string name, StreamWriter w) {
@@ -93,9 +90,10 @@ namespace Giverspace {
                         w.Write('{');
                         WriteTimeStampWith(w);
                         w.Write(',');
-                        WriteTypeWith("info",w);
-                        w.Write(',');
                         WriteFieldWith("scene",Scene,w);
+                        w.Write(',');
+                        w.Write("\"timeLevelLoad\":");
+                        w.Write(string.Format("{0:0000.00}", TimeLevelLoad));
                         w.Write(',');
                         WriteFieldWith("m",Message,w);
                         w.WriteLine('}');
@@ -127,7 +125,7 @@ namespace Giverspace {
             var lifetimeHelper = new GameObject("+LoggerLifetime");
             lifetimeHelper.AddComponent<LoggerLifetime>();
             _instance = new Log();
-            _instance.Message("Started");
+            //_instance.Message("Started");
             _instance.Start();
         }
 
@@ -137,7 +135,7 @@ namespace Giverspace {
 
         public static void Exit () {
             if (_instance != null) {
-                _instance.Message("Stopped");
+                //_instance.Message("Stopped");
                 _instance.Flush();
                 _instance = null;
             }

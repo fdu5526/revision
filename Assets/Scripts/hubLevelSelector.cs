@@ -14,6 +14,9 @@ public class hubLevelSelector : MonoBehaviour {
 	}
 
 	public void jumpToLevel(string levelName){
+		if (DebugSwitch.debugMode) {
+			DebugSwitch.debugMode = false;
+		}
 		Application.LoadLevel(levelName);
 	}
 }

@@ -25,6 +25,11 @@ public class words : MonoBehaviour {
 		int tempInt = (int)Random.RandomRange(0,tempFloat-1);
 		myWord = myDictionary.GetComponent<Dictionary>().word[tempInt];
 		myMesh.text = myWord.english;
+
+		// resize the collider to the size of the text
+		MeshRenderer mr = GetComponent<MeshRenderer>();
+		GetComponent<BoxCollider>().size = new Vector3(mr.bounds.extents.x * 2f, 1f, 1f);
+
 	}
 
 	void Update()
