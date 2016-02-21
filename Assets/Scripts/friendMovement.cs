@@ -98,10 +98,10 @@ public class friendMovement : MonoBehaviour {
     IEnumerator flashText(string tempText)
     {
         speechBubble.text = tempText;
-//		speechResizeScript.resizeBubs ();
+		resizeSpeech ();
         yield return new WaitForSeconds(2f);
         speechBubble.text = "";
-//		speechResizeScript.resizeBubs ();
+		resizeSpeech ();
     }
 
     IEnumerator move(Vector3 target)
@@ -146,4 +146,12 @@ public class friendMovement : MonoBehaviour {
             }
         }
     }
+	//Calls function in bubbleResize.cs that resizes the speech bubble
+	//Used to detect when speech changes
+	void resizeSpeech()
+	{
+		if (speechResizeScript != null) {
+			speechResizeScript.resizeBubs ();
+		}
+	}
 }

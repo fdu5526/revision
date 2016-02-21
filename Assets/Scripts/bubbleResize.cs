@@ -21,6 +21,8 @@ public class bubbleResize : MonoBehaviour {
 			speechBubbleSize = new Vector3 (0f, 0f, 0f);
 		}
 		textBubble.localScale = speechBubbleSize;
+		Debug.Log (textBubble);
+		Debug.Log (speechBubbleSize);
 	}
 
 
