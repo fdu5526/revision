@@ -13,7 +13,7 @@ namespace Giverspace {
 
     public class Log {
         // Note: You may need to change this number to suit your needs:
-        const int BUFFER_SIZE = 100;
+        const int BUFFER_SIZE = 100000;
         const int FLUSH_SIZE = BUFFER_SIZE/2;
 
         enum LogType {
@@ -127,7 +127,7 @@ namespace Giverspace {
             var lifetimeHelper = new GameObject("+LoggerLifetime");
             lifetimeHelper.AddComponent<LoggerLifetime>();
             _instance = new Log();
-            _instance.Message("Started");
+            //_instance.Message("Started");
             _instance.Start();
         }
 
@@ -137,7 +137,7 @@ namespace Giverspace {
 
         public static void Exit () {
             if (_instance != null) {
-                _instance.Message("Stopped");
+                //_instance.Message("Stopped");
                 _instance.Flush();
                 _instance = null;
             }
