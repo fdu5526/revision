@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace; // Needed to get access to logging
 
-public class ActivatePower : MonoBehaviour {
-	
-    public Ability currentAbility;
+public class LoggingSceneStart : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        currentAbility.Activate();
+		Log.Metrics.Message("SceneStart");
 	}
 	
 	// Update is called once per frame

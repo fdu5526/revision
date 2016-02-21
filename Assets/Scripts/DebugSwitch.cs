@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace; // Needed to get access to logging
 
 public class DebugSwitch : MonoBehaviour {
 
@@ -37,6 +38,7 @@ public class DebugSwitch : MonoBehaviour {
 	}
 
 	public void Switching(){
+		Log.Metrics.Message("DebuggingMode-" + (!debugMode ? "on" : "off"));
 		StartCoroutine(SwitchMode());
 	}
 }

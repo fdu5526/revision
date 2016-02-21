@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Giverspace; // Needed to get access to logging
 
 public class FriendsMaster : MonoBehaviour {
 
@@ -21,7 +22,7 @@ public class FriendsMaster : MonoBehaviour {
 	}
 
 	public void resetStage(){
-		
+		Log.Metrics.Message("DebuggingStation");
 		for(int i = 0; i<allFriends.Length; i++){
 			allFriends[i].GetComponent<friendMovement>().leave();
 		}
