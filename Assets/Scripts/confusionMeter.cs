@@ -4,6 +4,8 @@ using System.Collections;
 public class confusionMeter : MonoBehaviour {
     static int confusionCounter = 0;
     public TextMesh questionMeter;
+	public GameObject endGameFlowchart;
+	public float endGameThreshold = 20;
 	// Use this for initialization
 	void Start () {
 	
@@ -25,5 +27,9 @@ public class confusionMeter : MonoBehaviour {
 	public void confusionUp(){
 		confusionCounter++;
 		questionMeter.text += "?";
+		if(confusionCounter>endGameThreshold){
+			endGameFlowchart.SetActive(true);
+			this.enabled = false;
+		}
 	}
 }

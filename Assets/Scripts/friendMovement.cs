@@ -98,10 +98,10 @@ public class friendMovement : MonoBehaviour {
     IEnumerator flashText(string tempText)
     {
         speechBubble.text = tempText;
-		speechResizeScript.resizeBubs ();
+//		speechResizeScript.resizeBubs ();
         yield return new WaitForSeconds(2f);
         speechBubble.text = "";
-		speechResizeScript.resizeBubs ();
+//		speechResizeScript.resizeBubs ();
     }
 
     IEnumerator move(Vector3 target)
