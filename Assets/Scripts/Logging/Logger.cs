@@ -67,10 +67,7 @@ namespace Giverspace {
 
             void WriteTimeStampWith (StreamWriter w) {
                 w.Write("\"timeGameLoad\":");
-                w.Write(TimeGameLoad);
-                w.Write(',');
-                w.Write("\"timeLevelLoad\":");
-                w.Write(TimeLevelLoad);
+                w.Write(string.Format("{0:0000.00}", TimeGameLoad));
             }
 
             void WriteVectorWith (ref Vector3 v, string name, StreamWriter w) {
@@ -93,9 +90,10 @@ namespace Giverspace {
                         w.Write('{');
                         WriteTimeStampWith(w);
                         w.Write(',');
-                        WriteTypeWith("info",w);
-                        w.Write(',');
                         WriteFieldWith("scene",Scene,w);
+                        w.Write(',');
+                        w.Write("\"timeLevelLoad\":");
+                        w.Write(string.Format("{0:0000.00}", TimeLevelLoad));
                         w.Write(',');
                         WriteFieldWith("m",Message,w);
                         w.WriteLine('}');
