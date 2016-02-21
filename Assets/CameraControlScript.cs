@@ -16,8 +16,11 @@ public class CameraControlScript : MonoBehaviour {
     [SerializeField]
     private GameObject _playerObject;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private float _scrollSpeed;
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -25,6 +28,7 @@ public class CameraControlScript : MonoBehaviour {
 	void Update () {
         ManageMouseMovement();
         ManageCameraPosition();
+        ManageCameraZoom();
 	}
 
     void ManageMouseMovement() {
@@ -42,6 +46,16 @@ public class CameraControlScript : MonoBehaviour {
         }
         else {
             transform.position = _playerObject.transform.position;
+        }
+    }
+
+    void ManageCameraZoom() {
+
+        float MouseScrollAmount = Input.GetAxis("Mouse ScrollWheel");
+
+        if (MouseScrollAmount != 0)
+        {
+            transform.localScale -= new Vector3(1f, 1f, 1f) * MouseScrollAmount * transform.localScale.x * _scrollSpeed;
         }
     }
 }
