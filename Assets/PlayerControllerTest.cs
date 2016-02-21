@@ -28,7 +28,7 @@ public class PlayerControllerTest : MonoBehaviour {
         _forwardPosition = _camera.transform.forward;
         _moveForward = Input.GetAxis("Vertical");
         _moveSide = Input.GetAxis("Horizontal");
-        transform.position += (_camera.transform.forward * _moveForward) + (_camera.transform.right *_moveSide);
+        transform.position += ((_camera.transform.forward * _moveForward) + (_camera.transform.right *_moveSide)) *_moveSpeed;
     }
 
     void ManageRotation() {

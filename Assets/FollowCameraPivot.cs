@@ -20,5 +20,6 @@ public class FollowCameraPivot : MonoBehaviour {
         dummyRotation.z = 0;
         transform.rotation = dummyRotation;
         transform.position = _player.transform.position;
+        
 	}
 }
