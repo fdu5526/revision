@@ -15,14 +15,14 @@ public class gameProgress : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log("secondtime: "+secondTime);
+		//Debug.Log("secondtime: "+secondTime);
 			if(Input.GetKeyDown(KeyCode.PageUp))
 			{
 				Application.LoadLevel(Application.loadedLevel);
 			}
 			if(Input.GetKeyDown(KeyCode.End))
 			{
-				Debug.Log("loading next level");
+			//	Debug.Log("loading next level");
 				Application.LoadLevel(Application.loadedLevel+1);
 			}
 	}

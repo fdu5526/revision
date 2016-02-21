@@ -2,9 +2,10 @@
 Library/
 Temp/
 obj/
-vs/
+.vs/
 *.DS_Store
 *.csproj
 *.sln
 *.userprefs
 Assets/Resources/Screenshots*
+BUIlD/

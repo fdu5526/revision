@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace; // Needed to get access to logging
 
-public enum Action {instantiate, activate, deactivate, destroy};
+public enum AfterAction {instantiate, activate, deactivate, destroy, noted};
 
 [System.Serializable]
 public class interactionType{
 
 	public GameObject targetObject;
-	public Action actionType;
+	public AfterAction actionType;
 }
 
 public class Trigger : MonoBehaviour {
@@ -25,25 +26,32 @@ public class Trigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
+		Log.Metrics.Message("Trigger-" + this.gameObject.name);
 		Debug.Log("Entered trigger box");
 	if(other.tag == triggerTag){
 			Debug.Log("Has tag of: "+triggerTag);
 			for(int i=0; i<interactions.Length; i++){
-				Action myAction = interactions[i].actionType;
+                AfterAction myAction = interactions[i].actionType;
 
 				switch(myAction)
 				{
-				case Action.instantiate:
+				case AfterAction.instantiate:
 					GameObject tempGO = Instantiate(interactions[i].targetObject) as GameObject;
 					break;
-				case  Action.activate:
+				case AfterAction.activate:
 					interactions[i].targetObject.SetActive(true);
 					break;
-				case  Action.deactivate:
+				case AfterAction.deactivate:
 					interactions[i].targetObject.SetActive(false);
 					break;
-				case  Action.destroy:
+				case AfterAction.destroy:
 					GameObject.Destroy(interactions[i].targetObject);
+					break;
+				case AfterAction.noted:
+					noteProgress noteTracker = GameObject.FindObjectOfType<noteProgress>();
+					if(noteTracker !=null){
+						noteTracker.addNote();
+					}
 					break;
 				default:
 					Debug.Log("Trigger ineffective");

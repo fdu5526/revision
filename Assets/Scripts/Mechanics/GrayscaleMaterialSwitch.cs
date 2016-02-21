@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GrayscaleMaterialSwitch : MonoBehaviour {
+public class GrayscaleMaterialSwitch : Ability {
 
 	// Use this for initialization
 	public GameObject[] AllGameObjects;
@@ -36,4 +36,9 @@ public class GrayscaleMaterialSwitch : MonoBehaviour {
 			Debug.Log("Button is not ready yet");
 		}
 	}
+
+    public override void Activate()
+    {
+        toggleGrayscale();
+    }
 }
