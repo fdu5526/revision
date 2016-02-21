@@ -19,11 +19,22 @@ public class CameraControlScript : MonoBehaviour {
     [SerializeField]
     private float _scrollSpeed;
 
-    // Use this for initialization
-    void Start () {
+    private bool _playerControlled;
+
+    private Vector3 _currentRotation;
+
+    [SerializeField]
+    private Transform _lookAtTarget;
+
+    public void PlayerControlled(bool activate, Transform target) {
+        _playerControlled = activate;
+        _lookAtTarget = target;
+    }
 	
-	}
-	
+    void Start() {
+        PlayerControlled(true, null);
+    }
+
 	// Update is called once per frame
 	void Update () {
         ManageMouseMovement();
@@ -32,11 +43,18 @@ public class CameraControlScript : MonoBehaviour {
 	}
 
     void ManageMouseMovement() {
-        if (_objectOfInterest == null) { 
-            _inputX = Input.GetAxis("Mouse X");
-            _inputY = Input.GetAxis("Mouse Y");
+        if (_playerControlled) { 
+            if (_objectOfInterest == null) { 
+                _inputX = Input.GetAxis("Mouse X");
+                _inputY = Input.GetAxis("Mouse Y");
 
-            transform.localEulerAngles += new Vector3(_inputY, _inputX, 0f) * _cameraRotationSpeed;
+                transform.localEulerAngles += new Vector3(_inputY, _inputX, 0f) * _cameraRotationSpeed;
+            }
+        }
+        else {
+            if (_lookAtTarget != null) {
+                transform.rotation = Quaternion.Slerp(transform.rotation, _lookAtTarget.rotation, Time.deltaTime * _cameraRotationSpeed);
+            }
         }
     }
 
@@ -55,7 +73,9 @@ public class CameraControlScript : MonoBehaviour {
 
         if (MouseScrollAmount != 0)
         {
-            transform.localScale -= new Vector3(1f, 1f, 1f) * MouseScrollAmount * transform.localScale.x * _scrollSpeed;
+            Vector3 newScale = transform.localScale;
+            newScale -= new Vector3(1f, 1f, 1f) * MouseScrollAmount * transform.localScale.x;
+            transform.localScale = Vector3.Slerp(transform.localScale, newScale, Time.deltaTime * _scrollSpeed);
         }
     }
 }
