@@ -12,7 +12,7 @@ public class CameraControlScript : MonoBehaviour {
     private float _cameraMoveSpeed = 2;
 
     [SerializeField]
-    private GameObject _objectOfInterest;
+    private Transform _objectOfInterest;
     [SerializeField]
     private GameObject _playerObject;
 
@@ -29,6 +29,10 @@ public class CameraControlScript : MonoBehaviour {
     public void PlayerControlled(bool activate, Transform target) {
         _playerControlled = activate;
         _lookAtTarget = target;
+    }
+
+    public void SetObjectOfInterest(Transform objectOfInterest) {
+        _objectOfInterest = objectOfInterest;
     }
 	
     void Start() {
@@ -56,14 +60,19 @@ public class CameraControlScript : MonoBehaviour {
                 transform.rotation = Quaternion.Slerp(transform.rotation, _lookAtTarget.rotation, Time.deltaTime * _cameraRotationSpeed);
             }
         }
+
+        if (Input.GetMouseButtonDown(0)) {
+            PlayerControlled(true, null);
+            _objectOfInterest = null;
+        }
     }
 
     void ManageCameraPosition() {
         if (_objectOfInterest != null) { 
-            transform.position = Vector3.MoveTowards(transform.position, _objectOfInterest.transform.position, Time.deltaTime * _cameraMoveSpeed);
+            transform.position = Vector3.Slerp(transform.position, _objectOfInterest.position, Time.deltaTime * _cameraMoveSpeed/4);
         }
         else {
-            transform.position = _playerObject.transform.position;
+            transform.position = Vector3.MoveTowards(transform.position, _playerObject.transform.position, Time.deltaTime * _cameraMoveSpeed);
         }
     }
 
