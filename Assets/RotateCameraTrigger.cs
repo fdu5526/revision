@@ -13,16 +13,7 @@ public class RotateCameraTrigger : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
             _camera.PlayerControlled(false, _lookAtTarget);
-            _camera.SetObjectOfInterest(_objectOfInterest);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            _camera.PlayerControlled(true, null);
-            _camera.SetObjectOfInterest(null);
+            //_camera.SetObjectOfInterest(_objectOfInterest);
         }
     }
 }

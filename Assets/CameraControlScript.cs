@@ -12,6 +12,12 @@ public class CameraControlScript : MonoBehaviour {
     private float _cameraMoveSpeed = 2;
 
     [SerializeField]
+    private Transform _mainCamera;
+    private Vector3 _mainCameraPosition;
+    private Quaternion _mainCameraRotation;
+    private bool _continueRotate;
+
+    [SerializeField]
     private Transform _objectOfInterest;
     [SerializeField]
     private GameObject _playerObject;
@@ -34,6 +40,12 @@ public class CameraControlScript : MonoBehaviour {
     public void SetObjectOfInterest(Transform objectOfInterest) {
         _objectOfInterest = objectOfInterest;
     }
+
+    public void StopViewingObject() {
+        _objectOfInterest = null;
+        _playerControlled = true;
+        _lookAtTarget = null;
+    }
 	
     void Start() {
         PlayerControlled(true, null);
@@ -47,17 +59,37 @@ public class CameraControlScript : MonoBehaviour {
 	}
 
     void ManageMouseMovement() {
+
+        // THIS IS FOR TESTING PURPOSES
+        // START HERE
+        if (Input.GetKeyDown(KeyCode.F1)) {
+            StopViewingObject();
+        }
+        // END TEST
+
         if (_playerControlled) { 
             if (_objectOfInterest == null) { 
                 _inputX = Input.GetAxis("Mouse X");
                 _inputY = Input.GetAxis("Mouse Y");
 
                 transform.localEulerAngles += new Vector3(_inputY, _inputX, 0f) * _cameraRotationSpeed;
+
+                if (_continueRotate) {
+
+                    _mainCamera.rotation = Quaternion.Slerp(_mainCamera.rotation, _playerObject.transform.rotation, Time.deltaTime * _cameraRotationSpeed);
+
+                    if (Quaternion.Angle(_mainCamera.rotation, _playerObject.transform.rotation) < 1.5f &&
+                        Vector3.Distance(_mainCamera.position, _playerObject.transform.position) < 1)
+                    {
+                        _continueRotate = false;    
+                    }
+                }
             }
         }
         else {
             if (_lookAtTarget != null) {
-                transform.rotation = Quaternion.Slerp(transform.rotation, _lookAtTarget.rotation, Time.deltaTime * _cameraRotationSpeed);
+                _mainCamera.rotation = Quaternion.Slerp(_mainCamera.rotation, _lookAtTarget.rotation, Time.deltaTime * _cameraRotationSpeed);
+                _continueRotate = true;
             }
         }
 
@@ -68,8 +100,8 @@ public class CameraControlScript : MonoBehaviour {
     }
 
     void ManageCameraPosition() {
-        if (_objectOfInterest != null) { 
-            transform.position = Vector3.Slerp(transform.position, _objectOfInterest.position, Time.deltaTime * _cameraMoveSpeed/4);
+        if (_lookAtTarget != null) { 
+            transform.position = Vector3.Slerp(transform.position, _lookAtTarget.position, Time.deltaTime * _cameraMoveSpeed/4);
         }
         else {
             transform.position = Vector3.MoveTowards(transform.position, _playerObject.transform.position, Time.deltaTime * _cameraMoveSpeed);
