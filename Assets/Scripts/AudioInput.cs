@@ -7,6 +7,7 @@ public class AudioInput : MonoBehaviour {
 
     void Start () {
         string[] devs = Microphone.devices;
+		print(devs.Length);
         GetComponent<AudioSource>().clip = Microphone.Start(devs[0], true, 10, 44100);
     }
 

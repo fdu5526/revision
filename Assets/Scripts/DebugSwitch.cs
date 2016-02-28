@@ -5,17 +5,15 @@ using Giverspace; // Needed to get access to logging
 public class DebugSwitch : MonoBehaviour {
 
 	public static bool debugMode=false;
-	private Vector3 originalPosition;
-	private Quaternion originalRotation;
 	private Quaternion steveRotation;
+	public cameraSettingToggle cameraSystem;
 	public GameObject PerspectiveCamera;
 	public GameObject SteveModel;
 	public GameObject TheController;
 
 	// Use this for initialization
 	void Start () {
-		originalPosition = TheController.transform.position;
-		originalRotation = TheController.transform.rotation;
+
 		steveRotation = SteveModel.transform.rotation;
 
 		//StartCoroutine(SwitchMode());
@@ -29,10 +27,9 @@ public class DebugSwitch : MonoBehaviour {
 		Quaternion tempVect = SteveModel.transform.localRotation;
 		tempVect.y *= -1;
 		SteveModel.transform.rotation = tempVect;
-		TheController.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = debugMode;
+		cameraSystem.toggleMode(debugMode);
 		if (debugMode == false){
-			TheController.transform.position = originalPosition;
-			TheController.transform.rotation = originalRotation;
+			cameraSystem.resetPosition();
 			SteveModel.transform.rotation = steveRotation;
 		}
 	}
