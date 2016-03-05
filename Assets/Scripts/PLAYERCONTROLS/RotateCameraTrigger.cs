@@ -11,8 +11,11 @@ public class RotateCameraTrigger : MonoBehaviour {
     private Transform _objectOfInterest;
 
 	void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player") {
+		print("something triggered");
+		if (other.tag == "Player") {
+			print("its a player");
             _camera.PlayerControlled(false, _lookAtTarget);
+			PlayerControllerTest.movementEnabled = false;
             //_camera.SetObjectOfInterest(_objectOfInterest);
         }
     }

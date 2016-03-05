@@ -21,18 +21,19 @@ public class rotationMechanic : Ability {
 
     public override void Activate()
     {
+		print("In rotation's Activate()");
         toggleRotation();
     }
 
 
     public void toggleRotation(){
-
-		if(GameButtonMaster.ready){
+		print("in toggleRotation");
+		//if(GameButtonMaster.ready){
 			turned = !turned;
-			powerTracker.power[1] = turned;
+			//powerTracker.power[1] = turned;
 			Log.Metrics.Message("Power-Rotation-" + (turned ? "on" : "off"));
 			StartCoroutine(turnTheObject(turned));
-		}
+		//}
 	}
 
 	public IEnumerator turnTheObject(bool toggleRotation){

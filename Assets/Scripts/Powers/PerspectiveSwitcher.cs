@@ -5,7 +5,7 @@ using Giverspace; // Needed to get access to logging
 [RequireComponent (typeof(MatrixBlender))]
 public class PerspectiveSwitcher : Ability
 {
-	Camera camera;
+	private Camera camera;
 	private Matrix4x4   ortho,
 	perspective;
 	public float        
