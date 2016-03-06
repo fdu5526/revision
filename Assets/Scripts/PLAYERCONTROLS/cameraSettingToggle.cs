@@ -19,6 +19,8 @@ public class cameraSettingToggle : MonoBehaviour {
 	//these get toggled on and off with debug mode
 	public CameraControlScript cameraController;
 	public PlayerControllerTest playerController;
+	private Vector3 controllerStartPosition;
+	private Quaternion controllerStartRotation;
 
 	//these are used for the model
 	public GameObject playerModel;
@@ -40,6 +42,9 @@ public class cameraSettingToggle : MonoBehaviour {
 
 		//grab camera
 		theCamera = GetComponentInChildren<PerspectiveSwitcher>();
+
+		controllerStartPosition = playerController.gameObject.transform.position;
+		controllerStartRotation = playerController.gameObject.transform.rotation;
 	}
 	
 	public void toggleControls(bool mode){
@@ -52,6 +57,9 @@ public class cameraSettingToggle : MonoBehaviour {
 		transform.rotation = startingSystemRotation;
 		cameraPivot.transform.position = startingCameraPosition;
 		cameraPivot.transform.rotation = startingCameraRotation;
+
+		playerController.gameObject.transform.position =controllerStartPosition;
+		playerController.gameObject.transform.rotation =controllerStartRotation;
 	}
 
 	public void switchMode(){
