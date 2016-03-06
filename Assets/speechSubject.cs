@@ -5,41 +5,52 @@ using System.Collections;
 public class speechSubject : MonoBehaviour {
 	GameObject uiElement;
 	Text uiText;
-	MeshRenderer mr; 
-	TextMesh tm;
+//	MeshRenderer mr; 
+//	TextMesh tm;
 	Vector3 speechBubbleSize;
-	Transform textBubble;
+//	Transform uiBubble;
+	Text uiBubbleText;
+	[SerializeField] GameObject Bubbles;
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		uiElement = GameObject.Find("StoryText");
 		uiText = uiElement.GetComponent<Text> ();
 
-		mr = gameObject.GetComponent<MeshRenderer> ();
-		textBubble = gameObject.transform.GetChild (0);
-		tm = gameObject.GetComponent<TextMesh> ();
+//		mr = gameObject.GetComponent<MeshRenderer> ();
+//		uiBubble = gameObject.transform.GetChild (0);
+//		tm = gameObject.GetComponent<TextMesh> ();
+		uiBubbleText = gameObject.GetComponent<Text> ();
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (uiText.IsActive()) {
-			tm.text = uiText.text;
-			resizeBubs ();
+//			tm.text = uiText.text;
+			//UI TEXT
+			uiBubbleText.text = uiText.text;
+
+//			resizeBubs ();
 		} else {
-			tm.text = "";
-			resizeBubs ();
+//			tm.text = "";
+
+			//UI TEXT
+			uiBubbleText.text = "";
+
+//			resizeBubs ();
 		}
 	}
 		
-	public void resizeBubs() { 
-		if (mr.bounds.extents.x != 0) {
-			speechBubbleSize = new Vector3 (mr.bounds.extents.x * 2f + 5f, 
-				mr.bounds.extents.y * 2f + 1f, 
-				0f);
-		} else if (mr.bounds.extents.x == 0) {
-			speechBubbleSize = new Vector3 (0f, 0f, 0f);
-		}
-		textBubble.localScale = speechBubbleSize;
-	}
+//	public void resizeBubs() { 
+//		if (mr.bounds.extents.x != 0) {
+//			speechBubbleSize = new Vector3 (mr.bounds.extents.x * 2f + 5f, 
+//				mr.bounds.extents.y * 2f + 1f, 
+//				0f);
+//		} else if (mr.bounds.extents.x == 0) {
+//			speechBubbleSize = new Vector3 (0f, 0f, 0f);
+//		}
+//		uiBubble.localScale = speechBubbleSize;
+//	}
 }
