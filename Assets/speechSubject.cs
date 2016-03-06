@@ -11,6 +11,7 @@ public class speechSubject : MonoBehaviour {
 //	Transform uiBubble;
 	Text uiBubbleText;
 	[SerializeField] GameObject Bubbles;
+	RectTransform UIBubble;
 
 
 	// Use this for initialization
@@ -22,7 +23,7 @@ public class speechSubject : MonoBehaviour {
 //		uiBubble = gameObject.transform.GetChild (0);
 //		tm = gameObject.GetComponent<TextMesh> ();
 		uiBubbleText = gameObject.GetComponent<Text> ();
-	
+		UIBubble = Bubbles.transform.GetComponent<RectTransform> ();
 	}
 	
 	// Update is called once per frame
