@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: 86ce2bbdd82c949aa85ee5533aa54902
+timeCreated: 1454879742
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arms
+    100002: Arms 1
+    100004: Arms 2
+    100006: Body
+    100008: Body1
+    100010: Body2
+    100012: Body_Controller
+    100014: Eye_Controller
+    100016: Eyebrows
+    100018: EyeL
+    100020: EyeR
+    100022: Eyes
+    100024: //RootNode
+    100026: Glasses
+    100028: Glasses_Controller
+    100030: Head
+    100032: Head_Move_Controller
+    100034: Head_Rotate_Controller
+    100036: L_Arm
+    100038: L_Arm_Controller
+    100040: L_Eyebrow_Controller
+    100042: L_foot
+    100044: L_Foot_Controller
+    100046: polySurface12
+    100048: polySurface13
+    100050: R_Arm
+    100052: R_Arm_Controller
+    100054: R_Eyebrow_Controller
+    100056: R_foot
+    100058: R_Foot_Controller
+    100060: Steve
+    400000: Arms
+    400002: Arms 1
+    400004: Arms 2
+    400006: Body
+    400008: Body1
+    400010: Body2
+    400012: Body_Controller
+    400014: Eye_Controller
+    400016: Eyebrows
+    400018: EyeL
+    400020: EyeR
+    400022: Eyes
+    400024: //RootNode
+    400026: Glasses
+    400028: Glasses_Controller
+    400030: Head
+    400032: Head_Move_Controller
+    400034: Head_Rotate_Controller
+    400036: L_Arm
+    400038: L_Arm_Controller
+    400040: L_Eyebrow_Controller
+    400042: L_foot
+    400044: L_Foot_Controller
+    400046: polySurface12
+    400048: polySurface13
+    400050: R_Arm
+    400052: R_Arm_Controller
+    400054: R_Eyebrow_Controller
+    400056: R_foot
+    400058: R_Foot_Controller
+    400060: Steve
+    2300000: Body
+    2300002: EyeL
+    2300004: EyeR
+    2300006: Glasses
+    2300008: Head
+    2300010: L_Arm
+    2300012: L_foot
+    2300014: polySurface12
+    2300016: polySurface13
+    2300018: R_Arm
+    2300020: R_foot
+    3300000: Body
+    3300002: EyeL
+    3300004: EyeR
+    3300006: Glasses
+    3300008: Head
+    3300010: L_Arm
+    3300012: L_foot
+    3300014: polySurface12
+    3300016: polySurface13
+    3300018: R_Arm
+    3300020: R_foot
+    4300000: Body
+    4300002: R_Arm
+    4300004: L_Arm
+    4300006: L_foot
+    4300008: R_foot
+    4300010: Head
+    4300012: EyeR
+    4300014: EyeL
+    4300016: Glasses
+    4300018: polySurface12
+    4300020: polySurface13
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
