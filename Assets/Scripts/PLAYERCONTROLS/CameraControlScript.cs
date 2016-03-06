@@ -45,6 +45,7 @@ public class CameraControlScript : MonoBehaviour {
         _objectOfInterest = null;
         _playerControlled = true;
         _lookAtTarget = null;
+		PlayerControllerTest.movementEnabled = true;
     }
 	
     void Start() {
