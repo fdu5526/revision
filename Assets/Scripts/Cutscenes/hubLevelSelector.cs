@@ -19,4 +19,10 @@ public class hubLevelSelector : MonoBehaviour {
 		}
 		Application.LoadLevel(levelName);
 	}
+
+	public void nextLevel(){
+		int tempInt = Application.loadedLevel;
+		tempInt++;
+		Application.LoadLevel(tempInt);
+	}
 }
