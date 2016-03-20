@@ -55,13 +55,15 @@ public class PlayerMovement : MonoBehaviour
 		}*/
 
 		if (xAxisMovementEnabled) {
-			if (Input.GetKey (KeyCode.RightArrow)) {
+			if (Input.GetKey (KeyCode.RightArrow) ||
+					Input.GetKey (KeyCode.D)) {
 				//turn (90f);
 				//transform.Translate (Vector3.forward * (speed * Time.deltaTime));
 				transform.Translate (Vector3.back * (speed * Time.deltaTime));
 			}
 		
-			if (Input.GetKey (KeyCode.LeftArrow)) {
+			if (Input.GetKey (KeyCode.LeftArrow) ||
+					Input.GetKey (KeyCode.A)) {
 				//turn (270f);
 				transform.Translate (Vector3.forward * (speed * Time.deltaTime));
 			}
