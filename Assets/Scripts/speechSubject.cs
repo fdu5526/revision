@@ -31,19 +31,26 @@ public class speechSubject : MonoBehaviour {
 		if (uiText.IsActive()) {
 //			tm.text = uiText.text;
 			//UI TEXT
-			uiBubbleText.text = uiText.text;
+			if (uiBubbleText.text != uiText.text) {
+				uiBubbleText.text = uiText.text;
+				resizeUIBubs ();
+			}
 
-//			resizeBubs ();
 		} else {
 //			tm.text = "";
 
 			//UI TEXT
 			uiBubbleText.text = "";
+			gameObject.transform.parent.gameObject.SetActive (false);
 
 //			resizeBubs ();
 		}
 	}
 		
+	void resizeUIBubs() {
+		Bubbles.GetComponent <RectTransform>().sizeDelta = new Vector2 (300, LayoutUtility.GetPreferredHeight(gameObject.GetComponent <RectTransform>()));
+
+	}
 //	public void resizeBubs() { 
 //		if (mr.bounds.extents.x != 0) {
 //			speechBubbleSize = new Vector3 (mr.bounds.extents.x * 2f + 5f, 
