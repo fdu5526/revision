@@ -28,7 +28,8 @@ public class words : MonoBehaviour {
 
 		// resize the collider to the size of the text
 		MeshRenderer mr = GetComponent<MeshRenderer>();
-		GetComponent<BoxCollider>().size = new Vector3(mr.bounds.extents.x * 2f, 1f, 1f);
+		GetComponent<BoxCollider>().size = new Vector3(mr.bounds.extents.x * 2f + 0.4f, 2f, 1f);
+		transform.Find("Background").localScale = new Vector3(mr.bounds.extents.x * 2f + 0.4f, 2f, 1f);
 
 	}
 
