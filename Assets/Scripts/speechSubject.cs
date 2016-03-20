@@ -12,6 +12,7 @@ public class speechSubject : MonoBehaviour {
 	Text uiBubbleText;
 	[SerializeField] GameObject Bubbles;
 	RectTransform UIBubble;
+	RectTransform bubbleSize;
 
 
 	// Use this for initialization
@@ -24,6 +25,7 @@ public class speechSubject : MonoBehaviour {
 //		tm = gameObject.GetComponent<TextMesh> ();
 		uiBubbleText = gameObject.GetComponent<Text> ();
 		UIBubble = Bubbles.transform.GetComponent<RectTransform> ();
+		bubbleSize = gameObject.GetComponent <RectTransform> ();
 	}
 	
 	// Update is called once per frame
@@ -42,14 +44,18 @@ public class speechSubject : MonoBehaviour {
 			//UI TEXT
 			uiBubbleText.text = "";
 			gameObject.transform.parent.gameObject.SetActive (false);
-
 //			resizeBubs ();
 		}
 	}
 		
 	void resizeUIBubs() {
-		Bubbles.GetComponent <RectTransform>().sizeDelta = new Vector2 (300, LayoutUtility.GetPreferredHeight(gameObject.GetComponent <RectTransform>()));
-
+		UIBubble.sizeDelta = new Vector2 (
+			LayoutUtility.GetPreferredWidth(bubbleSize) + 20f,
+			LayoutUtility.GetPreferredHeight(bubbleSize) + 20f
+		);
+		float bubbleOffset = UIBubble.sizeDelta.y / 2f + 5f;
+		UIBubble.localPosition = new Vector3 (0f, bubbleOffset, 0f);
+		bubbleSize.localPosition = new Vector3 (0f, bubbleOffset, 0f);
 	}
 //	public void resizeBubs() { 
 //		if (mr.bounds.extents.x != 0) {
