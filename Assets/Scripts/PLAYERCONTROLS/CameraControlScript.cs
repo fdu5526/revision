@@ -104,9 +104,12 @@ public class CameraControlScript : MonoBehaviour {
     void ManageCameraPosition() {
         if (_lookAtTarget != null) { 
             transform.position = Vector3.Slerp(transform.position, _lookAtTarget.position, Time.deltaTime * _cameraMoveSpeed/4);
+            _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, Vector3.zero, 0.1f);
         }
         else {
             transform.position = Vector3.MoveTowards(transform.position, _playerObject.transform.position, Time.deltaTime * _cameraMoveSpeed);
+            Vector3 originalMainCameraLocalPosition = new Vector3(0f, 0f, -10f);
+            _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
         }
     }
 
