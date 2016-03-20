@@ -32,10 +32,11 @@ public class friendMovement : MonoBehaviour {
     void OnMouseDown()
     {
 		if(DebugSwitch.debugMode == false){
-        //Debug.Log("picked up");
+        Debug.Log("picked up");
         pickedUp = true;
-        if (nearestObject != null)
+		if (nearestObject != null && nearestObject.GetComponent<friendSpot>().occupant == gameObject)
         {
+			//print (nearestObject.name+" is set to null because you picked me up.");
             nearestObject.GetComponent<friendSpot>().occupant = null;
         }
 		}
@@ -60,9 +61,10 @@ public class friendMovement : MonoBehaviour {
     {
         findNearest();
         float distanceToNearestObject = Vector3.Distance(transform.position, nearestObject.transform.position);
-        if (distanceToNearestObject < snapDistance)
+		if (distanceToNearestObject < snapDistance && nearestObject.GetComponent<friendSpot>().occupant == null)
         {
             transform.position = nearestObject.transform.position;
+			//print (nearestObject.name+" set to me because snap to position");
             nearestObject.GetComponent<friendSpot>().occupant = gameObject;
             nearestObject.GetComponent<friendSpot>().checkOthers();
         }
@@ -125,6 +127,7 @@ public class friendMovement : MonoBehaviour {
     public void leave()
     {
 		if(nearestObject != null){
+			//print (nearestObject.name + " set to null because leave");
 		nearestObject.GetComponent<friendSpot>().occupant = null;
 		}
         //transform.position = originalPosition;
@@ -134,8 +137,10 @@ public class friendMovement : MonoBehaviour {
     void findNearest()
     {
         GameObject[] spots = GameObject.FindGameObjectsWithTag("Spot");
-        Debug.Log("Found "+spots.Length+" spots");
-        nearestObject = spots[0];
+        //Debug.Log("Found "+spots.Length+" spots");
+        
+
+		nearestObject = spots[0];
         for(int i = 1; i < spots.Length; i++)
         {
             float distanceToNearestObject = Vector3.Distance(transform.position, nearestObject.transform.position);
