@@ -34,7 +34,7 @@ public class PlayerAnimation : MonoBehaviour {
             _animator.Play("animation_steve_walktest1");
         }
         else{
-            _animator.Play("animation_steve_onewave");
+           // _animator.Play("animation_steve_onewave");
         }
 	}
 }
