@@ -7,12 +7,15 @@ public class AudioInput : MonoBehaviour {
 
   float maxTimePassToMoveOn = 8f;
   float timeStart;
+  float timeToMoveOnAfterInput = 4f;
+  bool isListening;
 
   void Start () {
     string[] devs = Microphone.devices;
 		print(devs.Length);
     GetComponent<AudioSource>().clip = Microphone.Start(devs[0], true, 10, 44100);
     timeStart = Time.time;
+    isListening = true;
   }
 
 
@@ -22,7 +25,11 @@ public class AudioInput : MonoBehaviour {
   }
 
   void Update () {
+    if (!isListening) {
+      return;
+    }
     if (Time.time - timeStart > maxTimePassToMoveOn) {
+      isListening = false;
       MoveOn();
       return;
     }
@@ -35,9 +42,9 @@ public class AudioInput : MonoBehaviour {
     while (i < samples.Length) {
       
       if(samples[i]>0.2f) {
-        Debug.Log(samples[i]);
         //Debug.Log("The audio has been triggered and the number is: "+i);
-        MoveOn();
+        isListening = false;
+        Invoke("MoveOn", timeToMoveOnAfterInput);
         break;
       }
       ++i;
