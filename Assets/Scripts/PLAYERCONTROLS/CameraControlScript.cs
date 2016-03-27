@@ -80,9 +80,12 @@ public class CameraControlScript : MonoBehaviour {
                 _inputX = Input.GetAxis("Mouse X");
                 _inputY = Input.GetAxis("Mouse Y");
 
+				float yAxisConstraint = transform.localEulerAngles.x + _inputY * _cameraRotationSpeed;
+				if((yAxisConstraint > 75f && yAxisConstraint < 180f) || (yAxisConstraint < 285f && yAxisConstraint >= 180f)) {
+					_inputY = 0f;
+				}
 				transform.localEulerAngles += new Vector3(_inputY, _inputX, 0f) * _cameraRotationSpeed;
 				_mainCamera.transform.localEulerAngles = new Vector3 (0f, 0f, 0f);
-
 
                 if (_continueRotate) {
 
