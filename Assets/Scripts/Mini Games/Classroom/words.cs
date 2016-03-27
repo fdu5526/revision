@@ -18,7 +18,8 @@ public class words : MonoBehaviour {
 		myMesh = GetComponent<TextMesh>();
 		myDictionary = FindObjectOfType<Dictionary>().gameObject;
 		myPosition = transform.position;
-		target = GameObject.Find("Target").transform.position;
+		target = GameObject.FindGameObjectWithTag("Target").transform.position;
+		//target = GameObject.Find("Target").transform.position;
 		movement = GameObject.FindObjectOfType<PlayerMovement>();
 
 		float tempFloat = myDictionary.GetComponent<Dictionary>().word.Length;
