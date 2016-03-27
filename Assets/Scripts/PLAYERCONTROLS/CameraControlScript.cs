@@ -33,6 +33,8 @@ public class CameraControlScript : MonoBehaviour {
     [SerializeField]
     private Transform _lookAtTarget;
 
+    Vector3 _playerControlledScale = new Vector3(2.25f, 2.25f, 2.25f);
+
     public void PlayerControlled(bool activate, Transform target) {
         _playerControlled = activate;
         _lookAtTarget = target;
@@ -105,11 +107,16 @@ public class CameraControlScript : MonoBehaviour {
         if (_lookAtTarget != null) { 
             transform.position = Vector3.Slerp(transform.position, _lookAtTarget.position, Time.deltaTime * _cameraMoveSpeed/4);
             _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, Vector3.zero, 0.1f);
+            transform.localScale = Vector3.Slerp(transform.localScale, Vector3.one, 0.1f);
         }
         else {
-            transform.position = Vector3.MoveTowards(transform.position, _playerObject.transform.position, Time.deltaTime * _cameraMoveSpeed);
+            // have camera point above the player
+            Vector3 p = _playerObject.transform.position;
+            p.y = transform.position.y;
+            transform.position = Vector3.MoveTowards(transform.position, p, Time.deltaTime * _cameraMoveSpeed);
             Vector3 originalMainCameraLocalPosition = new Vector3(0f, 0f, -10f);
             _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
+            transform.localScale = Vector3.Slerp(transform.localScale, _playerControlledScale, 0.1f);
         }
     }
 
