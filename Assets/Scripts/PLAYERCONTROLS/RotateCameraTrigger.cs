@@ -11,7 +11,7 @@ public class RotateCameraTrigger : MonoBehaviour {
     private Transform _objectOfInterest;
 
 	void OnTriggerEnter(Collider other) {
-		print("something triggered");
+		//print("something triggered");
 		if (other.tag == "Player") {
 			print("its a player");
             _camera.PlayerControlled(false, _lookAtTarget);
