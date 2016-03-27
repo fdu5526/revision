@@ -48,7 +48,7 @@ public class cameraSettingToggle : MonoBehaviour {
 	}
 	
 	public void toggleControls(bool mode){
-		cameraController.enabled= mode;
+		cameraController.enabled = mode;
 		playerController.enabled = mode;
 	}
 
@@ -78,9 +78,9 @@ public class cameraSettingToggle : MonoBehaviour {
 
 	public IEnumerator switching(){
 		theCamera.switchPerspective();
+		toggleControls(DebugSwitch.debugMode);
 		yield return new WaitForSeconds(4f);
 		turnPlayerModel();
-		toggleControls(DebugSwitch.debugMode);
 		if(DebugSwitch.debugMode == true){
 		}
 		else{
