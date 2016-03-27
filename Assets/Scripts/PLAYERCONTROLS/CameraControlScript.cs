@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CameraControlScript : MonoBehaviour {
 
+	[SerializeField] MinMax _zoomLimit = new MinMax(-1f, 2f);
     private float _inputX;
     private float _inputY;
 
@@ -33,6 +34,8 @@ public class CameraControlScript : MonoBehaviour {
     [SerializeField]
     private Transform _lookAtTarget;
 
+	float _origY;
+
     Vector3 _playerControlledScale = new Vector3(2.25f, 2.25f, 2.25f);
 
     public void PlayerControlled(bool activate, Transform target) {
@@ -53,6 +56,7 @@ public class CameraControlScript : MonoBehaviour {
 	
     void Start() {
         PlayerControlled(true, null);
+		_origY = transform.position.y;
     }
 
 	// Update is called once per frame
@@ -112,7 +116,7 @@ public class CameraControlScript : MonoBehaviour {
         else {
             // have camera point above the player
             Vector3 p = _playerObject.transform.position;
-            p.y = transform.position.y;
+            p.y = _origY;
             transform.position = Vector3.MoveTowards(transform.position, p, Time.deltaTime * _cameraMoveSpeed);
             Vector3 originalMainCameraLocalPosition = new Vector3(0f, 0f, -10f);
             _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
@@ -123,11 +127,12 @@ public class CameraControlScript : MonoBehaviour {
     void ManageCameraZoom() {
 
         float MouseScrollAmount = Input.GetAxis("Mouse ScrollWheel");
+		Debug.Log (MouseScrollAmount);
 
         if (MouseScrollAmount != 0)
-        {
+		{
             Vector3 newScale = transform.localScale;
-            newScale -= new Vector3(1f, 1f, 1f) * MouseScrollAmount * transform.localScale.x;
+			newScale -= new Vector3(1f, 1f, 1f) * Mathf.Clamp (MouseScrollAmount, _zoomLimit.Min, _zoomLimit.Max) * transform.localScale.x;
             transform.localScale = Vector3.Slerp(transform.localScale, newScale, Time.deltaTime * _scrollSpeed);
         }
     }
