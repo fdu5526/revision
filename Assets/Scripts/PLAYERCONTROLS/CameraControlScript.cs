@@ -127,7 +127,6 @@ public class CameraControlScript : MonoBehaviour {
     void ManageCameraZoom() {
 
         float MouseScrollAmount = Input.GetAxis("Mouse ScrollWheel");
-		Debug.Log (MouseScrollAmount);
 
         if (MouseScrollAmount != 0)
 		{
