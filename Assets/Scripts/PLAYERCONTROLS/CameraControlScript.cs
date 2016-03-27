@@ -120,7 +120,11 @@ public class CameraControlScript : MonoBehaviour {
             // have camera point above the player
             Vector3 p = _playerObject.transform.position;
             p.y = _origY;
-            transform.position = Vector3.MoveTowards(transform.position, p, Time.deltaTime * _cameraMoveSpeed);
+
+            float amount = Time.deltaTime * _cameraMoveSpeed;
+            amount = _playerObject.GetComponent<PlayerControllerTest>().enabled ? amount : amount / 4f;
+
+            transform.position = Vector3.MoveTowards(transform.position, p, amount);
             Vector3 originalMainCameraLocalPosition = new Vector3(0f, 0f, -10f);
             _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
             transform.localScale = Vector3.Slerp(transform.localScale, _playerControlledScale, 0.1f);
