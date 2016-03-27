@@ -48,7 +48,6 @@ public class cameraSettingToggle : MonoBehaviour {
 	}
 	
 	public void toggleControls(bool mode){
-		cameraController.enabled = mode;
 		playerController.enabled = mode;
 	}
 
@@ -91,7 +90,8 @@ public class cameraSettingToggle : MonoBehaviour {
 
 	public IEnumerator switching(){
 		theCamera.switchPerspective();
-		toggleControls(DebugSwitch.debugMode);
+		cameraController.enabled = DebugSwitch.debugMode;
+
 		//yield return new WaitForSeconds(4f);
 		turnPlayerModel();
 		if(DebugSwitch.debugMode == true){
@@ -103,6 +103,8 @@ public class cameraSettingToggle : MonoBehaviour {
 				gameModeChanges = null;
 			}
 		}
+		yield return new WaitForSeconds(3f);
+		toggleControls(DebugSwitch.debugMode);
 
 		yield return 1;
 	}
