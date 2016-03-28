@@ -1,51 +1,17 @@
 fileFormatVersion: 2
-guid: 8d695f5368198434089ae4b65accdb8c
-timeCreated: 1447016236
-licenseType: Pro
+guid: 84b13ee4480a3412187342fba58e9296
+timeCreated: 1459116861
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pCube1
-    100004: pCube14
-    100006: pCube2
-    100008: pCube3
-    100010: pCube4
-    100012: pCube5
-    100014: pCube6
-    100016: pCube7
-    100018: pCube8
-    100020: transform1
-    100022: transform10
-    100024: transform11
-    100026: transform2
-    100028: transform3
-    100030: transform4
-    100032: transform8
-    100034: transform9
+    100002: House2
     400000: //RootNode
-    400002: pCube1
-    400004: pCube14
-    400006: pCube2
-    400008: pCube3
-    400010: pCube4
-    400012: pCube5
-    400014: pCube6
-    400016: pCube7
-    400018: pCube8
-    400020: transform1
-    400022: transform10
-    400024: transform11
-    400026: transform2
-    400028: transform3
-    400030: transform4
-    400032: transform8
-    400034: transform9
-    2300000: pCube14
-    2300002: //RootNode
-    3300000: pCube14
-    3300002: //RootNode
-    4300000: pCube14
+    400002: House2
+    2300000: House2
+    3300000: House2
+    4300000: House2
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -89,7 +55,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
