@@ -10,7 +10,9 @@ public class hubLevelSelector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyDown (KeyCode.PageUp)) {
+			nextLevel ();
+		}
 	}
 
 	public void jumpToLevel(string levelName){
@@ -25,4 +27,6 @@ public class hubLevelSelector : MonoBehaviour {
 		tempInt++;
 		Application.LoadLevel(tempInt);
 	}
+
+
 }
