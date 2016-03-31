@@ -10,16 +10,18 @@ public class Spawner : MonoBehaviour {
     public bool fixedRate;
     public float increaseRate;
 
+	public bool onlyOnTrigger = false;
+
     public GameObject spawn;
     // Use this for initialization
     void Start()
     {
         spawnRate = (float)Random.Range(minRateOfSpawn, maxRateOfSpawn);
         //Debug.Log("Spawnrate is: "+spawnRate);
-        StartCoroutine(spawning());
+		if(onlyOnTrigger==false){StartCoroutine(spawning());}
     }
 
-    void Spawn()
+    public void Spawn()
     {
         //Debug.Log("Spawning a "+spawn.name);
 		if(DebugSwitch.debugMode == false){
