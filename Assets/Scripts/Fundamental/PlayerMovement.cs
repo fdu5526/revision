@@ -106,7 +106,9 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 	}
-
+	public void SetPause (bool paused) {
+		this.paused = paused;
+	}
 	public void togglePause(){
 		paused = !paused;
 	}
