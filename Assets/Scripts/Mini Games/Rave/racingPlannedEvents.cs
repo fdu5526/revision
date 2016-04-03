@@ -11,7 +11,10 @@ public class racingPlannedEvents : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		thePill.gameObject.SetActive(false);
-		StartCoroutine(firstAppearance());
+
+		if (gameProgress.secondTime == false) {
+			StartCoroutine (firstAppearance ());
+		}
 	}
 	
 	// Update is called once per frame

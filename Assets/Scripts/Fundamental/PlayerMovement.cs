@@ -5,6 +5,8 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
 
+	//This should be used ONLY for the Teacher scene
+
 	public float speed = 2f;
 	public bool xAxisMovementEnabled = true;
 	public bool zAxisMovementEnabled = false;
@@ -14,12 +16,12 @@ public class PlayerMovement : MonoBehaviour
 	public int jumpDelay=30;
 	public int jumpCounter =0;
     public bool paused=false;
+	bool resetToggled = false;
 
 
 	// Use this for initialization
 	void Start ()
 	{
-	
 	}
 	
 	// Update is called once per frame
@@ -44,15 +46,25 @@ public class PlayerMovement : MonoBehaviour
 
 	void checkMovement ()
 	{
+		//print("Checking movement");
+		//check if Steve is upright
+		/*if(transform.rotation.y != 270){
+			print("I'm off center");
+			resetToggled = true;
+			Invoke("ResetPosition", 1);
+		}*/
 
 		if (xAxisMovementEnabled) {
-			if (Input.GetKey (KeyCode.D)) {
-				turn (90f);
-				transform.Translate (Vector3.forward * (speed * Time.deltaTime));
+			if (Input.GetKey (KeyCode.RightArrow) ||
+					Input.GetKey (KeyCode.D)) {
+				//turn (90f);
+				//transform.Translate (Vector3.forward * (speed * Time.deltaTime));
+				transform.Translate (Vector3.back * (speed * Time.deltaTime));
 			}
 		
-			if (Input.GetKey (KeyCode.A)) {
-				turn (270f);
+			if (Input.GetKey (KeyCode.LeftArrow) ||
+					Input.GetKey (KeyCode.A)) {
+				//turn (270f);
 				transform.Translate (Vector3.forward * (speed * Time.deltaTime));
 			}
 		}
@@ -95,4 +107,26 @@ public class PlayerMovement : MonoBehaviour
 
 	}
 
+	public void togglePause(){
+		paused = !paused;
+	}
+
+	void OnCollisionEnter(Collision other){
+		print("I collided");
+		if(other.collider.tag=="Letter" && resetToggled == false){
+			print("I collided with a Letter and I'm gonnna reset");
+			resetToggled = true;
+			Invoke("ResetPosition", 2);
+		}
+	}
+
+	void ResetPosition(){
+		cameraSettingToggle myCamera = GameObject.FindObjectOfType<cameraSettingToggle>();
+		myCamera.resetPosition();
+		gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		gameObject.GetComponent<Rigidbody>().angularVelocity= Vector3.zero;
+		gameObject.GetComponent<Rigidbody>().Sleep();
+		resetToggled = false;
+
+	}
 }

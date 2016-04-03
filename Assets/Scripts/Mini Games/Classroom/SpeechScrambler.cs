@@ -53,13 +53,15 @@ public class SpeechScrambler : MonoBehaviour {
 	}
 
 	public void scrambleDialogue(string newLine){
-		scrambleLetters(newLine);
+		TextMesh myMesh = GetComponent<TextMesh>();
+		print("Saying my new line: "+newLine);
+		myMesh.text = scrambleLetters(newLine);
 		//Debug.Log("Here's the scrambled version: "+scrambleLetters(newLine));
-		DialogueManager scripter = GameObject.FindObjectOfType<DialogueManager>();
-		Dialogue tempDialogue = new Dialogue("SteveText", scrambleLetters(newLine));
+		//DialogueManager scripter = GameObject.FindObjectOfType<DialogueManager>();
+		//Dialogue tempDialogue = new Dialogue("SteveText", scrambleLetters(newLine));
 		//Dialogue tempLines[1] = {tempDialogue};
-		Beat tempBeat = new Beat(2f, tempDialogue);
-		scripter.readTheLines(tempBeat);
+		//Beat tempBeat = new Beat(2f, tempDialogue);
+		//scripter.readTheLines(tempBeat);
 	}
 
 }
