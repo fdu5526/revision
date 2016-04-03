@@ -53,7 +53,6 @@ public class cameraSettingToggle : MonoBehaviour {
 
 
 	IEnumerator ResetPositionAsync (float transitionTime) {
-		print(controllerStartPosition);
 		float startTime = Time.time;
 		playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		playerController.GetComponent<Rigidbody>().useGravity = false;
