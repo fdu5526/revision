@@ -119,8 +119,6 @@ public class PlayerMovement : MonoBehaviour
 			print("I collided with a Letter and I'm gonnna reset");
 			resetToggled = true;
 			paused = true;
-			gameObject.GetComponent<Rigidbody>().angularVelocity= 1000000f * UnityEngine.Random.insideUnitSphere;
-			gameObject.GetComponent<Rigidbody>().velocity = 10f * Vector3.up + UnityEngine.Random.Range(-10f, 10f) * Vector3.right;
 			Invoke("ResetPosition", 2);
 		}
 	}

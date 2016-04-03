@@ -14,6 +14,12 @@ public class ClassroomInputField : MonoBehaviour {
 	
 	public void Activate (bool activate) {
 		playerMovement.SetPause(activate);
+		PlayerControllerTest.movementEnabled = true;
 		gameObject.SetActive(activate);
+	}
+
+	void FixedUpdate () {
+		playerMovement.SetPause(true);
+		PlayerControllerTest.movementEnabled = false;
 	}
 }
