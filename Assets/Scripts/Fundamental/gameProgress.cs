@@ -3,7 +3,6 @@ using System.Collections;
 
 public class gameProgress : MonoBehaviour {
 	public static bool secondTime = false;
-	public static bool revised = false;
 	// Use this for initialization
 	void Awake() {
 		DontDestroyOnLoad(transform.gameObject);
@@ -22,7 +21,6 @@ public class gameProgress : MonoBehaviour {
 			}
 			if(Input.GetKeyDown(KeyCode.End))
 			{
-			//	Debug.Log("loading next level");
 				Application.LoadLevel(Application.loadedLevel+1);
 			}
 	}

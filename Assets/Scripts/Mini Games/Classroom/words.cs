@@ -18,7 +18,8 @@ public class words : MonoBehaviour {
 		myMesh = GetComponent<TextMesh>();
 		myDictionary = FindObjectOfType<Dictionary>().gameObject;
 		myPosition = transform.position;
-		target = GameObject.Find("Target").transform.position;
+		target = GameObject.FindGameObjectWithTag("Target").transform.position;
+		//target = GameObject.Find("Target").transform.position;
 		movement = GameObject.FindObjectOfType<PlayerMovement>();
 
 		float tempFloat = myDictionary.GetComponent<Dictionary>().word.Length;
@@ -28,7 +29,8 @@ public class words : MonoBehaviour {
 
 		// resize the collider to the size of the text
 		MeshRenderer mr = GetComponent<MeshRenderer>();
-		GetComponent<BoxCollider>().size = new Vector3(mr.bounds.extents.x * 2f, 1f, 1f);
+		GetComponent<BoxCollider>().size = new Vector3(mr.bounds.extents.x * 2f + 0.4f, 2f, 1f);
+		transform.Find("Background").localScale = new Vector3(mr.bounds.extents.x * 2f + 0.4f, 2f, 1f);
 
 	}
 

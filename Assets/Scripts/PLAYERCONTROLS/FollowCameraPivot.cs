@@ -8,12 +8,6 @@ public class FollowCameraPivot : MonoBehaviour {
     [SerializeField]
     private GameObject _player;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
 	void Update () {
         Quaternion dummyRotation = _cameraPivot.transform.rotation;
         dummyRotation.x = 0;

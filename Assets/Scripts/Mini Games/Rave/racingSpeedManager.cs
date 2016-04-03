@@ -9,26 +9,32 @@ public class racingSpeedManager : MonoBehaviour {
 	public float speedIncrement = .1f;
 	movingPart[] allMovingParts;
 	float playerSpeed;
+	racingSteve steve;
 
 	// Use this for initialization
 	void Start () {
 		allMovingParts = FindObjectsOfType<movingPart>();
-
+		steve = FindObjectOfType<racingSteve> ();
 	}
-	
+	  
 	// Update is called once per frame
 	void Update () {
-		if(Input.anyKeyDown){
-			counter++;
+		if (gameProgress.secondTime == false) {
+			if (Input.anyKeyDown) {
+				counter++;
+			}
+			if (counter > goal) {
+				speedUp ();
+			}	
 		}
-		if(counter > goal){
-			speedUp();
-		}	
 	}
 
 	public void pill(){
 		//speedUp();
-		StartCoroutine(burstSpeed(playerSpeed));
+		//print("Pill button");
+		if (DebugSwitch.debugMode == false) {
+			StartCoroutine (burstSpeed (playerSpeed));
+		}
 	}
 
 	void speedUp(){
@@ -36,6 +42,7 @@ public class racingSpeedManager : MonoBehaviour {
 		updateSpeed(playerSpeed);
 		counter = 0;
 		goal *= goalAmplifier;
+		steve.increaseSpeed ();
 	}
 
 	void updateSpeed(float newSpeed){
@@ -47,8 +54,10 @@ public class racingSpeedManager : MonoBehaviour {
 	IEnumerator burstSpeed(float originalSpeed){
 		playerSpeed = 2f;
 		updateSpeed(playerSpeed);
+		steve.updateSpeed (.7f);
 		yield return new WaitForSeconds(4f);
 		playerSpeed = originalSpeed;
+		steve.updateSpeed (steve.speed);
 		speedUp();
 	}
 }

@@ -35,6 +35,7 @@ public class noteProgress : MonoBehaviour {
 	}
 
 	public void addNote(){
+		print("Adding note");
 		notesFound++;
 		updateText();
 	}
