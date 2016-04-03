@@ -106,7 +106,9 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 	}
-
+	public void SetPause (bool paused) {
+		this.paused = paused;
+	}
 	public void togglePause(){
 		paused = !paused;
 	}
@@ -116,16 +118,18 @@ public class PlayerMovement : MonoBehaviour
 		if(other.collider.tag=="Letter" && resetToggled == false){
 			print("I collided with a Letter and I'm gonnna reset");
 			resetToggled = true;
+			paused = true;
 			Invoke("ResetPosition", 2);
 		}
 	}
 
 	void ResetPosition(){
 		cameraSettingToggle myCamera = GameObject.FindObjectOfType<cameraSettingToggle>();
-		myCamera.resetPosition();
+		myCamera.resetPositionInstantaneous();
 		gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		gameObject.GetComponent<Rigidbody>().angularVelocity= Vector3.zero;
 		gameObject.GetComponent<Rigidbody>().Sleep();
+		paused = false;
 		resetToggled = false;
 
 	}
