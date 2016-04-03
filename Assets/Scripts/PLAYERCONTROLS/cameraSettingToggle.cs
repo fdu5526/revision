@@ -53,6 +53,7 @@ public class cameraSettingToggle : MonoBehaviour {
 
 
 	IEnumerator ResetPositionAsync (float transitionTime) {
+		print(controllerStartPosition);
 		float startTime = Time.time;
 		playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		playerController.GetComponent<Rigidbody>().useGravity = false;
@@ -76,12 +77,19 @@ public class cameraSettingToggle : MonoBehaviour {
 			playerController.gameObject.transform.rotation = Quaternion.Slerp(ogPlayerRotation, controllerStartRotation, d);
 			yield return 1;
 		}
+
+		playerController.gameObject.transform.position = controllerStartPosition;
+		playerController.gameObject.transform.rotation = controllerStartRotation;
 		playerController.GetComponent<Rigidbody>().useGravity = true;
 		playerController.GetComponent<Collider>().enabled = true;
 	}
 
 	public void resetPosition(){
 		StartCoroutine(ResetPositionAsync(3f));
+	}
+
+	public void resetPositionInstantaneous(){
+		StartCoroutine(ResetPositionAsync(0.1f));
 	}
 
 	public void switchMode(){
