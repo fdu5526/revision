@@ -6,11 +6,9 @@ public class speechSubject : MonoBehaviour {
 	GameObject uiElement;
 	Text uiCharacterText;
 	Text uiText;
-//	MeshRenderer mr; 
-//	TextMesh tm;
 	Vector3 speechBubbleSize;
-//	Transform uiBubble;
 	Text uiBubbleText;
+	[SerializeField] bool _isBubble;
 
 	[SerializeField] GameObject Bubbles;
 	[SerializeField] Image bubbleImage;
@@ -21,19 +19,12 @@ public class speechSubject : MonoBehaviour {
 	[SerializeField] string characterCheck;
 	//for disabling/enabling speech bubble
 
-
-	//TODO: Look at Camera (Billboard)
-	//TODO: Copy Steve's Position
-
 	// Use this for initialization
 	void Awake () {
 		uiElement = GameObject.Find("StoryText");
 		uiCharacterText = GameObject.Find("NameText").GetComponent <Text>();
 		uiText = uiElement.GetComponent<Text> ();
 
-//		mr = gameObject.GetComponent<MeshRenderer> ();
-//		uiBubble = gameObject.transform.GetChild (0);
-//		tm = gameObject.GetComponent<TextMesh> ();
 		uiBubbleText = gameObject.GetComponent<Text> ();
 
 		UIBubble = Bubbles.transform.GetComponent<RectTransform> ();
@@ -42,22 +33,17 @@ public class speechSubject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (uiText.IsActive() && (uiCharacterText.text == characterCheck || uiCharacterText.text == "")) {
+		if (uiText.IsActive() && (uiCharacterText.text == characterCheck )) {
 			enableBubble ();
-//			tm.text = uiText.text;
-			//UI TEXT
 			if (uiBubbleText.text != uiText.text) {
 				uiBubbleText.text = uiText.text;
-				resizeUIBubs ();
+				if (_isBubble) {
+					resizeUIBubs ();
+				}
 			}
-
 		} else {
-//			tm.text = "";
-			//UI TEXT
 			uiBubbleText.text = "";
 			disableBubble ();
-//			gameObject.transform.parent.gameObject.
-//			resizeBubs ();
 		}
 	}
 		
@@ -73,23 +59,17 @@ public class speechSubject : MonoBehaviour {
 
 	void disableBubble() {
 		uiBubbleText.enabled = false;
-		bubbleTail.enabled = false;
+		if(bubbleTail != null){
+			bubbleTail.enabled = false;
+		}
 		bubbleImage.enabled = false;
 	}
 
 	void enableBubble() {
 		uiBubbleText.enabled = true;
-		bubbleTail.enabled = true;
+		if(bubbleTail != null){
+			bubbleTail.enabled = true;
+		}
 		bubbleImage.enabled = true;
 	}
-//	public void resizeBubs() { 
-//		if (mr.bounds.extents.x != 0) {
-//			speechBubbleSize = new Vector3 (mr.bounds.extents.x * 2f + 5f, 
-//				mr.bounds.extents.y * 2f + 1f, 
-//				0f);
-//		} else if (mr.bounds.extents.x == 0) {
-//			speechBubbleSize = new Vector3 (0f, 0f, 0f);
-//		}
-//		uiBubble.localScale = speechBubbleSize;
-//	}
 }
