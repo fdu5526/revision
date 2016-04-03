@@ -15,6 +15,7 @@ public class CameraControlScript : MonoBehaviour {
     private Transform _mainCamera;
     private Vector3 _mainCameraPosition;
     private Quaternion _mainCameraRotation;
+	[SerializeField]
     private bool _continueRotate;
 
     [SerializeField]
@@ -73,14 +74,14 @@ public class CameraControlScript : MonoBehaviour {
                 _inputX = Input.GetAxis("Mouse X");
                 _inputY = Input.GetAxis("Mouse Y");
 
-                transform.localEulerAngles += new Vector3(_inputY, _inputX, 0f) * _cameraRotationSpeed;
+				transform.localEulerAngles += new Vector3(_inputY, _inputX, 0f) * _cameraRotationSpeed;
+				_mainCamera.transform.localEulerAngles = new Vector3 (0f, 0f, 0f);
+
 
                 if (_continueRotate) {
 
-                    _mainCamera.rotation = Quaternion.Slerp(_mainCamera.rotation, _playerObject.transform.rotation, Time.deltaTime * _cameraRotationSpeed);
-
-                    if (Quaternion.Angle(_mainCamera.rotation, _playerObject.transform.rotation) < 1.5f &&
-                        Vector3.Distance(_mainCamera.position, _playerObject.transform.position) < 1)
+					if (Vector3.Distance(_mainCamera.localEulerAngles, new Vector3(0f, 0f, 0f)) < 1.5f &&
+						Vector3.Distance(_mainCamera.position, (_playerObject.transform.position + new Vector3 (0f, 0f, -10f))) < 1)
                     {
                         _continueRotate = false;    
                     }
