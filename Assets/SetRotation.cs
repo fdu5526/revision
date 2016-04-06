@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class roomTrigger : MonoBehaviour {
-
+public class SetRotation : MonoBehaviour {
+	public Vector3 newRotation;
 	// Use this for initialization
 	void Start () {
 	
@@ -11,5 +11,9 @@ public class roomTrigger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void changeToRotation(){
+		gameObject.transform.localEulerAngles = newRotation;
 	}
 }

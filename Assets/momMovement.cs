@@ -10,9 +10,10 @@ public class momMovement : MonoBehaviour {
 	public int narrativeCounter=0;
 	public int speedIncrement = 3;
 	public GameObject[] flowcharts;
+	public NodeManager theNodeManager;
 	// Use this for initialization
 	void Start () {
-
+		theNodeManager = GameObject.FindObjectOfType<NodeManager> ();
 	}
 	
 	// Update is called once per frame
@@ -26,11 +27,13 @@ public class momMovement : MonoBehaviour {
 		if(other.tag == "Obstacle"){
 			print ("should switch destination");
 			destination = origin;
+			theNodeManager.updatePairs ();
 		}
 
 		if (other.tag == "TriggerArea") {
-			StartCoroutine (pauseFor (3));
+			//StartCoroutine (pauseFor (3));
 			if (flowcharts.Length > narrativeCounter) {
+				togglePause ();
 				flowcharts [narrativeCounter].SetActive (true);
 				narrativeCounter++;
 				spawnPoint.Spawn ();
@@ -41,6 +44,10 @@ public class momMovement : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void togglePause(){
+		paused = !paused;
 	}
 
 	IEnumerator pauseFor(int seconds){
