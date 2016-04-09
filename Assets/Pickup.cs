@@ -6,6 +6,11 @@ public class Pickup : MonoBehaviour {
 	public float snapDistance = 2f;
 	GameObject nearestObject;
 	Vector3 originalPosition;
+	public NodeManager theNodeManager;
+
+	void Start(){
+		theNodeManager = GameObject.FindObjectOfType<NodeManager> ();
+	}
 	// Use this for initialization
 	void Update () {
 		if (pickedUp)
@@ -45,6 +50,7 @@ public class Pickup : MonoBehaviour {
 		{
 			transform.position = nearestObject.transform.position;
 			nearestObject.GetComponent<friendSpot>().occupant = gameObject;
+			theNodeManager.updatePairs ();
 			Destroy (this);
 		}
 		else

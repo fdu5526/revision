@@ -76,12 +76,19 @@ public class cameraSettingToggle : MonoBehaviour {
 			playerController.gameObject.transform.rotation = Quaternion.Slerp(ogPlayerRotation, controllerStartRotation, d);
 			yield return 1;
 		}
+
+		playerController.gameObject.transform.position = controllerStartPosition;
+		playerController.gameObject.transform.rotation = controllerStartRotation;
 		playerController.GetComponent<Rigidbody>().useGravity = true;
 		playerController.GetComponent<Collider>().enabled = true;
 	}
 
 	public void resetPosition(){
 		StartCoroutine(ResetPositionAsync(3f));
+	}
+
+	public void resetPositionInstantaneous(){
+		StartCoroutine(ResetPositionAsync(0.1f));
 	}
 
 	public void switchMode(){
