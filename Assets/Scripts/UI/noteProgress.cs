@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class noteProgress : MonoBehaviour {
-
+	public int levelNumber;
 	public static int totalNotes;
 	public static int notesFound;
 	public GameObject[] endNarrativeObjects;
@@ -28,6 +28,8 @@ public class noteProgress : MonoBehaviour {
 
 		if(totalNotes == notesFound){
 			for(int i=0; i < endNarrativeObjects.Length; i++){
+				gameProgress.levelsCompleted [levelNumber] = true;
+				gameProgress.printGameLevelStatus ();
 				endNarrativeObjects[i].gameObject.SetActive(true);
 			}
 		}

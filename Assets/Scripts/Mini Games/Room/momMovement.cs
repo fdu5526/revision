@@ -10,10 +10,10 @@ public class momMovement : MonoBehaviour {
 	public int narrativeCounter=0;
 	public int speedIncrement = 3;
 	public GameObject[] flowcharts;
-	public NodeManager theNodeManager;
+
 	// Use this for initialization
 	void Start () {
-		theNodeManager = GameObject.FindObjectOfType<NodeManager> ();
+		
 	}
 	
 	// Update is called once per frame
@@ -27,7 +27,7 @@ public class momMovement : MonoBehaviour {
 		if(other.tag == "Obstacle"){
 			print ("should switch destination");
 			destination = origin;
-			theNodeManager.updatePairs ();
+
 		}
 
 		if (other.tag == "TriggerArea") {
