@@ -60,8 +60,10 @@ public class words : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.name == "Target")
+		print ("I'm colliding with something! It's tag is: "+other.tag);
+		if (other.gameObject.tag == "Target")
 		{
+			print ("In the destroy loopy part");
 			Destroy(gameObject);
 		}
 	}
