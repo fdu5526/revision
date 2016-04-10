@@ -18,6 +18,12 @@ public class DebugSwitch : MonoBehaviour {
 		//StartCoroutine(SwitchMode());
 	}
 
+	void Update(){
+		/*if (Input.GetKeyDown (KeyCode.Space)) {
+			SwitchMode ();
+		}*/
+	}
+
 	public void SwitchMode(){
 		Log.Metrics.Message("DebuggingMode-" + (!debugMode ? "on" : "off"));
 		debugMode = !debugMode;
