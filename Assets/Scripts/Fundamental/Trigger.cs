@@ -22,11 +22,12 @@ public class Trigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	void OnTriggerEnter(Collider other){
 		Debug.Log("Entered trigger box");
+		Debug.Log("Has tag of: "+triggerTag);
 	if(other.tag == triggerTag){
 			Log.Metrics.Message("Trigger-" + this.gameObject.name);
 			Debug.Log("Has tag of: "+triggerTag);

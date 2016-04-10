@@ -48,39 +48,59 @@ public class cameraSettingToggle : MonoBehaviour {
 	}
 	
 	public void toggleControls(bool mode){
-		cameraController.enabled= mode;
 		playerController.enabled = mode;
 	}
 
-	public void resetPosition(){
-		transform.position = startingSystemPosition;
-		transform.rotation = startingSystemRotation;
-		cameraPivot.transform.position = startingCameraPosition;
-		cameraPivot.transform.rotation = startingCameraRotation;
 
-		playerController.gameObject.transform.position =controllerStartPosition;
-		playerController.gameObject.transform.rotation =controllerStartRotation;
+	IEnumerator ResetPositionAsync (float transitionTime) {
+		float startTime = Time.time;
+		playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		playerController.GetComponent<Rigidbody>().useGravity = false;
+		playerController.GetComponent<Collider>().enabled = false;
+
+		Vector3 ogPosition = transform.position;
+		Vector3 ogCameraPosition = cameraPivot.transform.position;
+		Vector3 ogPlayerPosition = playerController.gameObject.transform.position;
+		Quaternion ogRotation = transform.rotation;
+		Quaternion ogCameraRotation = cameraPivot.transform.rotation;
+		Quaternion ogPlayerRotation = playerController.gameObject.transform.rotation;
+
+		while (Time.time - startTime < transitionTime) {
+			float d = (Time.time - startTime) / transitionTime;
+			transform.position = Vector3.Slerp(ogPosition, startingSystemPosition, d);
+			transform.rotation = Quaternion.Slerp(ogRotation, startingSystemRotation, d);
+			cameraPivot.transform.position = Vector3.Slerp(ogCameraPosition, startingCameraPosition, d);
+			cameraPivot.transform.rotation = Quaternion.Slerp(ogCameraRotation, startingCameraRotation, d);
+
+			playerController.gameObject.transform.position = Vector3.Slerp(ogPlayerPosition, controllerStartPosition, d);
+			playerController.gameObject.transform.rotation = Quaternion.Slerp(ogPlayerRotation, controllerStartRotation, d);
+			yield return 1;
+		}
+
+		playerController.gameObject.transform.position = controllerStartPosition;
+		playerController.gameObject.transform.rotation = controllerStartRotation;
+		playerController.GetComponent<Rigidbody>().useGravity = true;
+		playerController.GetComponent<Collider>().enabled = true;
+	}
+
+	public void resetPosition(){
+		StartCoroutine(ResetPositionAsync(3f));
+	}
+
+	public void resetPositionInstantaneous(){
+		StartCoroutine(ResetPositionAsync(0.1f));
 	}
 
 	public void switchMode(){
-
-//		theCamera.switchPerspective();
-//		turnPlayerModel();
-//		toggleControls(DebugSwitch.debugMode);
-//		if(DebugSwitch.debugMode == true){
-//		}
-//		else{
-//			resetPosition();
-//		}
-
 		StartCoroutine(switching());
 	}
 
 	public IEnumerator switching(){
 		theCamera.switchPerspective();
-		yield return new WaitForSeconds(4f);
+		cameraController.enabled = DebugSwitch.debugMode;
+
+		//yield return new WaitForSeconds(4f);
 		turnPlayerModel();
-		toggleControls(DebugSwitch.debugMode);
 		if(DebugSwitch.debugMode == true){
 		}
 		else{
@@ -90,6 +110,10 @@ public class cameraSettingToggle : MonoBehaviour {
 				gameModeChanges = null;
 			}
 		}
+		yield return new WaitForSeconds(3f);
+		toggleControls(DebugSwitch.debugMode);
+
+		yield return 1;
 	}
 
 	public void turnPlayerModel(){

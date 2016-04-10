@@ -18,7 +18,8 @@ public class words : MonoBehaviour {
 		myMesh = GetComponent<TextMesh>();
 		myDictionary = FindObjectOfType<Dictionary>().gameObject;
 		myPosition = transform.position;
-		target = GameObject.Find("Target").transform.position;
+		target = GameObject.FindGameObjectWithTag("Target").transform.position;
+		//target = GameObject.Find("Target").transform.position;
 		movement = GameObject.FindObjectOfType<PlayerMovement>();
 
 		float tempFloat = myDictionary.GetComponent<Dictionary>().word.Length;
@@ -59,8 +60,10 @@ public class words : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.name == "Target")
+		print ("I'm colliding with something! It's tag is: "+other.tag);
+		if (other.gameObject.tag == "Target")
 		{
+			print ("In the destroy loopy part");
 			Destroy(gameObject);
 		}
 	}

@@ -3,7 +3,8 @@ using System.Collections;
 
 public class speechBillboard : MonoBehaviour {
 	Transform camera;
-	[SerializeField] bool flip;
+	[SerializeField] bool _flip;
+	[SerializeField] Transform _followCharacter;
 
 	void Awake () {
 		camera = Camera.main.transform;
@@ -14,6 +15,8 @@ public class speechBillboard : MonoBehaviour {
 		lookAtCamera.y = 0;
 		//keep the x coordinate still
 //		lookAtCamera.x = transform.position.x;
-		transform.forward = flip? -lookAtCamera : lookAtCamera;
+		transform.forward = _flip? -lookAtCamera : lookAtCamera;
+
+		transform.position = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
 	}
 }
