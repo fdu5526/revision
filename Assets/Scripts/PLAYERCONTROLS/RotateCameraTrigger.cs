@@ -15,7 +15,7 @@ public class RotateCameraTrigger : MonoBehaviour {
 		if (other.tag == "Player") {
 			print("its a player");
             _camera.PlayerControlled(false, _lookAtTarget);
-			PlayerControllerTest.movementEnabled = false;
+			other.GetComponent<PlayerControllerTest>().DisableMovement();
             //_camera.SetObjectOfInterest(_objectOfInterest);
         }
     }
