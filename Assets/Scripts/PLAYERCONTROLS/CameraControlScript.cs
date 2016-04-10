@@ -79,6 +79,7 @@ public class CameraControlScript : MonoBehaviour {
             if (_objectOfInterest == null) { 
                 _inputX = Input.GetAxis("Mouse X");
                 _inputY = Input.GetAxis("Mouse Y");
+                _inputY = -_inputY;
 
 				float yAxisConstraint = transform.localEulerAngles.x + _inputY * _cameraRotationSpeed;
 				if((yAxisConstraint > 75f && yAxisConstraint < 180f) || (yAxisConstraint < 285f && yAxisConstraint >= 180f)) {
