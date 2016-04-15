@@ -123,6 +123,12 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
+	void OnTriggerEnter(Collider other){
+		if (other.tag == "Target") {
+			togglePause ();
+		}
+	}
+
 	void ResetPosition(){
 		cameraSettingToggle myCamera = GameObject.FindObjectOfType<cameraSettingToggle>();
 		myCamera.resetPositionInstantaneous();
