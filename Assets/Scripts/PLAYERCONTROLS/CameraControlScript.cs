@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class CameraControlScript : MonoBehaviour {
@@ -36,7 +37,7 @@ public class CameraControlScript : MonoBehaviour {
 
 	float _origY;
 
-    Vector3 _playerControlledScale = new Vector3(1.25f, 1.25f, 1.25f);
+    Vector3 _playerControlledScale = new Vector3(2.25f, 2.25f, 2.25f);
 
     public void PlayerControlled(bool activate, Transform target) {
         _playerControlled = activate;
@@ -126,9 +127,16 @@ public class CameraControlScript : MonoBehaviour {
             amount = _playerObject.GetComponent<PlayerControllerTest>().enabled ? amount : amount / 4f;
 
             transform.position = Vector3.MoveTowards(transform.position, p, amount);
-            Vector3 originalMainCameraLocalPosition = new Vector3(0f, 0f, -10f);
-            _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
-            transform.localScale = Vector3.Slerp(transform.localScale, _playerControlledScale, 0.1f);
+            if (SceneManager.GetActiveScene().name.Equals("4. Room")) {
+                Vector3 originalMainCameraLocalPosition = new Vector3(0f, -4f, -10f);
+                _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
+                transform.localScale = Vector3.Slerp(transform.localScale, _playerControlledScale / 2f, 0.1f);
+            } else {
+                Vector3 originalMainCameraLocalPosition = new Vector3(0f, 0f, -10f);
+                _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
+                transform.localScale = Vector3.Slerp(transform.localScale, _playerControlledScale, 0.1f);
+            }
+            
         }
     }
 
