@@ -20,6 +20,7 @@ public class TranslationChoice : MonoBehaviour {
 
 		else{
 			Instantiate(correctAnswerFeedback);
+			TranslateMaster.upCounter ();
 		}
 		TranslateMaster.pause = false;
 	}

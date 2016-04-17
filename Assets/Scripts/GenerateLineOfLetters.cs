@@ -31,7 +31,7 @@ public class GenerateLineOfLetters : MonoBehaviour
 		for (int i = 0; i < lineLength; i++) {
 			spaceLeft = lineLength-i;
 			Vector3 tempVect = transform.position;
-			tempVect.x += i*.5f;
+			tempVect.x += i*.6f;
 			GameObject tempGO = Instantiate (letterPrefab, tempVect, Quaternion.identity) as GameObject; 
 			if (lettersLeft > 0) {
 				if(checkChance()){
