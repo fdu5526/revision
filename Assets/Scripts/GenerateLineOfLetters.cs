@@ -8,6 +8,11 @@ public class GenerateLineOfLetters : MonoBehaviour
 	public GameObject letterPrefab;
 	public string preterminedWord;
 
+    [SerializeField]
+    private float _initialForce = -300f;
+    [SerializeField]
+    private float _bounceForce = -200f;
+
 	//These are for pretermined word
 	//Determines if the current letter is going to be a predetermined letter
 	float chanceOfLetter;
@@ -26,7 +31,7 @@ public class GenerateLineOfLetters : MonoBehaviour
 	{
 
 		lettersLeft = preterminedWord.Length;
-
+        GetComponent<Rigidbody>().AddForce(transform.right * _initialForce);
 
 		for (int i = 0; i < lineLength; i++) {
 			spaceLeft = lineLength-i;
@@ -47,8 +52,15 @@ public class GenerateLineOfLetters : MonoBehaviour
 
 
 			}
+
+            tempGO.transform.parent = transform;
 		}
 	}
+
+    void OnCollisionEnter(Collision other) {
+        GetComponent<Rigidbody>().AddForce(transform.right * _bounceForce);
+        GetComponent<Rigidbody>().AddForce(transform.right * _bounceForce);
+    }
 
 	bool checkChance ()
 	{
