@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Fungus;
 
 public class SpeechScrambler : MonoBehaviour {
 
-
-
 	public char[] unscrambledLetters;
+	public Flowchart outputFlowchart;
+
 	string newString;
 	string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 	// Use this for initialization
 	void Start () {
-		gameObject.AddComponent<InputField>();
+//		gameObject.AddComponent<InputField>();
 	}
 	
 	// Update is called once per frame
@@ -53,6 +54,11 @@ public class SpeechScrambler : MonoBehaviour {
 	}
 
 	public void scrambleDialogue(string newLine){
+		outputFlowchart.SetStringVariable("Answer", scrambleLetters(newLine));
+	}
+
+	/*
+	public void scrambleDialogue(string newLine){
 		TextMesh myMesh = GetComponent<TextMesh>();
 		print("Saying my new line: "+newLine);
 		myMesh.text = scrambleLetters(newLine);
@@ -63,5 +69,6 @@ public class SpeechScrambler : MonoBehaviour {
 		//Beat tempBeat = new Beat(2f, tempDialogue);
 		//scripter.readTheLines(tempBeat);
 	}
+	*/
 
 }

@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+//using Fungus;
 
 public class ClassroomInputField : MonoBehaviour {
 
+	//public Flowchart myFlowchart;
 	[SerializeField]
 	PlayerMovement playerMovement;
 
 	// Use this for initialization
 	void Start () {
 		playerMovement.SetPause(true);
+		//myFlowchart.SetStringVariable ("Answer", "haha this works");
 	}
 	
 	public void Activate (bool activate) {

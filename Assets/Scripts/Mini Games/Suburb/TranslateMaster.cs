@@ -5,6 +5,7 @@ public class TranslateMaster : MonoBehaviour {
 	public GameObject panel;
 	public Dictionary myDictionary;
 	public static bool pause = false;
+	public static int counter = 0;
 
 	void Start(){
 	}
@@ -18,6 +19,12 @@ public class TranslateMaster : MonoBehaviour {
 			}
 		}
 		panel.GetComponent<PanelSetup>().ArrangePanel(tempWORD);
+	}
+
+	public static void upCounter(){
+		if (counter < 7) {
+			counter++;
+		}
 	}
 
 }

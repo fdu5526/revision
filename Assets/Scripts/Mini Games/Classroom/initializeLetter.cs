@@ -17,6 +17,10 @@ public class initializeLetter : MonoBehaviour {
 			myMesh.text = predeterminedLetter;
 		}
 	}
+
+    public void Launch() {
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

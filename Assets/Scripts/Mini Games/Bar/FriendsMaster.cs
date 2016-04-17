@@ -16,11 +16,6 @@ public class FriendsMaster : MonoBehaviour {
 		allSpots= GameObject.FindObjectsOfType<friendSpot>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	public void resetStage(){
 		Log.Metrics.Message("DebuggingStation");
 		for(int i = 0; i<allFriends.Length; i++){
@@ -38,6 +33,14 @@ public class FriendsMaster : MonoBehaviour {
 		}
 		if(win){
 			endGame();
+		}
+	}
+
+	public void placesPlease(){
+		SetFriends[] tempGOs = GameObject.FindObjectsOfType<SetFriends> ();
+		print ("There are exactly "+tempGOs.Length+" in this scene");
+		foreach (SetFriends SF in tempGOs) {
+			SF.placeFriends ();
 		}
 	}
 
