@@ -63,9 +63,10 @@ public class friendMovement : MonoBehaviour {
         float distanceToNearestObject = Vector3.Distance(transform.position, nearestObject.transform.position);
 		if (distanceToNearestObject < snapDistance && nearestObject.GetComponent<friendSpot>().occupant == null)
         {
-            transform.position = nearestObject.transform.position;
+			//setInSpot ();
+			transform.position = nearestObject.transform.position;
 			//print (nearestObject.name+" set to me because snap to position");
-            nearestObject.GetComponent<friendSpot>().occupant = gameObject;
+			nearestObject.GetComponent<friendSpot>().occupant = gameObject;
             nearestObject.GetComponent<friendSpot>().checkOthers();
         }
         else
