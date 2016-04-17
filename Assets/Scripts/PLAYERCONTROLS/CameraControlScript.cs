@@ -36,7 +36,7 @@ public class CameraControlScript : MonoBehaviour {
 
 	float _origY;
 
-    Vector3 _playerControlledScale = new Vector3(2.25f, 2.25f, 2.25f);
+    Vector3 _playerControlledScale = new Vector3(1.25f, 1.25f, 1.25f);
 
     public void PlayerControlled(bool activate, Transform target) {
         _playerControlled = activate;
