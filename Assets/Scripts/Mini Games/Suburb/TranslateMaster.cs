@@ -22,7 +22,7 @@ public class TranslateMaster : MonoBehaviour {
 	}
 
 	public static void upCounter(){
-		if (counter < 7) {
+		if (counter < 9) {
 			counter++;
 		}
 	}
