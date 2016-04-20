@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class gameProgress : MonoBehaviour {
-	public static bool secondTime = false;
+	public static bool secondTime = true;
 	public static bool[] levelsCompleted = new bool[5];
 	// Use this for initialization
 	void Awake() {
