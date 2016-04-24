@@ -16,7 +16,6 @@ public class friendMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		speechResizeScript = gameObject.GetComponentInChildren<bubbleResize> ();
-        originalPosition = transform.position;
 
         speechBubble.text = "";
 		masterObject = GameObject.FindObjectOfType<FriendsMaster>();
