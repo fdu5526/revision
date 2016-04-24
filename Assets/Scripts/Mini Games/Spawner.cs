@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour {
 
         while (true)
         {
-            yield return new WaitForSeconds(spawnRate);
+            
             Spawn();
             if (!fixedRate) {
                 spawnRate *= increaseRate;
@@ -44,6 +44,7 @@ public class Spawner : MonoBehaviour {
             {
                 spawnRate = minRateOfSpawn;
             }
+			yield return new WaitForSeconds(spawnRate);
         }
 
     }
