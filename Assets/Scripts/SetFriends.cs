@@ -6,10 +6,12 @@ using System.Collections.Generic;
 public class StartingPosition{
 	public string objectName;
 	public Vector3 objectPosition;
+	public Vector3 originalPosition;
 
-	public StartingPosition(string newName, Vector3 newPosition){
+	public StartingPosition(string newName, Vector3 newPosition, Vector3 OGPosition){		
 		objectName = newName;
 		objectPosition = newPosition;
+		originalPosition = OGPosition;
 	}
 }
 
@@ -32,7 +34,7 @@ public class SetFriends : MonoBehaviour {
 		print ("In rememberspots");
 		foreach (friendMovement FM in allTheFriends) {
 			print ("In FM loop");	
-			listOfFriendsPositions.Add (new StartingPosition(FM.name, FM.transform.position));
+			listOfFriendsPositions.Add (new StartingPosition(FM.name, FM.transform.position, FM.originalPosition));
 		}
 	}
 
@@ -41,7 +43,10 @@ public class SetFriends : MonoBehaviour {
 		foreach (StartingPosition SP in listOfFriendsPositions) {
 			print ("in placefriends SP loop");
 			GameObject tempGO = GameObject.Find (SP.objectName);
+			print ("Setting "+SP.objectName+" original position as"+SP.originalPosition);
+			tempGO.GetComponent<friendMovement> ().originalPosition = SP.originalPosition;
 			tempGO.transform.position = SP.objectPosition;
+
 		}
 
 	}

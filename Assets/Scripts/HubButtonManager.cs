@@ -5,6 +5,7 @@ using System.Collections;
 public class HubButtonManager : MonoBehaviour {
 
 	public Button[] hubButtons; 
+	//public Button endButton;
 	hubLevelSelector levelManager;
 
 	// Use this for initialization

@@ -5,11 +5,12 @@ public class Pickup : MonoBehaviour {
 	public bool pickedUp = false;
 	public float snapDistance = 2f;
 	GameObject nearestObject;
-	Vector3 originalPosition;
+	public Vector3 originalPosition;
 	public NodeManager theNodeManager;
 
 	void Start(){
 		theNodeManager = GameObject.FindObjectOfType<NodeManager> ();
+		originalPosition = transform.position;
 	}
 	// Use this for initialization
 	void Update () {
