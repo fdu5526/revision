@@ -11,12 +11,13 @@ public class friendMovement : MonoBehaviour {
 
     GameObject nearestObject;
 	FriendsMaster masterObject;
-    Vector3 originalPosition;
+    public Vector3 originalPosition;
 	bubbleResize speechResizeScript;
 	// Use this for initialization
 	void Start () {
 		speechResizeScript = gameObject.GetComponentInChildren<bubbleResize> ();
         originalPosition = transform.position;
+
         speechBubble.text = "";
 		masterObject = GameObject.FindObjectOfType<FriendsMaster>();
 	}
@@ -63,9 +64,10 @@ public class friendMovement : MonoBehaviour {
         float distanceToNearestObject = Vector3.Distance(transform.position, nearestObject.transform.position);
 		if (distanceToNearestObject < snapDistance && nearestObject.GetComponent<friendSpot>().occupant == null)
         {
-            transform.position = nearestObject.transform.position;
+			//setInSpot ();
+			transform.position = nearestObject.transform.position;
 			//print (nearestObject.name+" set to me because snap to position");
-            nearestObject.GetComponent<friendSpot>().occupant = gameObject;
+			nearestObject.GetComponent<friendSpot>().occupant = gameObject;
             nearestObject.GetComponent<friendSpot>().checkOthers();
         }
         else
