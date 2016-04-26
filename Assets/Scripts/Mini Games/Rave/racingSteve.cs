@@ -25,30 +25,27 @@ public class racingSteve : MonoBehaviour {
 	void Update () {
 		
 		if (DebugSwitch.debugMode == false) {
-			if (Input.anyKeyDown) {
-				typeCounter += 3;
-			}
-			if (typeCounter > 0) {
-				//myAnimator.Play ("animation_steve_walktest4", 0, 0);
-				typeCounter--;
-			}
 			myAnimator.SetInteger ("racingSpeed", typeCounter);
-	
 		}
+
+		updateSpeed ();
 	}
 
-	public void increaseSpeed(){
-		speed += .1f;
-		updateSpeed (speed);
-	}
-
-	public void updateSpeed(float speed){
+	public void updateSpeed(){
+		/*
 		Vector3 charScale = transform.localScale;
 		Vector3 charPos = transform.localPosition;
-		float newScale = scaleCurve.Evaluate (speed);
+		float newScale = scaleCurve.Evaluate (TypingSpeed.speed);
 	
-		charPos.y = yCurve.Evaluate (speed);
+		charPos.y = yCurve.Evaluate (TypingSpeed.speed);
 		charScale = new Vector3 (newScale, newScale, newScale);
+		*/
+
+		float charPosY = Mathf.Lerp(transform.localPosition.y, yCurve.Evaluate (TypingSpeed.speed), .1f);
+		float newScale = Mathf.Lerp (transform.localScale.y, scaleCurve.Evaluate(TypingSpeed.speed), .1f);
+
+		Vector3 charPos= new Vector3 (transform.localPosition.x, charPosY, transform.localPosition.z);
+		Vector3 charScale= new Vector3(newScale, newScale, newScale);
 
 		transform.localScale = charScale;
 		transform.localPosition = charPos;
