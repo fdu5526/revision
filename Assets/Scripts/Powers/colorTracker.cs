@@ -28,8 +28,10 @@ public class colorTracker : Ability {
 		
 			originalColor[i] = GetComponent<Renderer>().materials[i].color;
 			if(preselectedColor == false){
-				float grayscaleValue = maxValue(originalColor[i].r, originalColor[i].g, originalColor[i].b);
+				//float grayscaleValue = maxValue(originalColor[i].r, originalColor[i].g, originalColor[i].b);
+				float grayscaleValue = originalColor[i].grayscale;
 				grayscaleColor[i] = new Color(grayscaleValue, grayscaleValue, grayscaleValue);
+				//grayscaleColor[i] = originalColor [i].grayscale;
 			}
 			if(preselectedColor == true){
 				grayscaleColor[i] = specificColor;

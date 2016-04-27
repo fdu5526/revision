@@ -28,6 +28,13 @@ public class PlayerControllerTest : MonoBehaviour {
 		}
     }
 
+
+    public void DisableMovement () {
+        movementEnabled = false;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
     public float ReturnVelocity() {
         return _velocity;
     }

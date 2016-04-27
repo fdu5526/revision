@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class cameraSettingToggle : MonoBehaviour {
@@ -53,6 +54,8 @@ public class cameraSettingToggle : MonoBehaviour {
 
 
 	IEnumerator ResetPositionAsync (float transitionTime) {
+		playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		playerController.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 		float startTime = Time.time;
 		playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		playerController.GetComponent<Rigidbody>().useGravity = false;
@@ -83,6 +86,20 @@ public class cameraSettingToggle : MonoBehaviour {
 		playerController.GetComponent<Collider>().enabled = true;
 	}
 
+
+	IEnumerator LerpPositionForRoom (float transitionTime) {
+		float startTime = Time.time;
+		Quaternion startQ = transform.rotation;
+		Vector3 startPosition = transform.position;
+		Vector3 endPosition = new Vector3(0f, -9.6f, 2f);
+		while (Time.time - startTime < transitionTime) {
+			float d = (Time.time - startTime) / transitionTime;
+			transform.rotation = Quaternion.Slerp(startQ, Quaternion.identity, d);
+			transform.position = Vector3.Lerp(startPosition, endPosition, d);
+			yield return 1;
+		}
+	}
+
 	public void resetPosition(){
 		StartCoroutine(ResetPositionAsync(3f));
 	}
@@ -102,6 +119,10 @@ public class cameraSettingToggle : MonoBehaviour {
 		//yield return new WaitForSeconds(4f);
 		turnPlayerModel();
 		if(DebugSwitch.debugMode == true){
+			// special case script for room level, kill me now
+			if (SceneManager.GetActiveScene().name.Equals("4. Room")) {
+				StartCoroutine(LerpPositionForRoom(3f));
+			}
 		}
 		else{
 			resetPosition();

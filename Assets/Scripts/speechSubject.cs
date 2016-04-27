@@ -48,8 +48,10 @@ public class speechSubject : MonoBehaviour {
 	}
 		
 	void resizeUIBubs() {
+		float tempWidth = LayoutUtility.GetPreferredWidth(bubbleSize)>300 ? 300f : LayoutUtility.GetPreferredWidth(bubbleSize);
+
 		UIBubble.sizeDelta = new Vector2 (
-			LayoutUtility.GetPreferredWidth(bubbleSize) + 20f,
+			tempWidth + 20f,
 			LayoutUtility.GetPreferredHeight(bubbleSize) + 20f
 		);
 		float bubbleOffset = UIBubble.sizeDelta.y / 2f + 5f;

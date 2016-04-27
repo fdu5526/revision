@@ -9,28 +9,19 @@ public class TranslationChoice : MonoBehaviour {
 	public GameObject correctAnswerFeedback;
 	public GameObject wrongAnswerFeedback;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	public void checkAnswer(){
 		if(correct == false){
 			Debug.Log("WRONG");
-			myMeter.confusionUp();
+			if (gameProgress.secondTime == false) {
+				myMeter.confusionUp ();
+			}
 			Instantiate(wrongAnswerFeedback);
-
 		}
+
 		else{
 			Instantiate(correctAnswerFeedback);
+			TranslateMaster.upCounter ();
 		}
-	
 		TranslateMaster.pause = false;
-
 	}
 }
