@@ -14,7 +14,6 @@ public class colorPairs{
 }
 
 public class PanelSetup : MonoBehaviour {
-	int counter= 0;
 	public colorPairs[] colorProgression;
 	public Button[] choices;
 	public Image background;

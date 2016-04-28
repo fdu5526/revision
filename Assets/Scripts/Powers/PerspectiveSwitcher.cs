@@ -29,8 +29,8 @@ public class PerspectiveSwitcher : Ability
 	}
 	
 	public void switchPerspective(){
-		if(true)
-		{
+	//	if(true)
+	//	{
 			orthoOn = !orthoOn;
 			powerTracker.power[0] = !orthoOn;
 			if (orthoOn){
@@ -40,11 +40,7 @@ public class PerspectiveSwitcher : Ability
 			else{
 				blender.BlendToMatrix(perspective, 3f, false);
 			}
-		}
-
-		else{
-			Debug.Log("Button is not ready yet");
-		}
+	//	}
 	}
 
     public override void Activate()

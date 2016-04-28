@@ -71,9 +71,11 @@ public class CameraControlScript : MonoBehaviour {
 
         // THIS IS FOR TESTING PURPOSES
         // START HERE
-        if (Input.GetKeyDown(KeyCode.F1)) {
+        /*
+		if (Input.GetKeyDown(KeyCode.F1)) {
             StopViewingObject();
         }
+		*/
         // END TEST
 
         if (_playerControlled) { 
