@@ -6,17 +6,16 @@ namespace Bar{
 		[SerializeField] float MinAngle = -30.0f;
 		[SerializeField] float MaxAngle = 30.0f;
 		[SerializeField] float speed = 200.0f;
-		private float originalSpeed;
-		private float curAngle;
-		private float decay;
-		private Vector3 dancerAngle;
+
+
+		//private float decay;
+		//private Vector3 dancerAngle;
 
 
 		// Use this for initialization
 		void Start () {
-			dancerAngle = gameObject.transform.rotation.eulerAngles;
-			decay = 0.02f;
-			originalSpeed = speed;
+		//	dancerAngle = gameObject.transform.rotation.eulerAngles;
+		//	decay = 0.02f;
 		}
 
 		// Update is called once per frame
@@ -24,7 +23,7 @@ namespace Bar{
 			float tempAngleX = gameObject.transform.rotation.eulerAngles.z;
 
 			if (tempAngleX <= MinAngle || tempAngleX >= MaxAngle) {
-				//originalSpeed = -originalSpeed;
+		
 				speed = -speed;
 			}
 				
@@ -35,7 +34,6 @@ namespace Bar{
 		void setDancerRotation()
 		{
 			float randomAngle = Random.Range (MinAngle, MaxAngle);
-			curAngle = randomAngle;
 		}
 	}
 	

@@ -9,9 +9,4 @@ public class AnimationTrigger : MonoBehaviour {
 		target.GetComponent<Animator>().Play(nameOfAnimation);
 		Destroy(gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

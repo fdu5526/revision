@@ -20,6 +20,11 @@ public class GrayscaleMaterialSwitch : Ability {
 		}
 	}
 
+	void Update(){
+		if (Input.GetKeyDown (KeyCode.F2)) {
+			toggleGrayscale ();
+		}
+	}
 
 	public void toggleGrayscale(){
 		if(GameButtonMaster.ready){

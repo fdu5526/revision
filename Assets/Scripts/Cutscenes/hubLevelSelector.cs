@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class hubLevelSelector : MonoBehaviour {
@@ -13,19 +14,26 @@ public class hubLevelSelector : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.PageUp)) {
 			nextLevel ();
 		}
+
+		if (Input.GetKeyDown (KeyCode.PageDown)) {
+			SceneManager.LoadScene(0);
+		}
 	}
 
 	public void jumpToLevel(string levelName){
 		if (DebugSwitch.debugMode) {
 			DebugSwitch.debugMode = false;
 		}
-		Application.LoadLevel(levelName);
+		SceneManager.LoadScene (levelName, LoadSceneMode.Single);
+		//Application.LoadLevel(levelName);
 	}
 
 	public void nextLevel(){
-		int tempInt = Application.loadedLevel;
+		//int tempInt = Application.loadedLevel;
+		int tempInt = SceneManager.GetActiveScene().buildIndex;
 		tempInt++;
-		Application.LoadLevel(tempInt);
+		//Application.LoadLevel(tempInt);
+		SceneManager.LoadScene (tempInt, LoadSceneMode.Single);
 	}
 
 

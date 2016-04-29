@@ -26,11 +26,11 @@ public class Trigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		Debug.Log("Entered trigger box");
-		Debug.Log("Has tag of: "+triggerTag);
-	if(other.tag == triggerTag){
+//		Debug.Log("Entered trigger box");
+//		Debug.Log("Has tag of: "+triggerTag);
+		if(other.tag == triggerTag){
 			Log.Metrics.Message("Trigger-" + this.gameObject.name);
-			Debug.Log("Has tag of: "+triggerTag);
+			//Debug.Log("Has tag of: "+triggerTag);
 			for(int i=0; i<interactions.Length; i++){
                 AfterAction myAction = interactions[i].actionType;
 
