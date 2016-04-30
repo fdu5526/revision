@@ -3,9 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 	
 public class speechSubject : MonoBehaviour {
-	GameObject uiElement;
+	//public GameObject uiElement;
 	Text uiCharacterText;
-	Text uiText;
+	//Text uiText;
 	Vector3 speechBubbleSize;
 	Text uiBubbleText;
 	[SerializeField] bool _isBubble;
@@ -17,13 +17,18 @@ public class speechSubject : MonoBehaviour {
 	RectTransform bubbleSize;
 
 	[SerializeField] string characterCheck;
+	[SerializeField] GameObject uiElement;
+	[SerializeField] Text uiText;
 	//for disabling/enabling speech bubble
 
 	// Use this for initialization
 	void Awake () {
-		uiElement = GameObject.Find("StoryText");
-		uiCharacterText = GameObject.Find("NameText").GetComponent <Text>();
-		uiText = uiElement.GetComponent<Text> ();
+		if (uiElement == null) {
+			
+			//uiElement = GameObject.Find ("StoryText");
+		}
+		//uiCharacterText = GameObject.Find("NameText").GetComponent <Text>();
+		//uiText = uiElement.GetComponent<Text> ();
 
 		uiBubbleText = gameObject.GetComponent<Text> ();
 
