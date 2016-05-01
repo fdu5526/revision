@@ -21,7 +21,21 @@ public class TranslateMaster : MonoBehaviour {
 		panel.GetComponent<PanelSetup>().ArrangePanel(tempWORD);
 	}
 
-	public static void upCounter(){
+    public void activatePanel_ENGtoKR(string WordToTranslate)
+    {
+        panel.SetActive(true);
+        translatedWord tempWORD = null;
+        for (int i = 0; i < myDictionary.word.Length; i++)
+        {
+            if (myDictionary.word[i].english == WordToTranslate)
+            {
+                tempWORD = myDictionary.word[i];
+            }
+        }
+        panel.GetComponent<PanelSetup>().ArrangePanel_ENGtoKR(tempWORD);
+    }
+
+    public static void upCounter(){
 		if (counter < 9) {
 			counter++;
 		}
