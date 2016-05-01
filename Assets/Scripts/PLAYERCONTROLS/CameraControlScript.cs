@@ -103,7 +103,7 @@ public class CameraControlScript : MonoBehaviour {
         }
         else {
             if (_lookAtTarget != null) {
-                _mainCamera.rotation = Quaternion.Slerp(_mainCamera.rotation, _lookAtTarget.rotation, Time.deltaTime * _cameraRotationSpeed);
+                _mainCamera.rotation = Quaternion.Lerp(_mainCamera.rotation, _lookAtTarget.rotation, Time.deltaTime * _cameraRotationSpeed);
                 _continueRotate = true;
             }
         }
@@ -117,7 +117,7 @@ public class CameraControlScript : MonoBehaviour {
     void ManageCameraPosition() {
         if (_lookAtTarget != null) { 
             transform.position = Vector3.Slerp(transform.position, _lookAtTarget.position, Time.deltaTime * _cameraMoveSpeed/4);
-            _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, Vector3.zero, 0.1f);
+            _mainCamera.localPosition = Vector3.Lerp(_mainCamera.localPosition, Vector3.zero, 0.1f);
             transform.localScale = Vector3.Slerp(transform.localScale, Vector3.one, 0.1f);
         }
         else {
@@ -131,12 +131,12 @@ public class CameraControlScript : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, p, amount);
             if (SceneManager.GetActiveScene().name.Equals("4. Room")) {
                 Vector3 originalMainCameraLocalPosition = new Vector3(0f, -4f, -10f);
-                _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
-                transform.localScale = Vector3.Slerp(transform.localScale, _playerControlledScale / 2f, 0.1f);
+                _mainCamera.localPosition = Vector3.Lerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
+                transform.localScale = Vector3.Lerp(transform.localScale, _playerControlledScale / 2f, 0.1f);
             } else {
                 Vector3 originalMainCameraLocalPosition = new Vector3(0f, 0f, -10f);
-                _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
-                transform.localScale = Vector3.Slerp(transform.localScale, _playerControlledScale, 0.1f);
+                _mainCamera.localPosition = Vector3.Lerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
+                transform.localScale = Vector3.Lerp(transform.localScale, _playerControlledScale, 0.1f);
             }
             
         }
