@@ -13,12 +13,14 @@ public class friendMovement : MonoBehaviour {
 	FriendsMaster masterObject;
     public Vector3 originalPosition;
 	bubbleResize speechResizeScript;
+    [SerializeField] SpriteRenderer _tail;
 	// Use this for initialization
 	void Start () {
 		speechResizeScript = gameObject.GetComponentInChildren<bubbleResize> ();
 
         speechBubble.text = "";
 		masterObject = GameObject.FindObjectOfType<FriendsMaster>();
+        _tail.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -101,9 +103,11 @@ public class friendMovement : MonoBehaviour {
     IEnumerator flashText(string tempText)
     {
         speechBubble.text = tempText;
+        _tail.enabled = true;
 		resizeSpeech ();
         yield return new WaitForSeconds(2f);
         speechBubble.text = "";
+        _tail.enabled = false;
 		resizeSpeech ();
     }
 

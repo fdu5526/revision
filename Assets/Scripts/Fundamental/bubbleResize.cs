@@ -7,6 +7,7 @@ public class bubbleResize : MonoBehaviour {
 	Vector3 speechBubbleSize;
 	Transform textBubble;
 
+
 	void Start(){
 		mr = gameObject.GetComponent<MeshRenderer> ();
 		textBubble = gameObject.transform.GetChild (0);
