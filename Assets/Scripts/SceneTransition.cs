@@ -27,7 +27,7 @@ public class SceneTransition : MonoBehaviour {
 
 		mainCamera = Object.FindObjectOfType<Camera>();
 		Vector3 cameraP = mainCamera.transform.position;
-		transform.position = cameraP + new Vector3(0f, -1f, 10f);
+		transform.position = cameraP + new Vector3(0f, 2.53f - 6.33f, 16.09f);
 		defaultBackgroundColor = mainCamera.backgroundColor;
 		mainCamera.backgroundColor = transitionBackgroundColor;
 
