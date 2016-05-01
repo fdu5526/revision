@@ -29,6 +29,7 @@ public class CameraControlScript : MonoBehaviour {
     private float _scrollSpeed;
 
     private bool _playerControlled;
+    private bool _mouseEnabled;
 
     private Vector3 _currentRotation;
 
@@ -48,21 +49,32 @@ public class CameraControlScript : MonoBehaviour {
         _objectOfInterest = objectOfInterest;
     }
 
+    public void TestWTF() {
+        Debug.Log("WTF");
+    }
+
     public void StopViewingObject() {
         _objectOfInterest = null;
         _playerControlled = true;
         _lookAtTarget = null;
 		PlayerControllerTest.movementEnabled = true;
     }
-	
+
+    public void SetMouseEnabled (bool enabled) {
+        _mouseEnabled = enabled;
+    }
+    	
     void Start() {
         PlayerControlled(true, null);
 		_origY = transform.position.y;
+        _mouseEnabled = false;
     }
 
 	// Update is called once per frame
 	void Update () {
-        ManageMouseMovement();
+        if (_mouseEnabled) {
+            ManageMouseMovement();
+        }
         ManageCameraPosition();
         ManageCameraZoom();
 	}
@@ -103,21 +115,21 @@ public class CameraControlScript : MonoBehaviour {
         }
         else {
             if (_lookAtTarget != null) {
-                _mainCamera.rotation = Quaternion.Slerp(_mainCamera.rotation, _lookAtTarget.rotation, Time.deltaTime * _cameraRotationSpeed);
+                _mainCamera.rotation = Quaternion.Lerp(_mainCamera.rotation, _lookAtTarget.rotation, Time.deltaTime * _cameraRotationSpeed);
                 _continueRotate = true;
             }
         }
 
-        if (Input.GetMouseButtonDown(0)) {
-            PlayerControlled(true, null);
-            _objectOfInterest = null;
-        }
+        //if (Input.GetMouseButtonDown(0)) {
+        //    PlayerControlled(true, null);
+        //    _objectOfInterest = null;
+        //}
     }
 
     void ManageCameraPosition() {
         if (_lookAtTarget != null) { 
             transform.position = Vector3.Slerp(transform.position, _lookAtTarget.position, Time.deltaTime * _cameraMoveSpeed/4);
-            _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, Vector3.zero, 0.1f);
+            _mainCamera.localPosition = Vector3.Lerp(_mainCamera.localPosition, Vector3.zero, 0.1f);
             transform.localScale = Vector3.Slerp(transform.localScale, Vector3.one, 0.1f);
         }
         else {
@@ -131,12 +143,12 @@ public class CameraControlScript : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, p, amount);
             if (SceneManager.GetActiveScene().name.Equals("4. Room")) {
                 Vector3 originalMainCameraLocalPosition = new Vector3(0f, -4f, -10f);
-                _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
-                transform.localScale = Vector3.Slerp(transform.localScale, _playerControlledScale / 2f, 0.1f);
+                _mainCamera.localPosition = Vector3.Lerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
+                transform.localScale = Vector3.Lerp(transform.localScale, _playerControlledScale / 2f, 0.1f);
             } else {
                 Vector3 originalMainCameraLocalPosition = new Vector3(0f, 0f, -10f);
-                _mainCamera.localPosition = Vector3.Slerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
-                transform.localScale = Vector3.Slerp(transform.localScale, _playerControlledScale, 0.1f);
+                _mainCamera.localPosition = Vector3.Lerp(_mainCamera.localPosition, originalMainCameraLocalPosition, 0.1f);
+                transform.localScale = Vector3.Lerp(transform.localScale, _playerControlledScale, 0.1f);
             }
             
         }

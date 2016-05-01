@@ -11,7 +11,7 @@ public class speechBillboard : MonoBehaviour {
 		camera = Camera.main.transform;
 	}
 
-	void Update () {
+	void LateUpdate () {
 		Vector3 lookAtCamera = (camera.position - transform.position);
 		lookAtCamera.y = 0;
 		//keep the x coordinate still
