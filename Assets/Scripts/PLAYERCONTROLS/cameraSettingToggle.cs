@@ -114,7 +114,8 @@ public class cameraSettingToggle : MonoBehaviour {
 
 	public IEnumerator switching(){
 		theCamera.switchPerspective();
-		cameraController.enabled = DebugSwitch.debugMode;
+		cameraController.enabled = false;
+		PlayerControllerTest.movementEnabled = false;
 
 		//yield return new WaitForSeconds(4f);
 		turnPlayerModel();
@@ -132,7 +133,10 @@ public class cameraSettingToggle : MonoBehaviour {
 			}
 		}
 		yield return new WaitForSeconds(3f);
+		cameraController.enabled = DebugSwitch.debugMode;
+		PlayerControllerTest.movementEnabled = DebugSwitch.debugMode;
 		toggleControls(DebugSwitch.debugMode);
+
 
 		yield return 1;
 	}
