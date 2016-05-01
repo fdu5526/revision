@@ -15,6 +15,7 @@ public class speechSubject : MonoBehaviour {
 	[SerializeField] Image bubbleTail;
 	RectTransform UIBubble;
 	RectTransform bubbleSize;
+    float _scale;
 
 	[SerializeField] string characterCheck;
 //	[SerializeField] GameObject uiElement;
@@ -24,6 +25,7 @@ public class speechSubject : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+        _scale = transform.localScale.x;
 		if (uiElement == null) {
 			
 			uiElement = GameObject.Find ("StoryText");
@@ -54,15 +56,17 @@ public class speechSubject : MonoBehaviour {
 	}
 		
 	void resizeUIBubs() {
-		float tempWidth = LayoutUtility.GetPreferredWidth(bubbleSize)>300 ? 300f : LayoutUtility.GetPreferredWidth(bubbleSize);
+        float tempWidth = (LayoutUtility.GetPreferredWidth(bubbleSize)* _scale)>300 ? 300 : LayoutUtility.GetPreferredWidth(bubbleSize)* _scale;
 
 		UIBubble.sizeDelta = new Vector2 (
-			tempWidth + 20f,
-			LayoutUtility.GetPreferredHeight(bubbleSize) + 20f
+            tempWidth + 20f,
+            (LayoutUtility.GetPreferredHeight(bubbleSize)) * _scale + 20f
 		);
 		float bubbleOffset = UIBubble.sizeDelta.y / 2f + 5f;
+        bubbleOffset = bubbleOffset;
 		UIBubble.localPosition = new Vector3 (0f, bubbleOffset, 0f);
 		bubbleSize.localPosition = new Vector3 (0f, bubbleOffset, 0f);
+
 	}
 
 	void disableBubble() {
