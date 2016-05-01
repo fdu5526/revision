@@ -43,7 +43,7 @@ public class GenerateLineOfLetters : MonoBehaviour
 					tempGO.GetComponent<initializeLetter>().predeterminedLetter = preterminedWord[currentLetter].ToString();
 					tempGO.GetComponent<colorTracker>().preselectedColor = true;
 					if(powerTracker.power[2]){
-						tempGO.GetComponent<Renderer>().material.color = Color.black;
+						tempGO.GetComponent<Renderer>().material.color = Color.red;
 
 					}
 					currentLetter++;

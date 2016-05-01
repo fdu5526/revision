@@ -21,7 +21,10 @@ public class friendSpot : MonoBehaviour {
         //Debug.Log("I, "+name+", am reacting to "+ohLook);
         if(occupant != null)
         {
-            occupant.GetComponent<friendMovement>().reactTo(ohLook);
+			friendMovement tempFriendMovement = occupant.GetComponent<friendMovement> ();
+			if (tempFriendMovement != null) {
+				occupant.GetComponent<friendMovement> ().reactTo (ohLook);
+			}
         }
     }
 }

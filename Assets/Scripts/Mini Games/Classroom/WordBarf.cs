@@ -6,7 +6,6 @@ public class WordBarf : MonoBehaviour {
 	public GameObject letterPrefab;
 	public string[] secretWords;
 	public float vomitSize = 20;
-	float directionModifier = 1;
 	public GameObject MyBody;
 	int projectileAngleModifier = 1;
 

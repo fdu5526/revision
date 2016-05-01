@@ -12,7 +12,7 @@ public class initializeWord : MonoBehaviour {
     Vector3 myPosition;
     public bool paused=false;
     translatedWord myWord;
-    PlayerMovement movement;
+
 
 	// Use this for initialization
 	void Start () {
@@ -20,12 +20,12 @@ public class initializeWord : MonoBehaviour {
         myDictionary = FindObjectOfType<Dictionary>().gameObject;
         myPosition = transform.position;
         target = GameObject.Find("Target").transform.position;
-        movement = GameObject.FindObjectOfType<PlayerMovement>();
+
 
         translated = false;
 
         float tempFloat = myDictionary.GetComponent<Dictionary>().word.Length;
-        int tempInt = (int)Random.RandomRange(0,tempFloat-1);
+        int tempInt = (int)Random.Range(0,tempFloat-1);
         myWord = myDictionary.GetComponent<Dictionary>().word[tempInt];
         myMesh.text = myWord.english;
     }

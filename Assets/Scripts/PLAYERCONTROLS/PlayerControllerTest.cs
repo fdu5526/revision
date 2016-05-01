@@ -11,7 +11,7 @@ public class PlayerControllerTest : MonoBehaviour {
     private float _moveForward;
     private float _moveSide;
 	public static bool movementEnabled = true;
-    private float _velocity;
+	private float _velocity;
 
     private Vector3 _forwardPosition;
 
@@ -34,6 +34,10 @@ public class PlayerControllerTest : MonoBehaviour {
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
+
+	public void enableMovement () {
+		movementEnabled = true;
+	}
 
     public float ReturnVelocity() {
         return _velocity;
