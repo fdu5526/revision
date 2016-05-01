@@ -115,7 +115,8 @@ public class cameraSettingToggle : MonoBehaviour {
 	public IEnumerator switching(){
 		theCamera.switchPerspective();
 		cameraController.enabled = DebugSwitch.debugMode;
-
+		PlayerControllerTest.movementEnabled = DebugSwitch.debugMode;
+		print ("player controller and camera controller");
 		//yield return new WaitForSeconds(4f);
 		turnPlayerModel();
 		if(DebugSwitch.debugMode == true){
@@ -142,6 +143,7 @@ public class cameraSettingToggle : MonoBehaviour {
 			Quaternion tempVect = playerModel.transform.localRotation;
 			tempVect.y *= -1;
 			playerModel.transform.rotation = tempVect;
+
 		}
 		else{playerModel.transform.rotation = playerStartRotation;}
 	}
