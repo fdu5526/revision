@@ -19,6 +19,12 @@ public class PanelSetup : MonoBehaviour {
 	public Image background;
 	public Text mainText;
 
+    public bool ENGtoKR;
+
+    public GameObject wordPrefab;
+    public Transform spawnPosition;
+
+    public Transform target;
 
 	// Use this for initialization
 	void Start () {
@@ -52,4 +58,38 @@ public class PanelSetup : MonoBehaviour {
 			}
 		}
 	}
+
+    public void ArrangePanel_ENGtoKR(translatedWord theWord)
+    {
+        //setup main panel
+        background.color = colorProgression[TranslateMaster.counter].rightColor;
+        mainText.text = theWord.korean;
+
+        // decide which button is the right one
+        int rightButton = (int)Random.Range(0, choices.Length);
+        for (int i = 0; i < choices.Length; i++)
+        {
+            if (i == rightButton)
+            {
+                choices[i].image.color = colorProgression[TranslateMaster.counter].rightColor;
+                choices[i].GetComponentInChildren<Text>().text = theWord.english;
+                choices[i].GetComponentInChildren<TranslationChoice>().correct = true;
+
+            }
+            else
+            {
+                choices[i].image.color = colorProgression[TranslateMaster.counter].wrongColor;
+                choices[i].GetComponentInChildren<Text>().text = theWord.wrongTranslationEnglish[i];
+                choices[i].GetComponentInChildren<TranslationChoice>().correct = false;
+
+            }
+        }
+    }
+
+    public void ClickObj() {
+        if (ENGtoKR) {
+            GameObject newTranslatedWord = Instantiate(wordPrefab, spawnPosition.position, spawnPosition.rotation) as GameObject;
+            newTranslatedWord.GetComponent<words>().SetTarget(target);
+        }
+    }
 }

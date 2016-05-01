@@ -6,7 +6,8 @@ public class translatedWord{
         public string korean;
         public string english;
 		public Color rightColor;	
-		public string[] wrongTranslation;	
+		public string[] wrongTranslation;
+        public string[] wrongTranslationEnglish;
 		public Color wrongColor;
 		
 

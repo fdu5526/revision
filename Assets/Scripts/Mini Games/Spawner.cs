@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour {
 	public bool onlyOnTrigger = false;
 
     public GameObject spawn;
+    
     // Use this for initialization
     void Start()
     {
