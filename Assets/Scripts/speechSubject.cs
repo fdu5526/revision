@@ -4,7 +4,7 @@ using System.Collections;
 	
 public class speechSubject : MonoBehaviour {
 	//public GameObject uiElement;
-	Text uiCharacterText;
+//	Text uiCharacterText;
 	//Text uiText;
 	Vector3 speechBubbleSize;
 	Text uiBubbleText;
@@ -18,7 +18,8 @@ public class speechSubject : MonoBehaviour {
 
 	[SerializeField] string characterCheck;
 	[SerializeField] GameObject uiElement;
-	[SerializeField] Text uiText;
+    [SerializeField] Text uiCharacterText;
+    Text uiText;
 	//for disabling/enabling speech bubble
 
 	// Use this for initialization
@@ -28,7 +29,7 @@ public class speechSubject : MonoBehaviour {
 			//uiElement = GameObject.Find ("StoryText");
 		}
 		//uiCharacterText = GameObject.Find("NameText").GetComponent <Text>();
-		//uiText = uiElement.GetComponent<Text> ();
+		uiText = uiElement.GetComponent<Text> ();
 
 		uiBubbleText = gameObject.GetComponent<Text> ();
 
