@@ -48,6 +48,10 @@ public class CameraControlScript : MonoBehaviour {
         _objectOfInterest = objectOfInterest;
     }
 
+    public void TestWTF() {
+        Debug.Log("WTF");
+    }
+
     public void StopViewingObject() {
         _objectOfInterest = null;
         _playerControlled = true;
@@ -108,10 +112,10 @@ public class CameraControlScript : MonoBehaviour {
             }
         }
 
-        if (Input.GetMouseButtonDown(0)) {
-            PlayerControlled(true, null);
-            _objectOfInterest = null;
-        }
+        //if (Input.GetMouseButtonDown(0)) {
+        //    PlayerControlled(true, null);
+        //    _objectOfInterest = null;
+        //}
     }
 
     void ManageCameraPosition() {
