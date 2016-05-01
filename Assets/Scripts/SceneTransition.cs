@@ -94,22 +94,4 @@ public class SceneTransition : MonoBehaviour {
 			renderers[i].enabled = false;
 		}
 	}
-
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown("space")) {
-			switch (currentState) {
-				case State.Start:
-					currentState = State.TransitionIn;
-					GetComponent<Rigidbody>().isKinematic = false;
-					TransitionIntoScene();
-					break;
-				case State.TransitionIn:
-					GetComponent<Rigidbody>().isKinematic = true;
-					TransitionOutOfScene();
-					break;
-			}
-		}
-	}
 }
