@@ -50,6 +50,7 @@ public class cameraSettingToggle : MonoBehaviour {
 	
 	public void toggleControls(bool mode){
 		playerController.enabled = mode;
+		print ("PCT movement enabled is: "+mode);
 	}
 
 
@@ -115,6 +116,8 @@ public class cameraSettingToggle : MonoBehaviour {
 	public IEnumerator switching(){
 		theCamera.switchPerspective();
 		cameraController.enabled = DebugSwitch.debugMode;
+		cameraController.SetMouseEnabled(false);
+		PlayerControllerTest.movementEnabled = false;
 
 		//yield return new WaitForSeconds(4f);
 		turnPlayerModel();
@@ -132,7 +135,12 @@ public class cameraSettingToggle : MonoBehaviour {
 			}
 		}
 		yield return new WaitForSeconds(3f);
+		cameraController.SetMouseEnabled(DebugSwitch.debugMode);
+		PlayerControllerTest.movementEnabled = DebugSwitch.debugMode;
 		toggleControls(DebugSwitch.debugMode);
+
+
+		print ("PCT movement enabled is: "+PlayerControllerTest.movementEnabled);
 
 		yield return 1;
 	}
@@ -142,6 +150,7 @@ public class cameraSettingToggle : MonoBehaviour {
 			Quaternion tempVect = playerModel.transform.localRotation;
 			tempVect.y *= -1;
 			playerModel.transform.rotation = tempVect;
+
 		}
 		else{playerModel.transform.rotation = playerStartRotation;}
 	}
