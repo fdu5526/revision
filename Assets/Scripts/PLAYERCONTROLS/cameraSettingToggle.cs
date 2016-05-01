@@ -50,6 +50,7 @@ public class cameraSettingToggle : MonoBehaviour {
 	
 	public void toggleControls(bool mode){
 		playerController.enabled = mode;
+		print ("PCT movement enabled is: "+mode);
 	}
 
 
@@ -138,6 +139,8 @@ public class cameraSettingToggle : MonoBehaviour {
 		PlayerControllerTest.movementEnabled = DebugSwitch.debugMode;
 		toggleControls(DebugSwitch.debugMode);
 
+
+		print ("PCT movement enabled is: "+PlayerControllerTest.movementEnabled);
 
 		yield return 1;
 	}
