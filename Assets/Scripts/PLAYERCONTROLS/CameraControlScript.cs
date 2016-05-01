@@ -29,6 +29,7 @@ public class CameraControlScript : MonoBehaviour {
     private float _scrollSpeed;
 
     private bool _playerControlled;
+    private bool _mouseEnabled;
 
     private Vector3 _currentRotation;
 
@@ -54,15 +55,22 @@ public class CameraControlScript : MonoBehaviour {
         _lookAtTarget = null;
 		PlayerControllerTest.movementEnabled = true;
     }
-	
+
+    public void SetMouseEnabled (bool enabled) {
+        _mouseEnabled = enabled;
+    }
+    	
     void Start() {
         PlayerControlled(true, null);
 		_origY = transform.position.y;
+        _mouseEnabled = false;
     }
 
 	// Update is called once per frame
 	void Update () {
-        ManageMouseMovement();
+        if (_mouseEnabled) {
+            ManageMouseMovement();
+        }
         ManageCameraPosition();
         ManageCameraZoom();
 	}
