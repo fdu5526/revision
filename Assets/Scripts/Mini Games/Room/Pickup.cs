@@ -7,10 +7,15 @@ public class Pickup : MonoBehaviour {
 	GameObject nearestObject;
 	public Vector3 originalPosition;
 	public NodeManager theNodeManager;
+	public BoxCollider myCollider;
+	public Material myMaterial;
+
 
 	void Start(){
 		theNodeManager = GameObject.FindObjectOfType<NodeManager> ();
 		originalPosition = transform.position;
+		myCollider = GetComponent<BoxCollider> ();
+		myMaterial = GetComponent<Renderer> ().material;
 	}
 	// Use this for initialization
 	void Update () {
@@ -31,6 +36,10 @@ public class Pickup : MonoBehaviour {
 	{
 		if(DebugSwitch.debugMode == false){
 			Debug.Log("picked up");
+			myCollider.enabled = false;
+			Color tempColor = myMaterial.color;
+			tempColor.a = .3f;
+			myMaterial.color = tempColor;
 			pickedUp = true;
 		}
 
@@ -39,6 +48,10 @@ public class Pickup : MonoBehaviour {
 	void OnMouseUp()
 	{
 		Debug.Log("put down");
+		myCollider.enabled = true;
+		Color tempColor = myMaterial.color;
+		tempColor.a = 1f;
+		myMaterial.color = tempColor;
 		pickedUp = false;
 		snapToPosition();
 	}

@@ -44,7 +44,6 @@ public class SetFriends : MonoBehaviour {
 			print ("in placefriends SP loop");
 			GameObject tempGO = GameObject.Find (SP.objectName);
 			print ("Setting "+SP.objectName+" original position as"+SP.originalPosition);
-			tempGO.GetComponent<friendMovement> ().originalPosition = SP.originalPosition;
 			tempGO.transform.position = SP.objectPosition;
 
 		}

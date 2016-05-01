@@ -5,10 +5,11 @@ public class WallOfText : MonoBehaviour {
 
 	public int numberOfLines;
 	public GameObject  linesPrefab;
-	public string hiddenWord;
+	public string[] hiddenWord;
 	public float initialDelay;
 	bool wordUsed = false;
 	int counter;
+	int wordCounter;
 	int lineWithWord;
 
 
@@ -34,13 +35,18 @@ public class WallOfText : MonoBehaviour {
 		while(counter < numberOfLines){
 			GameObject tempGO = (GameObject)Instantiate(linesPrefab, transform.position, Quaternion.identity);
 			if(counter == lineWithWord){
-				tempGO.GetComponent<GenerateLineOfLetters>().preterminedWord = hiddenWord;
+				tempGO.GetComponent<GenerateLineOfLetters>().preterminedWord = hiddenWord[wordCounter];
+				wordCounter++;
+				if (wordCounter >= hiddenWord.Length) {
+					wordCounter = 0;
+				}
 			}
 			yield return new WaitForSeconds(.2f);
 			counter++;
 
 			if(counter == numberOfLines){
 				yield return new WaitForSeconds(2f);
+				lineWithWord = (int)Random.Range(0, numberOfLines);
 				counter = 0;
 			}
 		}

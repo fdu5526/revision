@@ -1,19 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class confusionMeter : MonoBehaviour {
     static int confusionCounter = 0;
     public TextMesh questionMeter;
 	public GameObject endGameFlowchart;
 	public float endGameThreshold = 20;
+	AnimationArray feedbackMachine;
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Start(){
+		feedbackMachine = GameObject.FindObjectOfType<AnimationArray> ();
 	}
 
     void OnTriggerEnter(Collider other) {
@@ -26,7 +23,8 @@ public class confusionMeter : MonoBehaviour {
 
 	public void confusionUp(){
 		confusionCounter++;
-		questionMeter.text += "?";
+		feedbackMachine.activateArray ();
+		//questionMeter.text += "?";
 		if(confusionCounter>endGameThreshold){
 			endGameFlowchart.SetActive(true);
 			this.enabled = false;

@@ -11,18 +11,28 @@ public class InScreen : MonoBehaviour {
 
         [SerializeField] GameObject bubble;
         [SerializeField] GameObject uiText;
-        Vector3 p;
-        bool _fi = false;
-        RectTransform _rectTrans;
-        RectTransform _rectTrans2;
+        [SerializeField] GameObject tail;
+        Vector3 cameraEdge;
+        bool _fi = true;
+//        RectTransform _rectTrans;
+//        RectTransform _rectTrans2;
+        RectTransform _rectTrans3;
+        RectTransform _UIFungusRect;
    
 
         void Awake () {
             camera = Camera.main.transform;
 
-            p = Camera.main.ViewportToWorldPoint(new Vector3(0f,0f, 0f));
-            _rectTrans = uiText.GetComponent <RectTransform> ();
-            _rectTrans2 = bubble.GetComponent <RectTransform> ();
+        cameraEdge = Camera.main.ViewportToWorldPoint(new Vector3(0f,0f, 0f));
+//            _rectTrans = uiText.GetComponent <RectTransform> ();
+//            _rectTrans2 = bubble.GetComponent <RectTransform> ();
+            _rectTrans3 = tail.GetComponent <RectTransform> ();
+            _UIFungusRect = gameObject.GetComponent <RectTransform> ();
+            
+        }
+
+        void Start() {
+        _UIFungusRect.localPosition = new Vector3 (141f, 1.999981f, 318.1433f);
         }
 
         void Update () {
@@ -33,25 +43,35 @@ public class InScreen : MonoBehaviour {
             transform.forward = _flip? -lookAtCamera : lookAtCamera;
 
             //      transform.position = new Vector3 (_followCharacter.transform.position.x, _followCharacter.transform.position.y + _yOffset, _followCharacter.transform.position.z);
+        if (_fi == false) {
             transform.position = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
+        }
+        _rectTrans3.position = new Vector3 (_followCharacter.transform.position.x, _rectTrans3.position.y, _followCharacter.transform.position.z);
 
 
 
 
-//            if(uiText.transform.position.x < p.x){
-//                //            Debug.Log ("false ran");
+        if(_fi == false && _rectTrans3.position.x - 8f  < cameraEdge.x){
+                            Debug.Log ("false ran");
+//            transform.position = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
+
 //                //            Debug.Log (_rectTrans.localPosition.x);
-//            _rectTrans.localPosition = new Vector3 (_rectTrans.localPosition.x + 150f, _rectTrans.localPosition.y, _rectTrans.localPosition.z);
-//
-//                _fi = true;
+//            _rectTrans.localPosition = new Vector3 (_rectTrans.localPosition.x + 300f, _rectTrans.localPosition.y, _rectTrans.localPosition.z);
+//            _rectTrans2.localPosition = new Vector3 (_rectTrans2.localPosition.x + 300f, _rectTrans2.localPosition.y, _rectTrans2.localPosition.z); 
+                _fi = true;
 //                //            Debug.Log (_rectTrans.localPosition.x);
+//            _rectTrans3.localPosition = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
 //
-//            } else if (_fi == true && uiText.transform.position.x >= p.x){
-//                //            Debug.Log ("true ran");
-//                //            _rectTrans.localPosition = new Vector3 (p.x, _rectTrans.localPosition.y, _rectTrans.localPosition.z);
+        } else if (_fi == true && _rectTrans3.position.x - 8f >= cameraEdge.x){
+            
+                            Debug.Log ("true ran");
+//            _rectTrans.localPosition = new Vector3 (_rectTrans.localPosition.x - 300f, _rectTrans.localPosition.y, _rectTrans.localPosition.z);
+//            _rectTrans2.localPosition = new Vector3 (_rectTrans2.localPosition.x - 300f, _rectTrans2.localPosition.y, _rectTrans2.localPosition.z); 
+            _fi = false;
+//            _rectTrans.localPosition = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
 //                _rectTrans.localPosition = new Vector3 (150f, _rectTrans.localPosition.y, _rectTrans.localPosition.z);
-
-//            }
+//
+            }
         }
     }
 
