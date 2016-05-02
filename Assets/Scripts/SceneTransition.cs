@@ -51,7 +51,9 @@ public class SceneTransition : MonoBehaviour {
 
 		// turn off all other renderers in scene
 		for (int i = 0; i < renderers.Count; i++) {
-			renderers[i].enabled = false;
+			if (!renderers[i].gameObject.tag.Equals("SpeechBubble")) {
+				renderers[i].enabled = false;
+			}
 		}
 	}
 
