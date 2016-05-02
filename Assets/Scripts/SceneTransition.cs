@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -27,7 +28,14 @@ public class SceneTransition : MonoBehaviour {
 
 		mainCamera = Object.FindObjectOfType<Camera>();
 		Vector3 cameraP = mainCamera.transform.position;
-		transform.position = cameraP + new Vector3(0f, 2.53f - 6.33f, 16.09f);
+		
+		if (SceneManager.GetActiveScene().name.Equals("4. Room")) {
+			transform.position = cameraP + new Vector3(0f, -16.09f, 2.53f - 6.33f);
+		} else {
+			transform.position = cameraP + new Vector3(0f, 2.53f - 6.33f, 16.09f);
+		}
+
+
 		defaultBackgroundColor = mainCamera.backgroundColor;
 		mainCamera.backgroundColor = transitionBackgroundColor;
 
@@ -57,7 +65,12 @@ public class SceneTransition : MonoBehaviour {
 
 	IEnumerator MoveSteveToCenter () {
 		Vector3 cameraP = Object.FindObjectOfType<Camera>().transform.position;
-		Vector3 p = cameraP + new Vector3(0f, -1f, 10f);
+		Vector3 p;
+		if (SceneManager.GetActiveScene().name.Equals("4. Room")) {
+			p = cameraP + new Vector3(0f, -16.09f, 2.53f - 6.33f);
+		} else {
+			p = cameraP + new Vector3(0f, 2.53f - 6.33f, 16.09f);
+		}
 
 		while ((transform.position - p).sqrMagnitude> 0.001f) {
 			transform.position = Vector3.Lerp(transform.position, p, 0.1f);
