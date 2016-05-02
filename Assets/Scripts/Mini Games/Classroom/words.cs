@@ -18,7 +18,10 @@ public class words : MonoBehaviour {
 		myMesh = GetComponent<TextMesh>();
 		myDictionary = FindObjectOfType<Dictionary>().gameObject;
 		myPosition = transform.position;
-		target = GameObject.FindGameObjectWithTag("Target").transform.position;
+
+        if (target == null) { 
+            target = GameObject.FindGameObjectWithTag("Target").transform.position;
+        }
 		//target = GameObject.Find("Target").transform.position;
 
 
@@ -31,8 +34,11 @@ public class words : MonoBehaviour {
 		MeshRenderer mr = GetComponent<MeshRenderer>();
 		GetComponent<BoxCollider>().size = new Vector3(mr.bounds.extents.x * 2f + 0.4f, 2f, 1f);
 		transform.Find("Background").localScale = new Vector3(mr.bounds.extents.x * 2f + 0.4f, 2f, 1f);
-
 	}
+
+    public void SetTarget(Transform newTarget) {
+        target = newTarget.position;
+    }
 
 	void Update()
 	{

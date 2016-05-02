@@ -49,10 +49,6 @@ public class CameraControlScript : MonoBehaviour {
         _objectOfInterest = objectOfInterest;
     }
 
-    public void TestWTF() {
-        Debug.Log("WTF");
-    }
-
     public void StopViewingObject() {
         _objectOfInterest = null;
         _playerControlled = true;

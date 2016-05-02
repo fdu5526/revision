@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,21 +14,37 @@ public class SceneTransition : MonoBehaviour {
 	Color transitionBackgroundColor = new Color(0.169f, 0.169f, 0.169f);
 	Color defaultBackgroundColor;
 	Vector3 defaultStevePosition;
+	Vector3 defaultSteveScale;
 	Camera mainCamera;
 	float transitionTime = 2f;
 
 	enum State { Start, TransitionIn };
 	State currentState;
 
+    public bool _isSteveCenter = true;
+
 	// Use this for initialization
 	void Awake () {
+		if (gameProgress.secondTime) { // do nothing 2nd time around
+			this.enabled = false;
+			return;
+		}
 		defaultStevePosition = transform.position;
+		defaultSteveScale = transform.localScale;
 		currentState = State.Start;
 		GetComponent<Rigidbody>().isKinematic = true;
 
 		mainCamera = Object.FindObjectOfType<Camera>();
 		Vector3 cameraP = mainCamera.transform.position;
-		transform.position = cameraP + new Vector3(0f, -1f, 10f);
+		
+		if (SceneManager.GetActiveScene().name.Equals("4. Room")) {
+			transform.position = cameraP + new Vector3(0f, -16.09f, 2.53f - 6.33f);
+		} else {
+			transform.position = cameraP + new Vector3(0f, 2.53f - 6.33f, 16.09f);
+		}
+		transform.localScale = new Vector3(160f, 180f, 160f);
+
+
 		defaultBackgroundColor = mainCamera.backgroundColor;
 		mainCamera.backgroundColor = transitionBackgroundColor;
 
@@ -43,7 +60,9 @@ public class SceneTransition : MonoBehaviour {
 
 		// turn off all other renderers in scene
 		for (int i = 0; i < renderers.Count; i++) {
-			renderers[i].enabled = false;
+			if (!renderers[i].gameObject.tag.Equals("SpeechBubble")) {
+				renderers[i].enabled = false;
+			}
 		}
 	}
 
@@ -51,15 +70,23 @@ public class SceneTransition : MonoBehaviour {
 	IEnumerator MoveSteveToDefault () {
 		while ((transform.position - defaultStevePosition).sqrMagnitude> 0.001f) {
 			transform.position = Vector3.Lerp(transform.position, defaultStevePosition, 0.1f);
+			transform.localScale = Vector3.Lerp(transform.localScale, defaultSteveScale, 0.5f);
 			yield return new WaitForSeconds(0.01f);
 		}
 	}
 
 	IEnumerator MoveSteveToCenter () {
 		Vector3 cameraP = Object.FindObjectOfType<Camera>().transform.position;
-		Vector3 p = cameraP + new Vector3(0f, -1f, 10f);
+		Vector3 p;
+		if (SceneManager.GetActiveScene().name.Equals("4. Room")) {
+			p = cameraP + new Vector3(0f, -16.09f, 2.53f - 6.33f);
+		} else {
+			p = cameraP + new Vector3(0f, 2.53f - 6.33f, 16.09f);
+		}
+		Vector3 s = new Vector3(160f, 180f, 160f);
 
 		while ((transform.position - p).sqrMagnitude> 0.001f) {
+			transform.localScale = Vector3.Lerp(transform.localScale, s, 0.5f);
 			transform.position = Vector3.Lerp(transform.position, p, 0.1f);
 			yield return new WaitForSeconds(0.01f);
 		}
@@ -83,33 +110,18 @@ public class SceneTransition : MonoBehaviour {
 	}
 
 	public void TransitionIntoScene () {
+        Debug.Log (_isSteveCenter);
+        _isSteveCenter = false;
 		StartCoroutine(MoveSteveToDefault());
 		StartCoroutine(StaggeredShowBackground());
 	}
 
 	public void TransitionOutOfScene () {
 		mainCamera.backgroundColor = transitionBackgroundColor;
+        _isSteveCenter = true;
 		StartCoroutine(MoveSteveToCenter());
 		for (int i = 0; i < renderers.Count; i++) {
 			renderers[i].enabled = false;
-		}
-	}
-
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown("space")) {
-			switch (currentState) {
-				case State.Start:
-					currentState = State.TransitionIn;
-					GetComponent<Rigidbody>().isKinematic = false;
-					TransitionIntoScene();
-					break;
-				case State.TransitionIn:
-					GetComponent<Rigidbody>().isKinematic = true;
-					TransitionOutOfScene();
-					break;
-			}
 		}
 	}
 }
