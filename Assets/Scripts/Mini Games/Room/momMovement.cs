@@ -36,7 +36,7 @@ public class momMovement : MonoBehaviour {
 				togglePause ();
 				flowcharts [narrativeCounter].SetActive (true);
 				narrativeCounter++;
-				spawnPoint.Spawn ();
+				//spawnPoint.Spawn ();
 				speed *= speedIncrement;
 				speedIncrement--;
 				if (speedIncrement == 0) {
