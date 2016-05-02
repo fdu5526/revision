@@ -7,14 +7,23 @@ public class racingSteve : MonoBehaviour {
 	public AnimationCurve yCurve;
 	public AnimationCurve scaleCurve;
 
+	bool started;
+
 	// Use this for initialization
 	void Start () {
+		started = false;
+	}
+
+	public void StartRacing () {
+		started = true;
 		gameObject.GetComponent<turn> ().turnAround ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		updateSpeed ();
+		if (started) {
+			updateSpeed ();
+		}
 	}
 
 	public void updateSpeed(){
