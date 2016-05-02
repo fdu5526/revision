@@ -14,6 +14,7 @@ public class SceneTransition : MonoBehaviour {
 	Color transitionBackgroundColor = new Color(0.169f, 0.169f, 0.169f);
 	Color defaultBackgroundColor;
 	Vector3 defaultStevePosition;
+	Vector3 defaultSteveScale;
 	Camera mainCamera;
 	float transitionTime = 2f;
 
@@ -23,6 +24,7 @@ public class SceneTransition : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		defaultStevePosition = transform.position;
+		defaultSteveScale = transform.localScale;
 		currentState = State.Start;
 		GetComponent<Rigidbody>().isKinematic = true;
 
@@ -34,6 +36,7 @@ public class SceneTransition : MonoBehaviour {
 		} else {
 			transform.position = cameraP + new Vector3(0f, 2.53f - 6.33f, 16.09f);
 		}
+		transform.localScale = new Vector3(160f, 180f, 160f);
 
 
 		defaultBackgroundColor = mainCamera.backgroundColor;
@@ -51,7 +54,9 @@ public class SceneTransition : MonoBehaviour {
 
 		// turn off all other renderers in scene
 		for (int i = 0; i < renderers.Count; i++) {
-			renderers[i].enabled = false;
+			if (!renderers[i].gameObject.tag.Equals("SpeechBubble")) {
+				renderers[i].enabled = false;
+			}
 		}
 	}
 
@@ -59,6 +64,7 @@ public class SceneTransition : MonoBehaviour {
 	IEnumerator MoveSteveToDefault () {
 		while ((transform.position - defaultStevePosition).sqrMagnitude> 0.001f) {
 			transform.position = Vector3.Lerp(transform.position, defaultStevePosition, 0.1f);
+			transform.localScale = Vector3.Lerp(transform.localScale, defaultSteveScale, 0.5f);
 			yield return new WaitForSeconds(0.01f);
 		}
 	}
@@ -71,8 +77,10 @@ public class SceneTransition : MonoBehaviour {
 		} else {
 			p = cameraP + new Vector3(0f, 2.53f - 6.33f, 16.09f);
 		}
+		Vector3 s = new Vector3(160f, 180f, 160f);
 
 		while ((transform.position - p).sqrMagnitude> 0.001f) {
+			transform.localScale = Vector3.Lerp(transform.localScale, s, 0.5f);
 			transform.position = Vector3.Lerp(transform.position, p, 0.1f);
 			yield return new WaitForSeconds(0.01f);
 		}

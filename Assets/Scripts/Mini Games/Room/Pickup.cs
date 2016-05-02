@@ -58,37 +58,41 @@ public class Pickup : MonoBehaviour {
 
 	void snapToPosition()
 	{
+
 		findNearest();
-		float distanceToNearestObject = Vector3.Distance(transform.position, nearestObject.transform.position);
-		if (distanceToNearestObject < snapDistance && nearestObject.GetComponent<friendSpot>().occupant == null)
-		{
-			transform.position = nearestObject.transform.position;
-			nearestObject.GetComponent<friendSpot>().occupant = gameObject;
-			theNodeManager.updatePairs ();
-			Destroy (this);
-		}
-		else
-		{
-			transform.position = originalPosition;
-		}
+        if (nearestObject != null) { 
+		    float distanceToNearestObject = Vector3.Distance(transform.position, nearestObject.transform.position);
+		    if (distanceToNearestObject < snapDistance && nearestObject.GetComponent<friendSpot>().occupant == null)
+		    {
+			    transform.position = nearestObject.transform.position;
+			    nearestObject.GetComponent<friendSpot>().occupant = gameObject;
+			    theNodeManager.updatePairs ();
+			    Destroy (this);
+		    }
+		    else
+		    {
+			    transform.position = originalPosition;
+		    }
+        }
 	}
 
 	void findNearest()
 	{
 		GameObject[] spots = GameObject.FindGameObjectsWithTag("Spot");
 		//Debug.Log("Found "+spots.Length+" spots");
-
-
-		nearestObject = spots[0];
-		for(int i = 1; i < spots.Length; i++)
-		{
-			float distanceToNearestObject = Vector3.Distance(transform.position, nearestObject.transform.position);
-			float distanceToCurrentObject = Vector3.Distance(transform.position, spots[i].transform.position);
-			if(distanceToNearestObject > distanceToCurrentObject && spots[i].GetComponent<friendSpot>().occupant == null)
-			{
-				nearestObject = spots[i];
-			}
-		}
+        
+        if (spots.Length > 0) { 
+		    nearestObject = spots[0];
+		    for(int i = 1; i < spots.Length; i++)
+		    {
+			    float distanceToNearestObject = Vector3.Distance(transform.position, nearestObject.transform.position);
+			    float distanceToCurrentObject = Vector3.Distance(transform.position, spots[i].transform.position);
+			    if(distanceToNearestObject > distanceToCurrentObject && spots[i].GetComponent<friendSpot>().occupant == null)
+			    {
+				    nearestObject = spots[i];
+			    }
+		    }
+        }
 	}
 
 	IEnumerator move(Vector3 target)
