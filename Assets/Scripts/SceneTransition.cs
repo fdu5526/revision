@@ -21,6 +21,8 @@ public class SceneTransition : MonoBehaviour {
 	enum State { Start, TransitionIn };
 	State currentState;
 
+    public bool _isSteveCenter = true;
+
 	// Use this for initialization
 	void Awake () {
 		defaultStevePosition = transform.position;
@@ -104,12 +106,15 @@ public class SceneTransition : MonoBehaviour {
 	}
 
 	public void TransitionIntoScene () {
+        Debug.Log (_isSteveCenter);
+        _isSteveCenter = false;
 		StartCoroutine(MoveSteveToDefault());
 		StartCoroutine(StaggeredShowBackground());
 	}
 
 	public void TransitionOutOfScene () {
 		mainCamera.backgroundColor = transitionBackgroundColor;
+        _isSteveCenter = true;
 		StartCoroutine(MoveSteveToCenter());
 		for (int i = 0; i < renderers.Count; i++) {
 			renderers[i].enabled = false;
