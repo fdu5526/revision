@@ -68,7 +68,7 @@ public class InScreen : MonoBehaviour {
 
 
 
-            if (_fi == false && _rectTrans3.position.x - 8f < cameraEdge.x) {
+            if (_fi == false && _rectTrans3.position.x - 6.5f < cameraEdge.x) {
                 Debug.Log ("false ran");
 //            transform.position = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
 
@@ -79,7 +79,7 @@ public class InScreen : MonoBehaviour {
 //                //            Debug.Log (_rectTrans.localPosition.x);
 //            _rectTrans3.localPosition = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
 //
-            } else if (_fi == true && _rectTrans3.position.x - 8f >= cameraEdge.x) {
+            } else if (_fi == true && _rectTrans3.position.x - 6.5f >= cameraEdge.x) {
             
                 Debug.Log ("true ran");
 //            _rectTrans.localPosition = new Vector3 (_rectTrans.localPosition.x - 300f, _rectTrans.localPosition.y, _rectTrans.localPosition.z);
