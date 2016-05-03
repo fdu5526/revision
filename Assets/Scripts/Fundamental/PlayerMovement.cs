@@ -17,11 +17,12 @@ public class PlayerMovement : MonoBehaviour
 	public int jumpCounter =0;
     public bool paused=false;
 	bool resetToggled = false;
-
+	Animator myanimator;
 
 	// Use this for initialization
 	void Start ()
 	{
+		myanimator = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -116,6 +117,9 @@ public class PlayerMovement : MonoBehaviour
 	void OnCollisionEnter(Collision other){
 		print("I collided");
 		if(other.collider.tag=="Letter" && resetToggled == false){
+			GetComponent<Rigidbody> ().isKinematic = false;
+			myanimator.SetTrigger ("ouch");
+			GetComponent<AudioSource> ().Play ();
 			print("I collided with a Letter and I'm gonnna reset");
 			resetToggled = true;
 			paused = true;

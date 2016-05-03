@@ -45,6 +45,7 @@ public class momMovement : MonoBehaviour {
 			}
 		}
 	}
+		
 
 	public void togglePause(){
 		paused = !paused;

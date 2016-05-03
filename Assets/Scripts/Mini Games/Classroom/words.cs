@@ -11,11 +11,13 @@ public class words : MonoBehaviour {
 	Vector3 myPosition;
 
 	translatedWord myWord;
-
+	AudioSource whining;
 
 	// Use this for initialization
 	void Start () {
+		whining = GameObject.Find ("WHINEAUDIO").GetComponent<AudioSource>();
 		myMesh = GetComponent<TextMesh>();
+		//myAudio = GetComponent<AudioSource> ();
 		myDictionary = FindObjectOfType<Dictionary>().gameObject;
 		myPosition = transform.position;
 
@@ -56,6 +58,7 @@ public class words : MonoBehaviour {
 
 	void OnMouseDown() {
 		if(DebugSwitch.debugMode== false && TranslateMaster.pause ==false){
+			whining.Play ();
 			TranslateMaster.pause = true;
 			TranslateMaster tempGO = GameObject.FindObjectOfType<TranslateMaster>();
 			tempGO.activatePanel(myWord.english);

@@ -7,11 +7,12 @@ public class racingPlannedEvents : MonoBehaviour {
 	int counter = 0;
 	public int numberOfTimes = 2;
 	public GameObject endSceneDialogue;
+	AudioSource myaudio;
 
 	// Use this for initialization
 	void Start () {
 		thePill.gameObject.SetActive(false);
-
+		myaudio = GetComponent<AudioSource> ();
 		if (gameProgress.secondTime == false) {
 			StartCoroutine (firstAppearance ());
 		}
@@ -28,8 +29,9 @@ public class racingPlannedEvents : MonoBehaviour {
 	}
 
 	public IEnumerator firstAppearance(){
-		yield return new WaitForSeconds(5f);
-		StartCoroutine(pause(5f));
+		yield return new WaitForSeconds(10f);
+		StartCoroutine(pause(10f));
+		myaudio.Play ();
 		thePill.gameObject.SetActive(true);
 		//yield return null;
 	}
@@ -41,8 +43,9 @@ public class racingPlannedEvents : MonoBehaviour {
 	public IEnumerator resetPill(){
 		checkForGameOver();
 		thePill.gameObject.SetActive(false);
-		yield return new WaitForSeconds(5f);
+		yield return new WaitForSeconds(10f);
 		thePill.gameObject.SetActive(true);
+		myaudio.Play ();
 		yield return null;
 	}
 

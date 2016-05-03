@@ -67,7 +67,7 @@ public class Pickup : MonoBehaviour {
 			    transform.position = nearestObject.transform.position;
 			    nearestObject.GetComponent<friendSpot>().occupant = gameObject;
 			    theNodeManager.updatePairs ();
-			    Destroy (this);
+				Destroy (this);
 		    }
 		    else
 		    {
@@ -89,10 +89,15 @@ public class Pickup : MonoBehaviour {
 			    float distanceToCurrentObject = Vector3.Distance(transform.position, spots[i].transform.position);
 			    if(distanceToNearestObject > distanceToCurrentObject && spots[i].GetComponent<friendSpot>().occupant == null)
 			    {
+					
 				    nearestObject = spots[i];
 			    }
 		    }
         }
+
+		if (spots.Length == 0) {
+			transform.position = originalPosition;
+		}
 	}
 
 	IEnumerator move(Vector3 target)
