@@ -11,7 +11,7 @@ public class playSound : MonoBehaviour {
 
 	void Awake(){
 		myAudio = GetComponent<AudioSource> ();
-		myAudio.Play ();
+		//myAudio.Play ();
 	}
 
 	// Update is called once per frame
@@ -21,5 +21,13 @@ public class playSound : MonoBehaviour {
 
 	public void activateSound(bool haha){
 		myAudio.Play ();
+	}
+
+	public void changeVolume(float vol){
+		myAudio.volume = vol;
+	}
+
+	public void upPitch(float increment){
+		myAudio.pitch += increment;
 	}
 }
