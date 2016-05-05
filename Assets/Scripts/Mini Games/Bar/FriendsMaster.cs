@@ -25,6 +25,7 @@ public class FriendsMaster : MonoBehaviour {
 	}
 
 	public void checkWin(){
+		print ("Checking win");
 		bool win = true;
 		for(int i = 0; i<allSpots.Length; i++){
 			if(allSpots[i].GetComponent<friendSpot>().occupant == null){

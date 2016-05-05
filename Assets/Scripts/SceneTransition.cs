@@ -121,7 +121,9 @@ public class SceneTransition : MonoBehaviour {
         _isSteveCenter = true;
 		StartCoroutine(MoveSteveToCenter());
 		for (int i = 0; i < renderers.Count; i++) {
-			renderers[i].enabled = false;
+			if (!renderers[i].gameObject.tag.Equals("SpeechBubble")) {
+				renderers[i].enabled = false;
+			}
 		}
 	}
 }

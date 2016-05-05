@@ -11,7 +11,7 @@ public class TranslationChoice : MonoBehaviour {
 
 	public void checkAnswer(){
 		if(correct == false){
-			Debug.Log("WRONG");
+			//Debug.Log("WRONG");
 			if (gameProgress.secondTime == false) {
 				myMeter.confusionUp ();
 			}
@@ -21,6 +21,9 @@ public class TranslationChoice : MonoBehaviour {
 		else{
 			Instantiate(correctAnswerFeedback);
 			TranslateMaster.upCounter ();
+			if (gameProgress.secondTime) {
+				myMeter.confusionDown ();
+			}
 		}
 		TranslateMaster.pause = false;
 	}

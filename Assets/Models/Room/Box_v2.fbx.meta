@@ -1,5 +1,7 @@
 fileFormatVersion: 2
-guid: 63569d2af12cd495a958bc0ed7ca61ac
+guid: 26fdd27dd07f5984fa611e7bf19dcfc6
+timeCreated: 1462334238
+licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -33,7 +35,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

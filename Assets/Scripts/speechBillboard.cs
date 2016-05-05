@@ -20,15 +20,16 @@ public class speechBillboard : MonoBehaviour {
 	void LateUpdate () {
 		Vector3 lookAtCamera = (camera.position - transform.position);
 		lookAtCamera.y = 0;
-		//keep the x coordinate still
-//		lookAtCamera.x = transform.position.x;
+		//		keep the x coordinate still
+		//		lookAtCamera.x = transform.position.x;
 		transform.forward = _flip? -lookAtCamera : lookAtCamera;
-
-        if (_sceneTrans._isSteveCenter == true) {
-            transform.position = new Vector3 (_followCharacter.transform.position.x, _yPosCenter, _followCharacter.transform.position.z);
-        } else {
-//		transform.position = new Vector3 (_followCharacter.transform.position.x, _followCharacter.transform.position.y + _yOffset, _followCharacter.transform.position.z);
-            transform.position = new Vector3 (_followCharacter.transform.position.x, _yPos, _followCharacter.transform.position.z);
-        }
+		if (_sceneTrans != null) {
+			if (_sceneTrans._isSteveCenter == true) {
+				transform.position = new Vector3 (_followCharacter.transform.position.x, _yPosCenter, _followCharacter.transform.position.z);
+			} else {
+		//		transform.position = new Vector3 (_followCharacter.transform.position.x, _followCharacter.transform.position.y + _yOffset, _followCharacter.transform.position.z);
+				transform.position = new Vector3 (_followCharacter.transform.position.x, _yPos, _followCharacter.transform.position.z);
+			}
+		}
 	}
 }
