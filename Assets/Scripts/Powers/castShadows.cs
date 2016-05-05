@@ -14,7 +14,9 @@ public class castShadows : MonoBehaviour {
 	}
 
 	public void startToggle(float target){
-		StartCoroutine(toggleShadow(target));
+		//StartCoroutine(toggleShadow(target));
+		Light myLight = GetComponent<Light>();
+		myLight.shadowStrength = 1f;
 	}
 
 	public IEnumerator toggleShadow(float target){
@@ -26,7 +28,7 @@ public class castShadows : MonoBehaviour {
 		float current = myLight.shadowStrength;
 
 		while(elapsedTime<totalTime){
-			GameButtonMaster.ready = false;
+			//GameButtonMaster.ready = false;
 		
 			current = Mathf.Lerp(current, target, (elapsedTime / (totalTime*10f)));
 			myLight.shadowStrength = current;
@@ -37,7 +39,7 @@ public class castShadows : MonoBehaviour {
 
 				current = target;
 				myLight.shadowStrength = current;
-				GameButtonMaster.ready = true;
+			//	GameButtonMaster.ready = true;
 			}
 			yield return null;
 		}

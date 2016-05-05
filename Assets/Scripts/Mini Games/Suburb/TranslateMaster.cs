@@ -6,6 +6,7 @@ public class TranslateMaster : MonoBehaviour {
 	public Dictionary myDictionary;
 	public static bool pause = false;
 	public static int counter = 0;
+	public static bool debugged = false;
 
 	void Start(){
 	}
@@ -39,6 +40,10 @@ public class TranslateMaster : MonoBehaviour {
 		if (counter < 9) {
 			counter++;
 		}
+	}
+
+	public void debugGame(){
+		debugged = true;
 	}
 
 }

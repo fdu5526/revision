@@ -20,7 +20,7 @@ public class friendMovement : MonoBehaviour {
 
         speechBubble.text = "";
 		masterObject = GameObject.FindObjectOfType<FriendsMaster>();
-        _tail.enabled = false;
+		_tail.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -29,6 +29,10 @@ public class friendMovement : MonoBehaviour {
         {
             followMouse();
         }
+	}
+
+	public void turnOffTail(){
+		_tail.enabled = false;
 	}
 
     void OnMouseDown()
@@ -92,6 +96,7 @@ public class friendMovement : MonoBehaviour {
                 }
             }
         }
+			masterObject.checkWin();
 		}
 
 		else{
