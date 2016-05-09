@@ -133,12 +133,12 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
-	void ResetPosition(){
-		cameraSettingToggle myCamera = GameObject.FindObjectOfType<cameraSettingToggle>();
-		myCamera.resetPositionInstantaneous();
-		gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-		gameObject.GetComponent<Rigidbody>().angularVelocity= Vector3.zero;
-		gameObject.GetComponent<Rigidbody>().Sleep();
+	void ResetPosition(){		
+		//cameraSettingToggle myCamera = GameObject.FindObjectOfType<cameraSettingToggle>();
+		//myCamera.resetPositionInstantaneous();
+		//gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		//gameObject.GetComponent<Rigidbody>().angularVelocity= Vector3.zero;
+		//gameObject.GetComponent<Rigidbody>().Sleep();
 		paused = false;
 		resetToggled = false;
 
