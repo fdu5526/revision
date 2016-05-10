@@ -23,6 +23,7 @@ public class PlayerControllerTest : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(movementEnabled){
+			print ("in update");
 			ManageMovement();
         	ManageRotation();
 		}
@@ -37,6 +38,7 @@ public class PlayerControllerTest : MonoBehaviour {
 
 	public void enableMovement () {
 		movementEnabled = true;
+		print ("movement enabled is now: "+movementEnabled);
 	}
 
     public float ReturnVelocity() {
@@ -44,6 +46,7 @@ public class PlayerControllerTest : MonoBehaviour {
     }
 
     void ManageMovement() {
+		print ("managing movement");
         _forwardPosition = _camera.transform.forward;
         _moveForward = Input.GetAxis("Vertical");
         _moveSide = Input.GetAxis("Horizontal");

@@ -7,7 +7,7 @@ public class InScreen : MonoBehaviour {
         [SerializeField] bool _flip;
         [SerializeField] Transform _followCharacter;
         //  [SerializeField] float _yOffset = 0f;
-
+    bool _justLoaded = true;
 
         [SerializeField] GameObject bubble;
         [SerializeField] GameObject uiText;
@@ -26,6 +26,7 @@ public class InScreen : MonoBehaviour {
         void Awake () {
         _sceneTrans = _followCharacter.GetComponent <SceneTransition> ();
         _origPos = transform.position;
+        Debug.Log (_origPos);
         _yPosCenter = _origPos.y + 3.6f;
             camera = Camera.main.transform;
 
@@ -65,29 +66,16 @@ public class InScreen : MonoBehaviour {
             }
             _rectTrans3.position = new Vector3 (_followCharacter.transform.position.x, _rectTrans3.position.y, _followCharacter.transform.position.z);
 
-
+            if (gameProgress.secondTime && _justLoaded){
+                transform.position = new Vector3 (cameraEdge.x + 6.5f, _origPos.y, _followCharacter.transform.position.z);
+                _justLoaded = false;
+            }
 
 
             if (_fi == false && _rectTrans3.position.x - 6.5f < cameraEdge.x) {
-                Debug.Log ("false ran");
-//            transform.position = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
-
-//                //            Debug.Log (_rectTrans.localPosition.x);
-//            _rectTrans.localPosition = new Vector3 (_rectTrans.localPosition.x + 300f, _rectTrans.localPosition.y, _rectTrans.localPosition.z);
-//            _rectTrans2.localPosition = new Vector3 (_rectTrans2.localPosition.x + 300f, _rectTrans2.localPosition.y, _rectTrans2.localPosition.z); 
                 _fi = true;
-//                //            Debug.Log (_rectTrans.localPosition.x);
-//            _rectTrans3.localPosition = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
-//
             } else if (_fi == true && _rectTrans3.position.x - 6.5f >= cameraEdge.x) {
-            
-                Debug.Log ("true ran");
-//            _rectTrans.localPosition = new Vector3 (_rectTrans.localPosition.x - 300f, _rectTrans.localPosition.y, _rectTrans.localPosition.z);
-//            _rectTrans2.localPosition = new Vector3 (_rectTrans2.localPosition.x - 300f, _rectTrans2.localPosition.y, _rectTrans2.localPosition.z); 
                 _fi = false;
-//            _rectTrans.localPosition = new Vector3 (_followCharacter.transform.position.x, transform.position.y, _followCharacter.transform.position.z);
-//                _rectTrans.localPosition = new Vector3 (150f, _rectTrans.localPosition.y, _rectTrans.localPosition.z);
-//
             }
         }
         }

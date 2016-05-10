@@ -16,7 +16,9 @@ public class suburbMinigameActivate : MonoBehaviour {
 	}
 
 	public void startMinigame(){
+		print ("Translastermaster ddebug is:" +TranslateMaster.debugged);
 		if (TranslateMaster.debugged == true) {
+			print ("start minigame");
 			minigameStarter.SetActive (true);
 		}
 	}		

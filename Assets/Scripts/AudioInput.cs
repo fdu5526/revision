@@ -51,6 +51,6 @@ public class AudioInput : MonoBehaviour {
       }
       ++i;
     }
-    aud.Play();
+  	// aud.Play();
   }
 }

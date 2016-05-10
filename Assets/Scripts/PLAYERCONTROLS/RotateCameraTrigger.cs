@@ -19,4 +19,9 @@ public class RotateCameraTrigger : MonoBehaviour {
             //_camera.SetObjectOfInterest(_objectOfInterest);
         }
     }
+
+	public void stare(){
+		GameObject.FindObjectOfType<PlayerControllerTest> ().DisableMovement ();
+		_camera.PlayerControlled(false, _lookAtTarget);
+	}
 }

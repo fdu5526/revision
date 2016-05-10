@@ -26,6 +26,7 @@ public class SceneTransition : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		if (gameProgress.secondTime) { // do nothing 2nd time around
+            _isSteveCenter = false;
 			this.enabled = false;
 			return;
 		}
