@@ -18,6 +18,7 @@ public class PanelSetup : MonoBehaviour {
 	public Button[] choices;
 	public Image background;
 	public Text mainText;
+	public Animator flyingWords;
 
     public bool ENGtoKR;
 
@@ -88,8 +89,9 @@ public class PanelSetup : MonoBehaviour {
 
     public void ClickObj() {
         if (ENGtoKR) {
-            GameObject newTranslatedWord = Instantiate(wordPrefab, spawnPosition.position, spawnPosition.rotation) as GameObject;
-            newTranslatedWord.GetComponent<words>().SetTarget(target);
+			flyingWords.SetTrigger ("activate");
+            //GameObject newTranslatedWord = Instantiate(wordPrefab, spawnPosition.position, spawnPosition.rotation) as GameObject;
+            //newTranslatedWord.GetComponent<words>().SetTarget(target);
         }
     }
 }
