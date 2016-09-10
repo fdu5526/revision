@@ -13,6 +13,7 @@ public class friendMovement : MonoBehaviour {
 	FriendsMaster masterObject;
     public Vector3 originalPosition;
 	bubbleResize speechResizeScript;
+	bool moving = false;
     [SerializeField] SpriteRenderer _tail;
 	// Use this for initialization
 	void Start () {
@@ -37,14 +38,22 @@ public class friendMovement : MonoBehaviour {
 
     void OnMouseDown()
     {
-		if(DebugSwitch.debugMode == false){
+		if(DebugSwitch.debugMode == false && moving == false)
+		{
         Debug.Log("picked up");
         pickedUp = true;
-		if (nearestObject != null && nearestObject.GetComponent<friendSpot>().occupant == gameObject)
-        {
+			if (nearestObject != null && nearestObject.GetComponent<friendSpot>().occupant == gameObject)
+        	{
 			//print (nearestObject.name+" is set to null because you picked me up.");
             nearestObject.GetComponent<friendSpot>().occupant = null;
-        }
+        	}
+		}
+		if (DebugSwitch.debugMode) {
+			print ("In debug!");
+		}
+
+		if (moving) {
+			print ("still moving");
 		}
 
     }
@@ -118,6 +127,7 @@ public class friendMovement : MonoBehaviour {
 
     IEnumerator move(Vector3 target)
     {
+		moving = true;
         float distanceToTarget = Vector3.Distance(transform.position, target);
         yield return new WaitForSeconds(.5f);
         while (distanceToTarget>.1f)
@@ -128,6 +138,7 @@ public class friendMovement : MonoBehaviour {
             {
                 transform.position = target;
                 distanceToTarget = 0;
+				moving = false;
             }
             yield return null;
         }

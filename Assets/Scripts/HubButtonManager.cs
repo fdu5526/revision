@@ -12,7 +12,7 @@ public class HubButtonManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		print ("Updating buttons");
+		//print ("Updating buttons");
 		if (levelsVisited > 2) {
 			endingButton.gameObject.SetActive (true);
 		}
@@ -33,7 +33,7 @@ public class HubButtonManager : MonoBehaviour {
 
 	public void levelVisited(){
 		levelsVisited++;
-		if (levelsVisited > 2) {
+		if (levelsVisited > 0) {
 			endingButton.gameObject.SetActive (true);
 		}
 	}

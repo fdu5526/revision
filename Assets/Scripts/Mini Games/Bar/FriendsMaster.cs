@@ -21,7 +21,7 @@ public class FriendsMaster : MonoBehaviour {
 		for(int i = 0; i<allFriends.Length; i++){
 			allFriends[i].GetComponent<friendMovement>().leave();
 		}
-		debugged = !debugged;
+		debugged = true;
 	}
 
 	public void checkWin(){

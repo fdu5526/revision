@@ -93,16 +93,24 @@ public class SceneTransition : MonoBehaviour {
 		}
 	}
 
-	IEnumerator StaggeredShowBackground () {
+	IEnumerator StaggeredShowBackground (bool turnOn) {
 		float transitionStepTime = transitionTime / renderers.Count;
 		for (int i = 0; i < renderers.Count; i+=2) {
 			for (int j = 0; j < 2; j++) {
 				int index = i + j;
 				if (index >= renderers.Count) {
-					mainCamera.backgroundColor = defaultBackgroundColor;
+					if (turnOn == true) {
+						mainCamera.backgroundColor = defaultBackgroundColor;
+					}
+					if (turnOn == false) {
+						mainCamera.backgroundColor = transitionBackgroundColor;
+					}
 					break;
 				} else {
-					renderers[index].enabled = true;
+					if (!renderers[index].gameObject.tag.Equals("SpeechBubble")) {
+						renderers[index].enabled = turnOn;
+					}
+					//renderers[index].enabled = true;
 				}
 			}
 			mainCamera.backgroundColor = Color.Lerp(mainCamera.backgroundColor, defaultBackgroundColor, 0.02f);
@@ -114,17 +122,18 @@ public class SceneTransition : MonoBehaviour {
         Debug.Log (_isSteveCenter);
         _isSteveCenter = false;
 		StartCoroutine(MoveSteveToDefault());
-		StartCoroutine(StaggeredShowBackground());
+		StartCoroutine(StaggeredShowBackground(true));
 	}
 
 	public void TransitionOutOfScene () {
 		mainCamera.backgroundColor = transitionBackgroundColor;
         _isSteveCenter = true;
 		StartCoroutine(MoveSteveToCenter());
-		for (int i = 0; i < renderers.Count; i++) {
-			if (!renderers[i].gameObject.tag.Equals("SpeechBubble")) {
-				renderers[i].enabled = false;
-			}
-		}
+		StartCoroutine (StaggeredShowBackground (false));
+//		for (int i = 0; i < renderers.Count; i++) {
+//			if (!renderers[i].gameObject.tag.Equals("SpeechBubble")) {
+//				renderers[i].enabled = false;
+//			}
+//		}
 	}
 }

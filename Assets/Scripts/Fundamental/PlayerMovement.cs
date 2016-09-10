@@ -37,6 +37,12 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
+	public void DisableMovement () {
+		GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		GetComponent<Rigidbody> ().useGravity = false; 	
+	}
+
 	void turn (float targetAngle)
 	{
 		if (transform.eulerAngles.y != targetAngle) {
@@ -61,12 +67,39 @@ public class PlayerMovement : MonoBehaviour
 				//turn (90f);
 				//transform.Translate (Vector3.forward * (speed * Time.deltaTime));
 				transform.Translate (Vector3.back * (speed * Time.deltaTime));
+				if (myanimator.GetBool ("runRight") == false) {					
+					myanimator.SetBool ("runRight", true);
+				}
+
 			}
 		
 			if (Input.GetKey (KeyCode.LeftArrow) ||
 					Input.GetKey (KeyCode.A)) {
 				//turn (270f);
 				transform.Translate (Vector3.forward * (speed * Time.deltaTime));
+				if (myanimator.GetBool ("runLeft") == false) {					
+					myanimator.SetBool ("runLeft", true);
+				}
+			}
+
+			if (Input.GetKeyUp (KeyCode.RightArrow) ||
+				Input.GetKeyUp (KeyCode.D)) {
+				//turn (90f);
+				//transform.Translate (Vector3.forward * (speed * Time.deltaTime));
+				transform.Translate (Vector3.back * (speed * Time.deltaTime));
+				if (myanimator.GetBool ("runRight") == true) {					
+					myanimator.SetBool ("runRight", false);
+				}
+
+			}
+
+			if (Input.GetKeyUp (KeyCode.LeftArrow) ||
+				Input.GetKeyUp (KeyCode.A)) {
+				//turn (270f);
+				transform.Translate (Vector3.forward * (speed * Time.deltaTime));
+				if (myanimator.GetBool ("runLeft") == true) {					
+					myanimator.SetBool ("runLeft", false);
+				}
 			}
 		}
 
@@ -123,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
 			print("I collided with a Letter and I'm gonnna reset");
 			resetToggled = true;
 			paused = true;
-			Invoke("ResetPosition", 2);
+			Invoke("ResetPosition", 1);
 		}
 	}
 
